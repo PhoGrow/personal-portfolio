@@ -1,0 +1,43 @@
+// Import Bulma's core
+@import 'bulma/sass/utilities/_all.sass';
+
+// Set your colors
+$bright-green: #e1fead;
+$dark-green: #043f45;
+
+// Body
+$body-background-color: $light;
+
+// Link
+// $link: $bright-green;
+$link-hover: $dark-green;
+
+// Navbar
+$navbar-item-hover-color: $dark-green;
+
+// Hr
+$hr-background-color: $grey-lighter;
+
+// Footer
+$footer-background-color: $dark;
+$footer-padding: 3rem 3rem;
+
+// Button
+$button-focus-box-shadow-color: none;
+
+// Box
+$box-shadow: none;
+$box-radius: 2rem;
+$box-padding: 3rem;
+
+// Card
+$card-shadow: none;
+$card-radius: 2rem;
+$card-content-padding: 3rem;
+
+// Skeleton
+$skeleton-border-radius: 2rem;
+
+// Import Bulma and Oruga's Bulma theme
+@import 'bulma/bulma.sass';
+@import '@oruga-ui/theme-bulma/dist/scss/bulma.scss';
