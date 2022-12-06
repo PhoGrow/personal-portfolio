@@ -1,30 +1,25 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Card from '@/components/Card.astro';
+import { LandingPage } from '@/components';
+import type { Introduction } from '@/types';
+
+const introduction: Introduction = {
+  title: `Hi, I'm Rene Dietz 👋`,
+  subtitle: `I'm a fresh graduate, self-taught web developer, and guess there's a reason you're here 👀`,
+  callToAction: `Looking for my CV?`,
+  href: `#cv`,
+};
+// import Card from '@/components/Card.astro';
 ---
 
 <Layout title="Rene Dietz">
   <main>
-    <Card
-      href="https://docs.astro.build/"
-      title="Documentation"
-      body="Learn how Astro works and explore the official API docs."
-    />
-    <Card
-      href="https://astro.build/integrations/"
-      title="Integrations"
-      body="Supercharge your project with new frameworks and libraries."
-    />
-    <Card
-      href="https://astro.build/themes/"
-      title="Themes"
-      body="Explore a galaxy of community-built starter themes."
-    />
-    <Card
+    <LandingPage introduction={introduction} client:only="vue" />
+    <!-- <Card
       href="https://astro.build/chat/"
       title="Community"
       body="Come say hi to our amazing Discord community. ❤️"
-    />
+    /> -->
   </main>
 </Layout>
 

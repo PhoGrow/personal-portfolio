@@ -2,15 +2,16 @@
 @import 'bulma/sass/utilities/_all.sass';
 
 // Set your colors
+$pastel-yellow: #fff3c9;
 $bright-green: #e1fead;
 $dark-green: #043f45;
 
 // Body
-$body-background-color: $light;
+$body-background-color: $pastel-yellow;
 
 // Link
 // $link: $bright-green;
-$link-hover: $dark-green;
+// $link-hover: $dark-green;
 
 // Navbar
 $navbar-item-hover-color: $dark-green;
@@ -23,7 +24,7 @@ $footer-background-color: $dark;
 $footer-padding: 3rem 3rem;
 
 // Button
-$button-focus-box-shadow-color: none;
+// $button-focus-box-shadow-color: none;
 
 // Box
 $box-shadow: none;
