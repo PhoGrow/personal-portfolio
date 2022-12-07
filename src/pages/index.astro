@@ -1,20 +1,56 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { LandingPage } from '@/components';
-import type { Introduction } from '@/types';
+import {
+  OrganismLandingPage,
+  MoleculeWelcome,
+  AtomIframe,
+  OrganismCV,
+  OrganismPersonalInfo,
+} from '@/components';
+import type { PersonalInfo } from '@/types';
 
-const introduction: Introduction = {
-  title: `Hi, I'm Rene Dietz 👋`,
-  subtitle: `I'm a fresh graduate, self-taught web developer, and guess there's a reason you're here 👀`,
-  callToAction: `Looking for my CV?`,
-  href: `#cv`,
-};
+const [title, subtitle, callToAction, href] = [
+  `Hi, I'm Rene Dietz 👋`,
+  `I'm a fresh graduate, self-taught web developer, and guess there's a reason you're here 👀`,
+  `Looking for my CV?`,
+  `#cv`,
+];
+const [src, workTitle, caption] = [
+  `https://phogrow3d.com`,
+  `PhoGrow`,
+  `Work in progress at PhoGrow`,
+];
+const personalInfo: PersonalInfo[] = [
+  { property: 'Address', description: 'Censored' },
+  { property: 'Email address', description: 'Censored' },
+  { property: 'Phone number', description: 'Censored' },
+  { property: 'Languages', description: 'German, English' },
+  { property: 'Website', description: 'Upcoming' },
+  { property: 'LinkedIn', description: 'www.linkedin.com/in/rene-dietz' },
+];
 // import Card from '@/components/Card.astro';
 ---
 
 <Layout title="Rene Dietz">
   <main>
-    <LandingPage introduction={introduction} client:only="vue" />
+    <OrganismLandingPage client:only="vue">
+      <MoleculeWelcome
+        slot="welcome"
+        title={title}
+        subtitle={subtitle}
+        callToAction={callToAction}
+        href={href}
+        client:only="vue"
+      />
+      <AtomIframe slot="work" src={src} title={workTitle} caption={caption} />
+    </OrganismLandingPage>
+    <OrganismCV id="cv" client:only="vue">
+      <OrganismPersonalInfo
+        slot="personal-info"
+        info={personalInfo}
+        client:only="vue"
+      />
+    </OrganismCV>
     <!-- <Card
       href="https://astro.build/chat/"
       title="Community"

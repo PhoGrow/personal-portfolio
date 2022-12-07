@@ -3,18 +3,25 @@
 
 // Set your colors
 $pastel-yellow: #fff3c9;
-$bright-green: #e1fead;
-$dark-green: #043f45;
+$pastel-yellow-light: findLightColor($pastel-yellow);
+// $bright-green: #e1fead;
+// $dark-green: #043f45;
 
 // Body
 $body-background-color: $pastel-yellow;
+
+// Box
+$box-background-color: $pastel-yellow-light;
+$box-radius: 2rem;
+$box-shadow: none;
+$box-padding: 2rem;
 
 // Link
 // $link: $bright-green;
 // $link-hover: $dark-green;
 
 // Navbar
-$navbar-item-hover-color: $dark-green;
+// $navbar-item-hover-color: $dark-green;
 
 // Hr
 $hr-background-color: $grey-lighter;
@@ -25,11 +32,6 @@ $footer-padding: 3rem 3rem;
 
 // Button
 // $button-focus-box-shadow-color: none;
-
-// Box
-$box-shadow: none;
-$box-radius: 2rem;
-$box-padding: 3rem;
 
 // Card
 $card-shadow: none;

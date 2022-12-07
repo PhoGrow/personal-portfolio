@@ -1,20 +1,16 @@
 <template>
-  <figure class="image is-3by2 is-hidden-touch">
+  <figure :class="['image', isTouchScreen ? 'is-5by4' : 'is-3by2']">
     <iframe :src="src" :title="title" class="has-ratio"></iframe>
     <figcaption class="has-text-centered is-size-5 has-text-weight-medium mt-2">
-      <slot></slot>
-    </figcaption>
-  </figure>
-  <figure class="image is-5by4 is-hidden-desktop">
-    <iframe :src="src" :title="title" class="has-ratio"></iframe>
-    <figcaption class="has-text-centered is-size-5 has-text-weight-medium mt-2">
-      <slot></slot>
+      {{ caption.replace(title, '') }}
+      <a :href="src">{{ title }}</a>
     </figcaption>
   </figure>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useMediaQuery } from '@vueuse/core';
 
 export default defineComponent({
   name: 'IframeItem',
@@ -27,6 +23,14 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    caption: {
+      type: String,
+      required: true,
+    },
+  },
+  setup() {
+    const isTouchScreen = useMediaQuery('(max-width: 1023px)');
+    return { isTouchScreen };
   },
 });
 </script>

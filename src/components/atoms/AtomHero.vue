@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
         <slot></slot>
@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'FullheightHero',
+  name: 'AtomHero',
 });
 </script>
 
