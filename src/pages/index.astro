@@ -3,53 +3,52 @@ import Layout from '@/layouts/Layout.astro';
 import {
   OrganismLandingPage,
   MoleculeWelcome,
-  AtomIframe,
+  MoleculeIframe,
   OrganismCV,
   OrganismPersonalInfo,
+  OrganismProfile,
 } from '@/components';
-import type { PersonalInfo } from '@/types';
+import type { Welcome, Iframe, PersonalInfo } from '@/types';
 
-const [title, subtitle, callToAction, href] = [
-  `Hi, I'm Rene Dietz 👋`,
-  `I'm a fresh graduate, self-taught web developer, and guess there's a reason you're here 👀`,
-  `Looking for my CV?`,
-  `#cv`,
-];
-const [src, workTitle, caption] = [
-  `https://phogrow3d.com`,
-  `PhoGrow`,
-  `Work in progress at PhoGrow`,
-];
-const personalInfo: PersonalInfo[] = [
-  { property: 'Address', description: 'Censored' },
-  { property: 'Email address', description: 'Censored' },
-  { property: 'Phone number', description: 'Censored' },
-  { property: 'Languages', description: 'German, English' },
-  { property: 'Website', description: 'Upcoming' },
-  { property: 'LinkedIn', description: 'www.linkedin.com/in/rene-dietz' },
-];
+const welcome: Welcome = {
+  title: `Hi, I'm Rene Dietz 👋`,
+  subtitle: `I'm a fresh graduate, self-taught web developer, and guess there's a reason you're here 👀`,
+  callToAction: `Looking for my CV?`,
+  href: `#cv`,
+};
+const iframe: Iframe = {
+  src: `https://phogrow3d.com`,
+  title: `PhoGrow`,
+  caption: `Work in progress at PhoGrow`,
+};
+const personalInfo: PersonalInfo = {
+  address: 'Locked',
+  emailAddress: 'Locked',
+  mobileNumber: 'Locked',
+  languages: 'German (native), English (upper-intermediate)',
+  website: 'Upcoming',
+  linkedIn: 'www.linkedin.com/in/rene-dietz',
+};
+const profileText = `Creative and persistent fresh graduate looking for a first position as a frontend developer.
+  Gained fundamental technical knowledge in web, media, and design through studies in media technology.
+  Self-taught developer in creating intuitive and responsive web applications who loves to work with enthusiastic individuals on meaningful projects.
+  Currently a gratuitous web developer for the 'yet to be founded' startup PhoGrow and ready to gather first work experience in your business.`;
 // import Card from '@/components/Card.astro';
 ---
 
 <Layout title="Rene Dietz">
   <main>
     <OrganismLandingPage client:only="vue">
-      <MoleculeWelcome
-        slot="welcome"
-        title={title}
-        subtitle={subtitle}
-        callToAction={callToAction}
-        href={href}
-        client:only="vue"
-      />
-      <AtomIframe slot="work" src={src} title={workTitle} caption={caption} />
+      <MoleculeWelcome slot="welcome" welcome={welcome} client:only="vue" />
+      <MoleculeIframe slot="work" iframe={iframe} client:only="vue" />
     </OrganismLandingPage>
-    <OrganismCV id="cv" client:only="vue">
+    <OrganismCV id={welcome.href.substring(1)} client:only="vue">
       <OrganismPersonalInfo
         slot="personal-info"
         info={personalInfo}
         client:only="vue"
       />
+      <OrganismProfile slot="profile" text={profileText} client:only="vue" />
     </OrganismCV>
     <!-- <Card
       href="https://astro.build/chat/"

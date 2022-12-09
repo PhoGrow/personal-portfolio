@@ -1,6 +1,6 @@
 <template>
   <section class="hero">
-    <div class="hero-body">
+    <div :class="['hero-body', { 'px-0': !hasHorizontalPadding }]">
       <div class="container">
         <slot></slot>
       </div>
@@ -13,6 +13,12 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AtomHero',
+  props: {
+    hasHorizontalPadding: {
+      type: Boolean,
+      default: true,
+    },
+  },
 });
 </script>
 

@@ -1,14 +1,15 @@
 <template>
   <div>
-    <AtomTitle class="is-1 is-spaced">{{ title }}</AtomTitle>
-    <AtomSubtitle class="is-3">{{ subtitle }}</AtomSubtitle>
+    <AtomTitle :title="title" class="is-1 is-spaced" />
+    <AtomSubtitle :subtitle="subtitle" class="is-3" />
     <AtomButton :href="href">{{ callToAction }}</AtomButton>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, type PropType } from 'vue';
 import { AtomTitle, AtomSubtitle, AtomButton } from '@/components';
+import type { Welcome } from '@/types';
 
 export default defineComponent({
   name: 'MoleculeWelcome',
@@ -18,22 +19,15 @@ export default defineComponent({
     AtomButton,
   },
   props: {
-    title: {
-      type: String,
+    welcome: {
+      type: Object as PropType<Welcome>,
       required: true,
     },
-    subtitle: {
-      type: String,
-      required: true,
-    },
-    callToAction: {
-      type: String,
-      required: true,
-    },
-    href: {
-      type: String,
-      required: true,
-    },
+  },
+  data() {
+    return {
+      ...this.welcome,
+    };
   },
 });
 </script>

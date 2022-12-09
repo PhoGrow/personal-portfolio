@@ -1,50 +1,62 @@
 <template>
-  <AtomBox>
-    <AtomTitle>Personal info</AtomTitle>
+  <MoleculeBoxWithTitle :title="title">
     <AtomColumns class="is-gapless">
       <AtomColumn v-for="i in 2" :key="i">
         <MoleculePersonalInfo
-          v-for="{ property, description } of getHalfArray(i - 1)"
+          v-for="([property, description], j) of getHalfInfo(i - 1)"
           :key="property"
           :property="property"
           :description="description"
+          :class="{
+            'mb-3':
+              j !== getHalfInfo(i - 1).length - 1 ||
+              (isMobileScreen && i === 1),
+          }"
         />
       </AtomColumn>
     </AtomColumns>
-  </AtomBox>
+  </MoleculeBoxWithTitle>
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
 import {
-  AtomBox,
-  AtomTitle,
+  MoleculeBoxWithTitle,
   AtomColumns,
   AtomColumn,
   MoleculePersonalInfo,
 } from '@/components';
+import { useMobileBreakpoint } from '@/stores';
 import type { PersonalInfo } from '@/types';
 
 export default defineComponent({
   name: 'OrganismPersonalInfo',
   components: {
-    AtomBox,
-    AtomTitle,
+    MoleculeBoxWithTitle,
     AtomColumns,
     AtomColumn,
     MoleculePersonalInfo,
   },
   props: {
+    title: {
+      type: String,
+      default: 'Personal info',
+    },
     info: {
-      type: Array as PropType<PersonalInfo[]>,
+      type: Object as PropType<PersonalInfo>,
       required: true,
     },
   },
+  setup() {
+    const isMobileScreen = useMobileBreakpoint();
+    return { isMobileScreen };
+  },
   methods: {
-    getHalfArray(index: number) {
-      return this.info.slice(
-        !index ? 0 : this.info.length / 2,
-        !index ? this.info.length / 2 : undefined
+    getHalfInfo(index: number): [string, string][] {
+      const info = Object.entries(this.info);
+      return info.slice(
+        !index ? 0 : info.length / 2,
+        !index ? info.length / 2 : undefined
       );
     },
   },

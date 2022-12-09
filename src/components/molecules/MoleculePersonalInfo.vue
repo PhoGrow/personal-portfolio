@@ -1,13 +1,14 @@
 <template>
   <p>
-    <span class="has-text-weight-semibold mr-2">{{ property }}</span>
-    <a v-if="description.includes('www')" :href="'https://' + description">
-      {{ description }}
+    <span class="has-text-weight-semibold mr-2">{{ normalizeProperty() }}</span>
+    <a v-if="description.includes('www.')" :href="'https://' + description">
+      {{ description.replace('www.', '') }}
     </a>
-    <span v-else class="icon-text">
+    <span v-else-if="description === 'Locked'" class="icon-text">
       <span>{{ description }}</span>
-      <AtomIcon v-if="description === 'Censored'" icon="lock" />
+      <AtomIcon icon="lock" />
     </span>
+    <span v-else>{{ description }}</span>
   </p>
 </template>
 
@@ -28,6 +29,22 @@ export default defineComponent({
     description: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    normalizeProperty(): string {
+      let normalizedProperty = (this.property[0] as string).toUpperCase();
+      for (let i = 1; i < this.property.length; i++) {
+        if (
+          this.property[i] === this.property[i]?.toUpperCase() &&
+          this.property !== 'linkedIn'
+        ) {
+          normalizedProperty += ' ' + this.property[i]?.toLowerCase();
+        } else {
+          normalizedProperty += this.property[i];
+        }
+      }
+      return normalizedProperty;
     },
   },
 });

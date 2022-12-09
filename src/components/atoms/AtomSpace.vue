@@ -1,14 +1,18 @@
 <template>
-  <h2 class="subtitle">{{ subtitle }}</h2>
+  <div :class="'p' + direction + '-' + value"></div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AtomSubtitle',
+  name: 'AtomSpace',
   props: {
-    subtitle: {
+    direction: {
+      type: String,
+      default: '',
+    },
+    value: {
       type: String,
       required: true,
     },

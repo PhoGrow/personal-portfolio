@@ -3,12 +3,15 @@
 
 // Set your colors
 $pastel-yellow: #fff3c9;
+$pastel-orange: #ffdbc9;
 $pastel-yellow-light: findLightColor($pastel-yellow);
-// $bright-green: #e1fead;
-// $dark-green: #043f45;
+$pastel-orange-dark: findDarkColor($pastel-orange);
 
 // Body
 $body-background-color: $pastel-yellow;
+
+// Block
+// $block-spacing: 0.5rem;
 
 // Box
 $box-background-color: $pastel-yellow-light;
@@ -17,7 +20,7 @@ $box-shadow: none;
 $box-padding: 2rem;
 
 // Link
-// $link: $bright-green;
+$link: $pastel-orange-dark;
 // $link-hover: $dark-green;
 
 // Navbar
