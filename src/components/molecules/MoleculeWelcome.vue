@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import { AtomTitle, AtomSubtitle, AtomButton } from '@/components';
+import { AtomTitle, AtomSubtitle, AtomButton } from '@/components/atoms';
 import type { Welcome } from '@/types';
 
 export default defineComponent({

@@ -1,18 +1,18 @@
 <template>
-  <component :is="tag" class="subtitle">{{ subtitle }}</component>
+  <iframe :src="src" :title="title" class="has-ratio"></iframe>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AtomSubtitle',
+  name: 'AtomIframe',
   props: {
-    tag: {
+    src: {
       type: String,
-      default: 'h2',
+      required: true,
     },
-    subtitle: {
+    title: {
       type: String,
       required: true,
     },
@@ -20,4 +20,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+iframe {
+  border-radius: 2rem;
+}
+</style>

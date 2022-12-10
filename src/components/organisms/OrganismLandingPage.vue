@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomHero, AtomColumns, AtomColumn } from '@/components';
+import { AtomHero, AtomColumns, AtomColumn } from '@/components/atoms';
 
 export default defineComponent({
   name: 'LandingPage',

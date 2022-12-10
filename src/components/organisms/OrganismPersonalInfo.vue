@@ -2,11 +2,12 @@
   <MoleculeBoxWithTitle :title="title">
     <AtomColumns class="is-gapless">
       <AtomColumn v-for="i in 2" :key="i">
-        <MoleculePersonalInfo
+        <MoleculePropWithDesc
           v-for="([property, description], j) of getHalfInfo(i - 1)"
           :key="property"
           :property="property"
           :description="description"
+          :icon="description === descWithIcon ? icon : ''"
           :class="{
             'mb-3':
               j !== getHalfInfo(i - 1).length - 1 ||
@@ -22,10 +23,9 @@
 import { defineComponent, type PropType } from 'vue';
 import {
   MoleculeBoxWithTitle,
-  AtomColumns,
-  AtomColumn,
-  MoleculePersonalInfo,
-} from '@/components';
+  MoleculePropWithDesc,
+} from '@/components/molecules';
+import { AtomColumns, AtomColumn } from '@/components/atoms';
 import { useMobileBreakpoint } from '@/stores';
 import type { PersonalInfo } from '@/types';
 
@@ -35,7 +35,7 @@ export default defineComponent({
     MoleculeBoxWithTitle,
     AtomColumns,
     AtomColumn,
-    MoleculePersonalInfo,
+    MoleculePropWithDesc,
   },
   props: {
     title: {
@@ -45,6 +45,14 @@ export default defineComponent({
     info: {
       type: Object as PropType<PersonalInfo>,
       required: true,
+    },
+    descWithIcon: {
+      type: String,
+      default: 'Locked',
+    },
+    icon: {
+      type: String,
+      default: 'lock',
     },
   },
   setup() {

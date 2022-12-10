@@ -19,3 +19,17 @@ export interface PersonalInfo {
   website: string;
   linkedIn: string;
 }
+
+export interface Linkage {
+  title: string;
+  href: string;
+}
+
+export interface Education {
+  period: string;
+  location: string;
+  degree: string;
+  gpa: string;
+  university: string;
+  activities: [string, string][];
+}

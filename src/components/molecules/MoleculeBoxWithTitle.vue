@@ -7,8 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AtomBox from '@/components/atoms/AtomBox.vue';
-import AtomTitle from '@/components/atoms/AtomTitle.vue';
+import { AtomBox, AtomTitle } from '@/components/atoms';
 
 export default defineComponent({
   name: 'MoleculeBoxWithTitle',

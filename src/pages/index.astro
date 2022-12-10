@@ -2,13 +2,19 @@
 import Layout from '@/layouts/Layout.astro';
 import {
   OrganismLandingPage,
-  MoleculeWelcome,
-  MoleculeIframe,
   OrganismCV,
   OrganismPersonalInfo,
   OrganismProfile,
-} from '@/components';
-import type { Welcome, Iframe, PersonalInfo } from '@/types';
+  OrganismEducation,
+} from '@/components/organisms';
+import { MoleculeWelcome, MoleculeIframe } from '@/components/molecules';
+import type {
+  Welcome,
+  Iframe,
+  PersonalInfo,
+  Linkage,
+  Education,
+} from '@/types';
 
 const welcome: Welcome = {
   title: `Hi, I'm Rene Dietz 👋`,
@@ -29,10 +35,37 @@ const personalInfo: PersonalInfo = {
   website: 'Upcoming',
   linkedIn: 'www.linkedin.com/in/rene-dietz',
 };
-const profileText = `Creative and persistent fresh graduate looking for a first position as a frontend developer.
+const profile = {
+  text: `Creative and persistent fresh graduate looking for a first position as a frontend developer.
   Gained fundamental technical knowledge in web, media, and design through studies in media technology.
   Self-taught developer in creating intuitive and responsive web applications who loves to work with enthusiastic individuals on meaningful projects.
-  Currently a gratuitous web developer for the 'yet to be founded' startup PhoGrow and ready to gather first work experience in your business.`;
+  Currently a gratuitous web developer for the 'yet to be founded' startup PhoGrow and ready to gather first work experience in your business.`,
+  linkage: {
+    title: iframe.title,
+    href: iframe.src,
+  } as Linkage,
+};
+const education: Education = {
+  period: '2020 – 2022',
+  location: 'Cologne, Germany',
+  degree: 'M.Sc. Media Technology',
+  gpa: 'Ø1.2',
+  university: 'TH Köln – University of Applied Sciences',
+  activities: [
+    [
+      'Achievement',
+      `Participation in the first round of the entrepreneurship program KickStart@TH Köln in 2021 to fund the master's project PhoGrow and continue development for founding in 2023`,
+    ],
+    [
+      'Thesis title',
+      'A survey on NFT development with EVM-compatible DLT/L2 and use cases for NFTs in the digital and real world',
+    ],
+    [
+      'Main areas of study',
+      'Interactive media applications, audiovisual media technologies and systems, and imaging technology',
+    ],
+  ],
+};
 // import Card from '@/components/Card.astro';
 ---
 
@@ -48,7 +81,17 @@ const profileText = `Creative and persistent fresh graduate looking for a first 
         info={personalInfo}
         client:only="vue"
       />
-      <OrganismProfile slot="profile" text={profileText} client:only="vue" />
+      <OrganismProfile
+        slot="profile"
+        text={profile.text}
+        linkage={profile.linkage}
+        client:only="vue"
+      />
+      <OrganismEducation
+        slot="education"
+        education={education}
+        client:only="vue"
+      />
     </OrganismCV>
     <!-- <Card
       href="https://astro.build/chat/"

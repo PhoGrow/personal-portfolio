@@ -1,16 +1,16 @@
 <template>
-  <AtomFigure :class="[isMobileScreen ? 'is-5by4' : 'is-3by2']">
-    <iframe :src="src" :title="title" class="has-ratio"></iframe>
-    <figcaption class="has-text-centered is-size-5 has-text-weight-medium mt-2">
+  <AtomFigure :class="isMobileScreen ? 'is-5by4' : 'is-3by2'">
+    <AtomIframe :src="src" :title="title" />
+    <AtomFigcaption>
       {{ caption.replace(title, '') }}
       <a :href="src">{{ title }}</a>
-    </figcaption>
+    </AtomFigcaption>
   </AtomFigure>
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import { AtomFigure } from '@/components';
+import { AtomFigure, AtomIframe, AtomFigcaption } from '@/components/atoms';
 import { useMobileBreakpoint } from '@/stores';
 import type { Iframe } from '@/types';
 
@@ -18,6 +18,8 @@ export default defineComponent({
   name: 'MoleculeIframe',
   components: {
     AtomFigure,
+    AtomIframe,
+    AtomFigcaption,
   },
   props: {
     iframe: {
@@ -37,13 +39,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-iframe {
-  border-radius: 2rem;
-}
-
-figcaption {
-  position: absolute;
-  width: 100%;
-}
-</style>
+<style scoped></style>
