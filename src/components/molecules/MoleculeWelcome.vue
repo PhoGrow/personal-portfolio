@@ -1,7 +1,7 @@
 <template>
   <div>
-    <AtomTitle :title="title" class="is-1 is-spaced" />
-    <AtomSubtitle :subtitle="subtitle" class="is-3" />
+    <AtomTitle :text="title" class="is-1 is-spaced" />
+    <AtomSubtitle :text="subtitle" class="is-3" />
     <AtomButton :href="href">{{ callToAction }}</AtomButton>
   </div>
 </template>

@@ -1,27 +1,35 @@
 <template>
   <MoleculeBoxWithTitle :title="title">
-    <AtomColumns>
+    <AtomColumns
+      v-for="(
+        { period, location, degree, gpa, university, activities }, i
+      ) of education"
+      :key="degree"
+      :class="{ 'mb-5': i !== education.length - 1 }"
+    >
       <AtomColumn class="is-3 has-text-right">
-        <AtomSubtitle :subtitle="period" class="mb-0" />
-        <AtomParagraph>{{ location }}</AtomParagraph>
+        <AtomSubtitle :text="period" class="mb-0" />
+        <p>{{ location }}</p>
       </AtomColumn>
       <AtomColumn class="is-6">
-        <MoleculePropWithDesc
-          :property="degree"
-          :description="gpa"
-          class="is-capitalized"
-          prop-class="subtitle has-text-weight-semibold"
-          desc-class="has-text-grey"
-        />
-        <AtomParagraph>{{ university }}</AtomParagraph>
+        <p>
+          <AtomSubtitle
+            tag="span"
+            :text="degree"
+            class="has-text-weight-semibold mr-2"
+          />
+          <span class="has-text-grey">{{ gpa }}</span>
+        </p>
+        <p>{{ university }}</p>
         <AtomSpace value="3" />
-        <MoleculePropWithDesc
-          v-for="(activity, i) of activities"
-          :key="activity[0]"
-          :property="activity[0]"
-          :description="activity[1]"
-          :class="{ 'mb-3': i !== activities.length - 1 }"
-        />
+        <AtomHeading
+          v-for="({ property, description }, j) of activities"
+          :key="property"
+          :text="property"
+          :class="{ 'mb-3': j !== activities.length - 1 }"
+        >
+          <span>{{ description }}</span>
+        </AtomHeading>
       </AtomColumn>
     </AtomColumns>
   </MoleculeBoxWithTitle>
@@ -29,16 +37,13 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import {
-  MoleculeBoxWithTitle,
-  MoleculePropWithDesc,
-} from '@/components/molecules';
+import { MoleculeBoxWithTitle } from '@/components/molecules';
 import {
   AtomColumns,
   AtomColumn,
-  AtomParagraph,
-  AtomSpace,
   AtomSubtitle,
+  AtomSpace,
+  AtomHeading,
 } from '@/components/atoms';
 import type { Education } from '@/types';
 
@@ -48,10 +53,9 @@ export default defineComponent({
     MoleculeBoxWithTitle,
     AtomColumns,
     AtomColumn,
-    MoleculePropWithDesc,
-    AtomParagraph,
-    AtomSpace,
     AtomSubtitle,
+    AtomSpace,
+    AtomHeading,
   },
   props: {
     title: {
@@ -59,14 +63,9 @@ export default defineComponent({
       default: 'Education',
     },
     education: {
-      type: Object as PropType<Education>,
+      type: Array as PropType<Education[]>,
       required: true,
     },
-  },
-  data() {
-    return {
-      ...this.education,
-    };
   },
 });
 </script>

@@ -1,21 +1,17 @@
 <template>
-  <AtomBox>
-    <AtomTitle :text="title" />
-    <slot></slot>
-  </AtomBox>
+  <a :href="href" target="_blank" rel="noopener noreferrer">{{ title }}</a>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomBox, AtomTitle } from '@/components/atoms';
 
 export default defineComponent({
-  name: 'MoleculeBoxWithTitle',
-  components: {
-    AtomBox,
-    AtomTitle,
-  },
+  name: 'AtomLink',
   props: {
+    href: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

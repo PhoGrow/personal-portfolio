@@ -31,5 +31,8 @@ export interface Education {
   degree: string;
   gpa: string;
   university: string;
-  activities: [string, string][];
+  activities: {
+    property: string;
+    description: string;
+  }[];
 }

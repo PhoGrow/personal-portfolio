@@ -2,18 +2,20 @@
   <MoleculeBoxWithTitle :title="title">
     <AtomColumns class="is-gapless">
       <AtomColumn v-for="i in 2" :key="i">
-        <MoleculePropWithDesc
-          v-for="([property, description], j) of getHalfInfo(i - 1)"
-          :key="property"
-          :property="property"
-          :description="description"
-          :icon="description === descWithIcon ? icon : ''"
-          :class="{
-            'mb-3':
-              j !== getHalfInfo(i - 1).length - 1 ||
-              (isMobileScreen && i === 1),
-          }"
-        />
+        <AtomHeading
+          v-for="([prop, desc], j) of getHalfInfo(i - 1)"
+          :key="prop"
+          :text="normalizeProperty(prop)"
+          :class="{ 'mb-3': hasMarginBottom(i, j) }"
+        >
+          <MoleculeTextWithIcon
+            v-if="desc === descWithIcon"
+            :text="desc"
+            :icon="icon"
+          />
+          <AtomLink v-else-if="isLink(desc)" v-bind="linkage(desc)" />
+          <span v-else>{{ desc }}</span>
+        </AtomHeading>
       </AtomColumn>
     </AtomColumns>
   </MoleculeBoxWithTitle>
@@ -23,11 +25,16 @@
 import { defineComponent, type PropType } from 'vue';
 import {
   MoleculeBoxWithTitle,
-  MoleculePropWithDesc,
+  MoleculeTextWithIcon,
 } from '@/components/molecules';
-import { AtomColumns, AtomColumn } from '@/components/atoms';
+import {
+  AtomColumns,
+  AtomColumn,
+  AtomHeading,
+  AtomLink,
+} from '@/components/atoms';
 import { useMobileBreakpoint } from '@/stores';
-import type { PersonalInfo } from '@/types';
+import type { PersonalInfo, Linkage } from '@/types';
 
 export default defineComponent({
   name: 'OrganismPersonalInfo',
@@ -35,7 +42,9 @@ export default defineComponent({
     MoleculeBoxWithTitle,
     AtomColumns,
     AtomColumn,
-    MoleculePropWithDesc,
+    AtomHeading,
+    MoleculeTextWithIcon,
+    AtomLink,
   },
   props: {
     title: {
@@ -66,6 +75,32 @@ export default defineComponent({
         !index ? 0 : info.length / 2,
         !index ? info.length / 2 : undefined
       );
+    },
+    normalizeProperty(property: string): string {
+      const upperCaseLetters = property.substring(1).match(/[A-Z]/g);
+      property = property[0]?.toUpperCase() + property.substring(1);
+      if (property === 'LinkedIn' || !upperCaseLetters?.length) {
+        return property;
+      }
+      return property.replace(
+        upperCaseLetters[0],
+        ' ' + upperCaseLetters[0].toLowerCase()
+      );
+    },
+    hasMarginBottom(outerIndex: number, innerIndex: number): boolean {
+      return (
+        innerIndex !== this.getHalfInfo(outerIndex - 1).length - 1 ||
+        (this.isMobileScreen && outerIndex === 1)
+      );
+    },
+    isLink(description: string): boolean {
+      return description.includes('www');
+    },
+    linkage(description: string): Linkage {
+      return {
+        title: description.replace('www.', ''),
+        href: 'https://' + description,
+      };
     },
   },
 });

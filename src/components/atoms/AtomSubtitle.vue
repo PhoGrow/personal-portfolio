@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" class="subtitle">{{ subtitle }}</component>
+  <component :is="tag" class="subtitle">{{ text }}</component>
 </template>
 
 <script lang="ts">
@@ -12,7 +12,7 @@ export default defineComponent({
       type: String,
       default: 'h2',
     },
-    subtitle: {
+    text: {
       type: String,
       required: true,
     },

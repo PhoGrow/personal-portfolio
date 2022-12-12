@@ -1,5 +1,6 @@
 <template>
   <p>
+    <span class="has-text-weight-semibold mr-2">{{ text }}</span>
     <slot></slot>
   </p>
 </template>
@@ -8,7 +9,13 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AtomParagraph',
+  name: 'AtomProperty',
+  props: {
+    text: {
+      type: String,
+      required: true,
+    },
+  },
 });
 </script>
 
