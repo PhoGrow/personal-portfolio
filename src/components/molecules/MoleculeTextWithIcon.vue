@@ -10,7 +10,7 @@ import { defineComponent } from 'vue';
 import { AtomIcon } from '@/components/atoms';
 
 export default defineComponent({
-  name: 'MoleculeDescWithIcon',
+  name: 'MoleculeTextWithIcon',
   components: {
     AtomIcon,
   },

@@ -34,5 +34,6 @@ export interface Education {
   activities: {
     property: string;
     description: string;
+    linkage?: Linkage;
   }[];
 }

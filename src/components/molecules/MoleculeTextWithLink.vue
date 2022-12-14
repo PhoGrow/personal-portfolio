@@ -12,7 +12,7 @@ import { AtomLink } from '@/components/atoms';
 import type { Linkage } from '@/types';
 
 export default defineComponent({
-  name: 'MoleculeDescWithLink',
+  name: 'MoleculeTextWithLink',
   components: {
     AtomLink,
   },

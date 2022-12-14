@@ -7,28 +7,45 @@
       :key="degree"
       :class="{ 'mb-5': i !== education.length - 1 }"
     >
-      <AtomColumn class="is-3 has-text-right">
+      <AtomColumn
+        :class="[
+          'is-3',
+          isMobileScreen ? 'has-text-centered' : 'has-text-right',
+        ]"
+      >
         <AtomSubtitle :text="period" class="mb-0" />
         <p>{{ location }}</p>
       </AtomColumn>
       <AtomColumn class="is-6">
-        <p>
-          <AtomSubtitle
-            tag="span"
-            :text="degree"
-            class="has-text-weight-semibold mr-2"
-          />
-          <span class="has-text-grey">{{ gpa }}</span>
-        </p>
-        <p>{{ university }}</p>
+        <div
+          :class="{ 'is-relative': isMobileScreen }"
+          :style="isMobileScreen ? 'z-index: 1' : ''"
+        >
+          <p>
+            <AtomSubtitle
+              tag="span"
+              :text="degree"
+              class="has-text-weight-semibold mr-2"
+            />
+            <span class="has-text-grey">{{ gpa }}</span>
+          </p>
+          <p>{{ university }}</p>
+          <AtomFullwidthBg v-if="isMobileScreen" py="-0.75rem" />
+        </div>
         <AtomSpace value="3" />
         <AtomHeading
-          v-for="({ property, description }, j) of activities"
+          v-for="({ property, description, linkage }, j) of activities"
           :key="property"
           :text="property"
           :class="{ 'mb-3': j !== activities.length - 1 }"
         >
-          <span>{{ description }}</span>
+          <MoleculeTextWithLink
+            v-if="linkage"
+            tag="span"
+            :text="description"
+            :linkage="linkage"
+          />
+          <span v-else>{{ description }}</span>
         </AtomHeading>
       </AtomColumn>
     </AtomColumns>
@@ -37,14 +54,19 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { MoleculeBoxWithTitle } from '@/components/molecules';
+import {
+  MoleculeBoxWithTitle,
+  MoleculeTextWithLink,
+} from '@/components/molecules';
 import {
   AtomColumns,
   AtomColumn,
   AtomSubtitle,
+  AtomFullwidthBg,
   AtomSpace,
   AtomHeading,
 } from '@/components/atoms';
+import { useMobileBreakpoint } from '@/stores';
 import type { Education } from '@/types';
 
 export default defineComponent({
@@ -54,8 +76,10 @@ export default defineComponent({
     AtomColumns,
     AtomColumn,
     AtomSubtitle,
+    AtomFullwidthBg,
     AtomSpace,
     AtomHeading,
+    MoleculeTextWithLink,
   },
   props: {
     title: {
@@ -66,6 +90,10 @@ export default defineComponent({
       type: Array as PropType<Education[]>,
       required: true,
     },
+  },
+  setup() {
+    const isMobileScreen = useMobileBreakpoint();
+    return { isMobileScreen };
   },
 });
 </script>

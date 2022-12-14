@@ -4,6 +4,7 @@ import AtomColumn from './AtomColumn.vue';
 import AtomColumns from './AtomColumns.vue';
 import AtomFigcaption from './AtomFigcaption.vue';
 import AtomFigure from './AtomFigure.vue';
+import AtomFullwidthBg from './AtomFullwidthBg.vue';
 import AtomHeading from './AtomHeading.vue';
 import AtomHero from './AtomHero.vue';
 import AtomIcon from './AtomIcon.vue';
@@ -20,6 +21,7 @@ export {
   AtomColumns,
   AtomFigcaption,
   AtomFigure,
+  AtomFullwidthBg,
   AtomHeading,
   AtomHero,
   AtomIcon,
