@@ -1,29 +1,30 @@
 <template>
   <AtomBox ref="el" class="pt-0">
-    <div class="is-sticky">
-      <AtomTitle :text="title" :class="{ 'mb-0': isMobileScreen }" />
-      <AtomFullwidthBg
-        v-if="isMobileScreen"
-        :color="color"
-        :is-rounded="top > -boxRadius"
-      />
-    </div>
+    <AtomExtendBg
+      :is-extended="isMobileScreen"
+      :color="color"
+      :padding="`${boxRadiusInRem}rem`"
+      :border-radius="top > -boxRadiusInPx ? `${boxRadiusInRem}rem` : `0`"
+      class="is-sticky"
+    >
+      <AtomTitle :text="title" />
+    </AtomExtendBg>
     <slot></slot>
   </AtomBox>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { AtomBox, AtomFullwidthBg, AtomTitle } from '@/components/atoms';
+import { AtomBox, AtomExtendBg, AtomTitle } from '@/components/atoms';
 import { useElementBounding } from '@vueuse/core';
-import { useMobileBreakpoint } from '@/stores';
+import { useMobileBreakpoint, rootFontSize } from '@/stores';
 
 export default defineComponent({
   name: 'MoleculeBoxWithTitle',
   components: {
     AtomBox,
+    AtomExtendBg,
     AtomTitle,
-    AtomFullwidthBg,
   },
   props: {
     title: {
@@ -34,9 +35,9 @@ export default defineComponent({
       type: String,
       default: '#fffaeb',
     },
-    boxRadius: {
+    boxRadiusInRem: {
       type: Number,
-      default: 32,
+      default: 2,
     },
   },
   setup() {
@@ -46,14 +47,12 @@ export default defineComponent({
 
     return { isMobileScreen, el, top };
   },
+  computed: {
+    boxRadiusInPx(): number {
+      return this.boxRadiusInRem * rootFontSize;
+    },
+  },
 });
 </script>
 
-<style scoped>
-.is-sticky {
-  top: 0;
-  z-index: 2;
-  padding: 2rem 0;
-  background-color: v-bind(color);
-}
-</style>
+<style scoped></style>

@@ -11,15 +11,17 @@
         :class="[
           'is-3',
           isMobileScreen ? 'has-text-centered' : 'has-text-right',
+          { 'py-2': isMobileScreen },
         ]"
       >
         <AtomSubtitle :text="period" class="mb-0" />
         <p>{{ location }}</p>
       </AtomColumn>
-      <AtomColumn class="is-6">
-        <div
-          :class="{ 'is-relative': isMobileScreen }"
-          :style="isMobileScreen ? 'z-index: 1' : ''"
+      <AtomColumn :class="['is-6', { 'py-2': isMobileScreen }]">
+        <AtomExtendBg
+          :is-extended="isMobileScreen"
+          :color="isMobileScreen ? '#fff3c9' : 'transparent'"
+          :padding="isMobileScreen ? '0.75rem' : '0'"
         >
           <p>
             <AtomSubtitle
@@ -30,9 +32,8 @@
             <span class="has-text-grey">{{ gpa }}</span>
           </p>
           <p>{{ university }}</p>
-          <AtomFullwidthBg v-if="isMobileScreen" py="-0.75rem" />
-        </div>
-        <AtomSpace value="3" />
+        </AtomExtendBg>
+        <AtomSpace value="2" />
         <AtomHeading
           v-for="({ property, description, linkage }, j) of activities"
           :key="property"
@@ -62,7 +63,7 @@ import {
   AtomColumns,
   AtomColumn,
   AtomSubtitle,
-  AtomFullwidthBg,
+  AtomExtendBg,
   AtomSpace,
   AtomHeading,
 } from '@/components/atoms';
@@ -76,7 +77,7 @@ export default defineComponent({
     AtomColumns,
     AtomColumn,
     AtomSubtitle,
-    AtomFullwidthBg,
+    AtomExtendBg,
     AtomSpace,
     AtomHeading,
     MoleculeTextWithLink,

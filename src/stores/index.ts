@@ -4,4 +4,8 @@ const useMobileBreakpoint = createSharedComposable(() =>
   useMediaQuery('(max-width: 768px)')
 );
 
-export { useMobileBreakpoint };
+const rootFontSize = parseInt(
+  getComputedStyle(document.documentElement).fontSize
+);
+
+export { useMobileBreakpoint, rootFontSize };

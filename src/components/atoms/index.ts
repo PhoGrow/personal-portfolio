@@ -2,9 +2,9 @@ import AtomBox from './AtomBox.vue';
 import AtomButton from './AtomButton.vue';
 import AtomColumn from './AtomColumn.vue';
 import AtomColumns from './AtomColumns.vue';
+import AtomExtendBg from './AtomExtendBg.vue';
 import AtomFigcaption from './AtomFigcaption.vue';
 import AtomFigure from './AtomFigure.vue';
-import AtomFullwidthBg from './AtomFullwidthBg.vue';
 import AtomHeading from './AtomHeading.vue';
 import AtomHero from './AtomHero.vue';
 import AtomIcon from './AtomIcon.vue';
@@ -19,9 +19,9 @@ export {
   AtomButton,
   AtomColumn,
   AtomColumns,
+  AtomExtendBg,
   AtomFigcaption,
   AtomFigure,
-  AtomFullwidthBg,
   AtomHeading,
   AtomHero,
   AtomIcon,
