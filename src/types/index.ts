@@ -1,13 +1,18 @@
-export interface Welcome {
+export interface Title {
   title: string;
-  subtitle: string;
-  callToAction: string;
+}
+
+export interface Linkage extends Title {
   href: string;
 }
 
-export interface Iframe {
+export interface Welcome extends Linkage {
+  subtitle: string;
+  callToAction: string;
+}
+
+export interface Iframe extends Title {
   src: string;
-  title: string;
   caption: string;
 }
 
@@ -20,11 +25,6 @@ export interface PersonalInfo {
   linkedIn: string;
 }
 
-export interface Linkage {
-  title: string;
-  href: string;
-}
-
 export interface Education {
   period: string;
   location: string;
@@ -34,6 +34,13 @@ export interface Education {
   activities: {
     property: string;
     description: string;
+    linkage?: Linkage;
+  }[];
+}
+
+export interface SkillSet extends Title {
+  skills: {
+    property: string;
     linkage?: Linkage;
   }[];
 }

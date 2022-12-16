@@ -1,15 +1,17 @@
 <template>
-  <AtomBox ref="el" class="pt-0">
+  <AtomBox ref="el" class="pt-4">
     <AtomExtendBg
       :is-extended="isMobileScreen"
-      :color="color"
-      :padding="`${boxRadiusInRem}rem`"
-      :border-radius="top > -boxRadiusInPx ? `${boxRadiusInRem}rem` : `0`"
-      class="is-sticky"
+      :class="[
+        'is-sticky has-background-yellow-light py-4',
+        { 'is-rounded': top > -boxRadiusInPx },
+      ]"
     >
       <AtomTitle :text="title" />
     </AtomExtendBg>
-    <slot></slot>
+    <div class="pt-2">
+      <slot></slot>
+    </div>
   </AtomBox>
 </template>
 
@@ -17,7 +19,7 @@
 import { defineComponent, ref } from 'vue';
 import { AtomBox, AtomExtendBg, AtomTitle } from '@/components/atoms';
 import { useElementBounding } from '@vueuse/core';
-import { useMobileBreakpoint, rootFontSize } from '@/stores';
+import { useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
   name: 'MoleculeBoxWithTitle',
@@ -31,13 +33,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    color: {
+    boxRadius: {
       type: String,
-      default: '#fffaeb',
-    },
-    boxRadiusInRem: {
-      type: Number,
-      default: 2,
+      default: '2rem',
     },
   },
   setup() {
@@ -49,10 +47,18 @@ export default defineComponent({
   },
   computed: {
     boxRadiusInPx(): number {
-      return this.boxRadiusInRem * rootFontSize;
+      const boxRadiusInRem = parseInt(this.boxRadius.replace('rem', ''));
+      const rootFontSize = parseInt(
+        getComputedStyle(document.documentElement).fontSize
+      );
+      return boxRadiusInRem * rootFontSize;
     },
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.is-rounded {
+  border-radius: v-bind(boxRadius);
+}
+</style>

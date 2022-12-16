@@ -6,6 +6,7 @@ import {
   OrganismPersonalInfo,
   OrganismProfile,
   OrganismEducation,
+  OrganismSkills,
 } from '@/components/organisms';
 import { MoleculeWelcome, MoleculeIframe } from '@/components/molecules';
 import type {
@@ -14,6 +15,7 @@ import type {
   PersonalInfo,
   Linkage,
   Education,
+  SkillSet,
 } from '@/types';
 
 const welcome: Welcome = {
@@ -97,6 +99,36 @@ const education: Education[] = [
     ],
   },
 ];
+const skillSets: SkillSet[] = [
+  {
+    title: `Hard skills`,
+    skills: [
+      { property: `Frontend: Vue 3, including TypeScript, Bulma, Oruga, etc.` },
+      {
+        property: `Backend: ME(V)N stack (MongoDB, Express, Node), including TypeScript, OpenAPI, JWT, etc.`,
+      },
+      {
+        property: `First touchpoints with dApps (decentralized apps), including Ethers, Hardhat, Solidity, etc.`,
+      },
+      { property: `Determine great UI/UX, create presentations, etc.` },
+    ],
+  },
+  {
+    title: `Soft skills`,
+    skills: [
+      { property: `Eager to learn and disciplined` },
+      { property: `Friend of teamwork and project management` },
+      { property: `Assume responsibility` },
+      {
+        property: `Participation in seminars of ELEVEL on the topics project management, productivity, and personal finances and taxes in 2022`,
+        linkage: {
+          title: `ELEVEL`,
+          href: `https://www.elevel-academy.de`,
+        } as Linkage,
+      },
+    ],
+  },
+];
 // import Card from '@/components/Card.astro';
 ---
 
@@ -123,6 +155,7 @@ const education: Education[] = [
         education={education}
         client:only="vue"
       />
+      <OrganismSkills slot="skills" skillSets={skillSets} client:only="vue" />
     </OrganismCV>
     <!-- <Card
       href="https://astro.build/chat/"

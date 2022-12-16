@@ -15,21 +15,9 @@ export default defineComponent({
       type: String,
       default: '-2rem',
     },
-    color: {
-      type: String,
-      default: 'transparent',
-    },
-    padding: {
-      type: String,
-      default: '0',
-    },
-    borderRadius: {
-      type: String,
-      default: '0',
-    },
   },
   computed: {
-    paddingLeft(): string {
+    padding(): string {
       return this.margin.replace('-', '');
     },
   },
@@ -37,15 +25,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-div {
-  background-color: v-bind(color);
-  padding-top: v-bind(padding);
-  padding-bottom: v-bind(padding);
-  border-radius: v-bind(borderRadius);
-}
-
 .is-extended {
   margin: 0 v-bind(margin);
-  padding-left: v-bind(paddingLeft);
+  padding: 0 v-bind(padding);
 }
 </style>

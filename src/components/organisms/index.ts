@@ -3,6 +3,7 @@ import OrganismEducation from './OrganismEducation.vue';
 import OrganismLandingPage from './OrganismLandingPage.vue';
 import OrganismPersonalInfo from './OrganismPersonalInfo.vue';
 import OrganismProfile from './OrganismProfile.vue';
+import OrganismSkills from './OrganismSkills.vue';
 
 export {
   OrganismCV,
@@ -10,4 +11,5 @@ export {
   OrganismLandingPage,
   OrganismPersonalInfo,
   OrganismProfile,
+  OrganismSkills,
 };

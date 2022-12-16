@@ -20,8 +20,7 @@
       <AtomColumn :class="['is-6', { 'py-2': isMobileScreen }]">
         <AtomExtendBg
           :is-extended="isMobileScreen"
-          :color="isMobileScreen ? '#fff3c9' : 'transparent'"
-          :padding="isMobileScreen ? '0.75rem' : '0'"
+          :class="{ 'has-background-yellow py-3': isMobileScreen }"
         >
           <p>
             <AtomSubtitle

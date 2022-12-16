@@ -5,6 +5,8 @@
     <slot name="profile"></slot>
     <AtomSpace value="4" />
     <slot name="education"></slot>
+    <AtomSpace value="4" />
+    <slot name="skills"></slot>
   </AtomHero>
 </template>
 
