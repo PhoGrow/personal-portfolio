@@ -5,23 +5,20 @@
         { period, location, degree, gpa, university, activities }, i
       ) of education"
       :key="degree"
-      :class="{ 'mb-5': i !== education.length - 1 }"
+      :class="['is-gapless', { 'mb-5': i !== education.length - 1 }]"
     >
       <AtomColumn
         :class="[
           'is-3',
           isMobileScreen ? 'has-text-centered' : 'has-text-right',
-          { 'py-2': isMobileScreen },
         ]"
       >
         <AtomSubtitle :text="period" class="mb-0" />
         <p>{{ location }}</p>
       </AtomColumn>
-      <AtomColumn :class="['is-6', { 'py-2': isMobileScreen }]">
-        <AtomExtendBg
-          :is-extended="isMobileScreen"
-          :class="{ 'has-background-yellow py-3': isMobileScreen }"
-        >
+      <AtomColumn class="is-narrow m-4" />
+      <AtomColumn class="is-6">
+        <AtomExtendBg custom-class="has-background-yellow" :top="0.5">
           <p>
             <AtomSubtitle
               tag="span"

@@ -1,12 +1,14 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import {
+  OrganismNavbar,
   OrganismLandingPage,
   OrganismCV,
   OrganismPersonalInfo,
   OrganismProfile,
   OrganismEducation,
   OrganismSkills,
+  OrganismFooter,
 } from '@/components/organisms';
 import { MoleculeWelcome, MoleculeIframe } from '@/components/molecules';
 import type {
@@ -133,36 +135,36 @@ const skillSets: SkillSet[] = [
 ---
 
 <Layout title="Rene Dietz">
-  <main>
-    <OrganismLandingPage client:only="vue">
-      <MoleculeWelcome slot="welcome" welcome={welcome} client:only="vue" />
-      <MoleculeIframe slot="work" iframe={iframe} client:only="vue" />
-    </OrganismLandingPage>
-    <OrganismCV id={welcome.href.substring(1)} client:only="vue">
-      <OrganismPersonalInfo
-        slot="personal-info"
-        info={personalInfo}
-        client:only="vue"
-      />
-      <OrganismProfile
-        slot="profile"
-        text={profile.text}
-        linkage={profile.linkage}
-        client:only="vue"
-      />
-      <OrganismEducation
-        slot="education"
-        education={education}
-        client:only="vue"
-      />
-      <OrganismSkills slot="skills" skillSets={skillSets} client:only="vue" />
-    </OrganismCV>
-    <!-- <Card
+  <OrganismLandingPage client:only="vue">
+    <OrganismNavbar slot="navbar" client:load />
+    <MoleculeWelcome slot="welcome" welcome={welcome} client:only="vue" />
+    <MoleculeIframe slot="work" iframe={iframe} client:only="vue" />
+  </OrganismLandingPage>
+  <OrganismCV id={welcome.href.substring(1)} client:only="vue">
+    <OrganismPersonalInfo
+      slot="personal-info"
+      info={personalInfo}
+      client:only="vue"
+    />
+    <OrganismProfile
+      slot="profile"
+      text={profile.text}
+      linkage={profile.linkage}
+      client:only="vue"
+    />
+    <OrganismEducation
+      slot="education"
+      education={education}
+      client:only="vue"
+    />
+    <OrganismSkills slot="skills" skillSets={skillSets} client:only="vue" />
+  </OrganismCV>
+  <!-- <Card
       href="https://astro.build/chat/"
       title="Community"
       body="Come say hi to our amazing Discord community. ❤️"
     /> -->
-  </main>
+  <OrganismFooter />
 </Layout>
 
 <style></style>

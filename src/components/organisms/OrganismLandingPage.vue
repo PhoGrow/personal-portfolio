@@ -1,5 +1,8 @@
 <template>
-  <AtomHero class="is-fullheight">
+  <AtomHero class="is-fullheight" :has-hero-head="hasNavbar">
+    <template #header>
+      <slot name="navbar"></slot>
+    </template>
     <AtomColumns class="is-vcentered">
       <AtomColumn>
         <slot name="welcome"></slot>
@@ -22,6 +25,12 @@ export default defineComponent({
     AtomHero,
     AtomColumns,
     AtomColumn,
+  },
+  props: {
+    hasNavbar: {
+      type: Boolean,
+      default: true,
+    },
   },
 });
 </script>

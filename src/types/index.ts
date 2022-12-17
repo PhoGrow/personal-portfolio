@@ -2,18 +2,25 @@ export interface Title {
   title: string;
 }
 
+export interface Source {
+  src: string;
+}
+
 export interface Linkage extends Title {
   href: string;
+}
+
+export interface Image extends Source {
+  alt: string;
+}
+
+export interface Iframe extends Title, Source {
+  caption: string;
 }
 
 export interface Welcome extends Linkage {
   subtitle: string;
   callToAction: string;
-}
-
-export interface Iframe extends Title {
-  src: string;
-  caption: string;
 }
 
 export interface PersonalInfo {

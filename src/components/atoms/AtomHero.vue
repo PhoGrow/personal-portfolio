@@ -1,5 +1,8 @@
 <template>
   <section class="hero">
+    <div v-if="hasHeroHead" class="hero-head">
+      <slot name="header"></slot>
+    </div>
     <div :class="['hero-body', { 'px-0': !hasHorizontalPadding }]">
       <div class="container">
         <slot></slot>
@@ -18,6 +21,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    hasHeroHead: Boolean,
   },
 });
 </script>

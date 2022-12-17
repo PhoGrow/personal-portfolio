@@ -2,26 +2,23 @@
   <MoleculeBoxWithTitle :title="title">
     <AtomColumns class="is-variable is-4">
       <AtomColumn
-        v-for="skillSet of skillSets"
+        v-for="(skillSet, i) of skillSets"
         :key="skillSet.title"
-        class="is-6"
+        :class="[
+          'is-6',
+          { 'mb-4': isMobileScreen && i !== skillSets.length - 1 },
+        ]"
       >
-        <AtomExtendBg
-          :is-extended="isMobileScreen"
-          :class="['mb-2', { 'has-background-yellow py-4': isMobileScreen }]"
-        >
+        <AtomExtendBg custom-class="has-background-yellow" :top="1.25">
           <AtomSubtitle
             :text="skillSet.title"
             class="has-text-weight-semibold is-4 has-text-centered"
           />
         </AtomExtendBg>
         <AtomBox
-          v-for="({ property, linkage }, index) of skillSet.skills"
+          v-for="({ property, linkage }, j) of skillSet.skills"
           :key="property"
-          :class="[
-            'is-size-5 mb-0',
-            { 'has-background-white': index % 2 !== 0 },
-          ]"
+          :class="['is-size-5 mb-0', { 'has-background-white': j % 2 !== 0 }]"
         >
           <MoleculeTextWithLink
             v-if="linkage"

@@ -1,5 +1,6 @@
 <template>
   <AtomHero :has-horizontal-padding="hasHorizontalPadding">
+    <AtomTitle :text="title" class="is-1 has-text-centered" />
     <slot name="personal-info"></slot>
     <AtomSpace value="4" />
     <slot name="profile"></slot>
@@ -12,16 +13,21 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomHero, AtomSpace } from '@/components/atoms';
+import { AtomHero, AtomTitle, AtomSpace } from '@/components/atoms';
 
 export default defineComponent({
   name: 'OrganismCV',
   components: {
     AtomHero,
+    AtomTitle,
     AtomSpace,
   },
   props: {
     hasHorizontalPadding: Boolean,
+    title: {
+      type: String,
+      default: 'CV',
+    },
   },
 });
 </script>

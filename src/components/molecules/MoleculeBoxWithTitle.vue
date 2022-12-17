@@ -1,9 +1,8 @@
 <template>
   <AtomBox ref="el" class="pt-4">
     <AtomExtendBg
-      :is-extended="isMobileScreen"
       :class="[
-        'is-sticky has-background-yellow-light py-4',
+        'has-background-yellow-light py-4',
         { 'is-rounded': top > -boxRadiusInPx },
       ]"
     >
@@ -19,7 +18,6 @@
 import { defineComponent, ref } from 'vue';
 import { AtomBox, AtomExtendBg, AtomTitle } from '@/components/atoms';
 import { useElementBounding } from '@vueuse/core';
-import { useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
   name: 'MoleculeBoxWithTitle',
@@ -39,11 +37,9 @@ export default defineComponent({
     },
   },
   setup() {
-    const isMobileScreen = useMobileBreakpoint();
     const el = ref(null);
     const { top } = useElementBounding(el);
-
-    return { isMobileScreen, el, top };
+    return { el, top };
   },
   computed: {
     boxRadiusInPx(): number {
