@@ -1,17 +1,18 @@
 <template>
-  <button class="button is-rounded p-4" @click="toggleDark()">
+  <AtomButton size="normal" class="p-4" is-transparent @click="toggleDark()">
     <AtomIcon :icon="isDark ? 'dark_mode' : 'light_mode'" />
-  </button>
+  </AtomButton>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomIcon } from '@/components/atoms';
+import { AtomButton, AtomIcon } from '@/components/atoms';
 import { useDark, useToggle } from '@vueuse/core';
 
 export default defineComponent({
   name: 'MoleculeDarkModeButton',
   components: {
+    AtomButton,
     AtomIcon,
   },
   setup() {
@@ -22,9 +23,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-button {
-  background-color: transparent;
-  border-color: transparent;
-}
-</style>
+<style scoped></style>

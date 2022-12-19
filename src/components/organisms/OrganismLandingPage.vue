@@ -1,5 +1,5 @@
 <template>
-  <AtomHero class="is-fullheight" :has-hero-head="hasNavbar">
+  <MoleculeHero :has-hero-head="hasNavbar" is-fullheight>
     <template #header>
       <slot name="navbar"></slot>
     </template>
@@ -12,17 +12,18 @@
         <slot name="work"></slot>
       </AtomColumn>
     </AtomColumns>
-  </AtomHero>
+  </MoleculeHero>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomHero, AtomColumns, AtomColumn } from '@/components/atoms';
+import { MoleculeHero } from '@/components/molecules';
+import { AtomColumns, AtomColumn } from '@/components/atoms';
 
 export default defineComponent({
   name: 'LandingPage',
   components: {
-    AtomHero,
+    MoleculeHero,
     AtomColumns,
     AtomColumn,
   },

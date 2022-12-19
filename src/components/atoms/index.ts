@@ -8,6 +8,8 @@ import AtomFigure from './AtomFigure.vue';
 import AtomFooter from './AtomFooter.vue';
 import AtomHeading from './AtomHeading.vue';
 import AtomHero from './AtomHero.vue';
+import AtomHeroBody from './AtomHeroBody.vue';
+import AtomHeroHead from './AtomHeroHead.vue';
 import AtomIcon from './AtomIcon.vue';
 import AtomIframe from './AtomIframe.vue';
 import AtomImage from './AtomImage.vue';
@@ -30,6 +32,8 @@ export {
   AtomFooter,
   AtomHeading,
   AtomHero,
+  AtomHeroBody,
+  AtomHeroHead,
   AtomIcon,
   AtomIframe,
   AtomImage,

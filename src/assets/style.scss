@@ -1,6 +1,9 @@
 // Import Bulma's core
 @import 'bulma/sass/utilities/_all.sass';
 
+// Initial variables
+$border-radius: 2rem;
+
 // Set your colors
 $pastel-yellow: #fff3c9;
 $pastel-orange: #ffdbc9;
@@ -10,39 +13,35 @@ $pastel-orange-dark: findDarkColor($pastel-orange);
 // Body
 $body-background-color: $pastel-yellow;
 
-// Block
-// $block-spacing: $size-small;
+// Link
+$link: $pastel-orange-dark;
+
+// Button
+$button-focus-box-shadow-color: transparent;
 
 // Box
 $box-background-color: $pastel-yellow-light;
-$box-radius: 2rem;
+$box-radius: $border-radius;
 $box-shadow: none;
-$box-padding: 2rem;
+$box-padding: $border-radius;
 
-// Link
-$link: $pastel-orange-dark;
-// $link-hover: $dark-green;
-
-// Navbar
-// $navbar-item-hover-color: $dark-green;
-
-// Hr
-$hr-background-color: $grey-lighter;
+// Notification
+$notification-radius: $border-radius;
 
 // Footer
 $footer-background-color: $pastel-orange-dark;
 $footer-padding: 3rem 2rem;
 
-// Button
-// $button-focus-box-shadow-color: none;
+// Hr
+// $hr-background-color: $grey-lighter;
 
 // Card
-$card-shadow: none;
-$card-radius: 2rem;
-$card-content-padding: 3rem;
+// $card-shadow: none;
+// $card-radius: 2rem;
+// $card-content-padding: 3rem;
 
 // Skeleton
-$skeleton-border-radius: 2rem;
+// $skeleton-border-radius: 2rem;
 
 // Import Bulma and Oruga's Bulma theme
 @import 'bulma/bulma.sass';

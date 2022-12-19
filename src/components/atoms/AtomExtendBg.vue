@@ -1,10 +1,11 @@
 <template>
   <div
-    :class="[
-      'is-sticky',
-      isMobileScreen ? `is-extended py-4 ${customClass}` : '',
-    ]"
-    :style="`top: ${isMobileScreen ? 0 : top}rem`"
+    :class="['is-sticky', isMobileScreen ? `py-4 ${customClass}` : '']"
+    :style="{
+      top: `${isMobileScreen ? 0 : top}rem`,
+      margin: `0 ${margin}`,
+      padding: `0 ${padding}`,
+    }"
   >
     <slot></slot>
   </div>
@@ -42,9 +43,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.is-extended {
-  margin: 0 v-bind(margin);
-  padding: 0 v-bind(padding);
-}
-</style>
+<style scoped></style>

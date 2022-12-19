@@ -1,19 +1,25 @@
 <template>
-  <o-button
-    :tag="tag"
+  <component
+    :is="tag"
     :href="tag === 'a' ? href : null"
-    :size="size"
-    :rounded="rounded"
+    :class="[
+      `button is-${size}`,
+      variant ? `is-${variant}` : '',
+      {
+        'is-rounded': isRounded,
+        'has-background-transparent': isTransparent,
+      },
+    ]"
   >
     <slot></slot>
-  </o-button>
+  </component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ButtonItem',
+  name: 'AtomButton',
   props: {
     tag: {
       type: String,
@@ -27,10 +33,15 @@ export default defineComponent({
       type: String,
       default: 'medium',
     },
-    rounded: {
+    variant: {
+      type: String,
+      default: '',
+    },
+    isRounded: {
       type: Boolean,
       default: true,
     },
+    isTransparent: Boolean,
   },
 });
 </script>

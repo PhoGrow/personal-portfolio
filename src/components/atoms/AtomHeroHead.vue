@@ -1,17 +1,14 @@
 <template>
-  <section :class="['hero', { 'is-fullheight': isFullheight }]">
+  <div class="hero-head">
     <slot></slot>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AtomHero',
-  props: {
-    isFullheight: Boolean,
-  },
+  name: 'AtomHeroHead',
 });
 </script>
 

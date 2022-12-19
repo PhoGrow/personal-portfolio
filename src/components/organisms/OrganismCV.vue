@@ -1,5 +1,5 @@
 <template>
-  <AtomHero :has-horizontal-padding="hasHorizontalPadding">
+  <MoleculeHero :has-horizontal-padding="hasHorizontalPadding">
     <AtomTitle :text="title" class="is-1 has-text-centered" />
     <slot name="personal-info"></slot>
     <AtomSpace value="4" />
@@ -8,17 +8,18 @@
     <slot name="education"></slot>
     <AtomSpace value="4" />
     <slot name="skills"></slot>
-  </AtomHero>
+  </MoleculeHero>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomHero, AtomTitle, AtomSpace } from '@/components/atoms';
+import { MoleculeHero } from '@/components/molecules';
+import { AtomTitle, AtomSpace } from '@/components/atoms';
 
 export default defineComponent({
   name: 'OrganismCV',
   components: {
-    AtomHero,
+    MoleculeHero,
     AtomTitle,
     AtomSpace,
   },
