@@ -51,10 +51,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import {
-  MoleculeBoxWithTitle,
-  MoleculeTextWithLink,
-} from '@/components/molecules';
+import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
+import MoleculeTextWithLink from '@/components/molecules/MoleculeTextWithLink.vue';
 import {
   AtomColumns,
   AtomColumn,

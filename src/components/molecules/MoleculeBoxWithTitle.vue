@@ -1,11 +1,6 @@
 <template>
-  <AtomBox ref="el" class="pt-4">
-    <AtomExtendBg
-      :class="[
-        'has-background-yellow-light py-4',
-        { 'is-rounded': top > -boxRadiusInPx },
-      ]"
-    >
+  <AtomBox class="pt-4">
+    <AtomExtendBg class="box py-4">
       <AtomTitle :text="title" />
     </AtomExtendBg>
     <div class="pt-2">
@@ -15,9 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { AtomBox, AtomExtendBg, AtomTitle } from '@/components/atoms';
-import { useElementBounding } from '@vueuse/core';
 
 export default defineComponent({
   name: 'MoleculeBoxWithTitle',
@@ -31,30 +25,8 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    boxRadius: {
-      type: String,
-      default: '2rem',
-    },
-  },
-  setup() {
-    const el = ref(null);
-    const { top } = useElementBounding(el);
-    return { el, top };
-  },
-  computed: {
-    boxRadiusInPx(): number {
-      const boxRadiusInRem = parseInt(this.boxRadius.replace('rem', ''));
-      const rootFontSize = parseInt(
-        getComputedStyle(document.documentElement).fontSize
-      );
-      return boxRadiusInRem * rootFontSize;
-    },
   },
 });
 </script>
 
-<style scoped>
-.is-rounded {
-  border-radius: v-bind(boxRadius);
-}
-</style>
+<style scoped></style>

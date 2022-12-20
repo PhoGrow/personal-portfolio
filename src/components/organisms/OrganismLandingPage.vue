@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { MoleculeHero } from '@/components/molecules';
+import MoleculeHero from '@/components/molecules/MoleculeHero.vue';
 import { AtomColumns, AtomColumn } from '@/components/atoms';
 
 export default defineComponent({

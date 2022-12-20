@@ -1,21 +1,34 @@
 <template>
-  <AtomButton
-    tag="button"
-    size="large"
-    class="is-fixed has-background-orange p-5"
+  <AtomTooltip
+    :label="label"
+    class="is-fixed"
+    :style="{ right: tooltipRight, bottom: tooltipBottom }"
   >
-    <AtomIcon :icon="icon" size="medium" />
-  </AtomButton>
+    <AtomButton
+      ref="el"
+      tag="button"
+      size="large"
+      class="is-fixed has-background-orange p-5"
+      :style="{ right: buttonRight, bottom: buttonBottom }"
+      @click="showModal"
+    >
+      <AtomIcon :icon="icon" size="medium" />
+    </AtomButton>
+  </AtomTooltip>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { AtomButton, AtomIcon } from '@/components/atoms';
+import { defineComponent, ref } from 'vue';
+import { useProgrammatic } from '@oruga-ui/oruga-next';
+import { OrganismModal } from '@/components/organisms';
+import { AtomTooltip, AtomButton, AtomIcon } from '@/components/atoms';
+import { useElementBounding } from '@vueuse/core';
 import { useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
   name: 'MoleculeDownloadButton',
   components: {
+    AtomTooltip,
     AtomButton,
     AtomIcon,
   },
@@ -24,26 +37,46 @@ export default defineComponent({
       type: String,
       default: 'download',
     },
+    label: {
+      type: String,
+      default: 'Download CV',
+    },
   },
   setup() {
+    const el = ref(null);
+    const { height, width } = useElementBounding(el);
     const isMobileScreen = useMobileBreakpoint();
-    return { isMobileScreen };
+
+    const { oruga } = useProgrammatic();
+    function toggleIsClipped(): void {
+      document.documentElement.classList.toggle('is-clipped');
+    }
+    function showModal(): void {
+      toggleIsClipped();
+      oruga.modal.open({
+        canCancel: ['escape', 'outside', 'button'],
+        component: OrganismModal,
+        onClose: toggleIsClipped,
+      });
+    }
+
+    return { el, height, width, isMobileScreen, showModal };
   },
   computed: {
-    right(): string {
+    buttonRight(): string {
       return `${this.isMobileScreen ? 1 : 4}rem`;
     },
-    bottom(): string {
+    buttonBottom(): string {
       return `${this.isMobileScreen ? 3 : 4}rem`;
+    },
+    tooltipRight(): string {
+      return `calc(${this.buttonRight} + ${this.width}px)`;
+    },
+    tooltipBottom(): string {
+      return `calc(${this.buttonBottom} + ${this.height / 2}px)`;
     },
   },
 });
 </script>
 
-<style scoped>
-.is-fixed {
-  position: fixed;
-  right: v-bind(right);
-  bottom: v-bind(bottom);
-}
-</style>
+<style scoped></style>

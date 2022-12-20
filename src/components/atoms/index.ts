@@ -20,6 +20,7 @@ import AtomNavbarItem from './AtomNavbarItem.vue';
 import AtomSpace from './AtomSpace.vue';
 import AtomSubtitle from './AtomSubtitle.vue';
 import AtomTitle from './AtomTitle.vue';
+import AtomTooltip from './AtomTooltip.vue';
 
 export {
   AtomBox,
@@ -44,4 +45,5 @@ export {
   AtomSpace,
   AtomSubtitle,
   AtomTitle,
+  AtomTooltip,
 };
