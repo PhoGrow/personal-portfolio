@@ -23,10 +23,8 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import {
-  MoleculeBoxWithTitle,
-  MoleculeTextWithIcon,
-} from '@/components/molecules';
+import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
+import MoleculeTextWithIcon from '@/components/molecules/MoleculeTextWithIcon.vue';
 import {
   AtomColumns,
   AtomColumn,

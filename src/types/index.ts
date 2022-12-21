@@ -51,3 +51,16 @@ export interface SkillSet extends Title {
     linkage?: Linkage;
   }[];
 }
+
+export interface Field {
+  label?: string;
+  variant?: string;
+  message?: string;
+}
+
+export interface Input {
+  placeholder?: string;
+  size?: string;
+  isRounded?: boolean;
+  hasStatusIcon?: boolean;
+}

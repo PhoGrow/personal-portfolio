@@ -2,7 +2,7 @@
   <div>
     <AtomTitle :text="title" class="is-1 is-spaced" />
     <AtomSubtitle :text="subtitle" class="is-3" />
-    <AtomButton :href="href" @click.once="showToast">{{
+    <AtomButton :href="href" @click.once="useToast">{{
       callToAction
     }}</AtomButton>
   </div>
@@ -10,9 +10,8 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import { useProgrammatic } from '@oruga-ui/oruga-next';
-import { MoleculeNotification } from '@/components/molecules';
 import { AtomTitle, AtomSubtitle, AtomButton } from '@/components/atoms';
+import { useToast } from '@/stores';
 import type { Welcome } from '@/types';
 
 export default defineComponent({
@@ -29,16 +28,9 @@ export default defineComponent({
     },
   },
   setup() {
-    const { oruga } = useProgrammatic();
-    const showToast = () => {
-      oruga.notification.open({
-        duration: 4000,
-        component: MoleculeNotification,
-        position: 'bottom',
-        variant: 'dark',
-      });
+    return {
+      useToast,
     };
-    return { showToast };
   },
   data() {
     return {

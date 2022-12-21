@@ -56,6 +56,7 @@ export default defineComponent({
       oruga.modal.open({
         canCancel: ['escape', 'outside', 'button'],
         component: OrganismModal,
+        destroyOnHide: false,
         onClose: toggleIsClipped,
       });
     }

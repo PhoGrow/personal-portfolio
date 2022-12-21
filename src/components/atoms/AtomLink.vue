@@ -20,4 +20,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  overflow-wrap: break-word;
+}
+</style>

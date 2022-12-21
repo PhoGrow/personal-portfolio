@@ -1,62 +1,122 @@
 <template>
-  <div class="modal-card">
-    <!-- <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
-    </header> -->
-    <AtomBox class="has-text-centered">
-      <AtomIcon
-        icon="key"
-        size="large"
-        class="has-background-yellow is-rounded mb-3"
-        :style="{ padding: '2rem' }"
-      />
-      <AtomTitle text="Download CV" />
-      <AtomSubtitle text="Remember the key? 👀" />
+  <AtomModalCard>
+    <AtomBox class="has-text-centered has-background-yellow">
+      <AtomIcon :icon="icon" size="large" class="box mb-3" />
+      <AtomTitle :text="title" />
+      <AtomSubtitle :text="subtitle" />
+      <AtomTransitionFade>
+        <div v-if="decryptedCvUrl">
+          <!-- <AtomBox class="has-background-yellow-light">
+            <AtomLink
+              :href="decryptedCvUrl"
+              :title="linkDescription"
+              class="has-text-weight-semibold"
+            />
+          </AtomBox> -->
+          <AtomButton :href="decryptedCvUrl" class="mb-3">{{
+            linkDescription
+          }}</AtomButton>
+          <p>{{ description }}</p>
+        </div>
+        <MoleculeFieldWithInput
+          v-else
+          :field="field"
+          :input="input"
+          class="has-text-left"
+          @input="decryptWithAES"
+        />
+      </AtomTransitionFade>
     </AtomBox>
-    <!-- <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button>
-    </footer> -->
-  </div>
+  </AtomModalCard>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { AtomBox, AtomIcon, AtomSubtitle, AtomTitle } from '@/components/atoms';
+import { defineComponent, type PropType } from 'vue';
+import MoleculeFieldWithInput from '@/components/molecules/MoleculeFieldWithInput.vue';
+import {
+  AtomModalCard,
+  AtomBox,
+  AtomIcon,
+  AtomTitle,
+  AtomSubtitle,
+  AtomTransitionFade,
+  // AtomLink,
+  AtomButton,
+} from '@/components/atoms';
+import { useToast } from '@/stores';
 import { AES, enc } from 'crypto-js';
+import type { Field, Input } from '@/types';
 
 export default defineComponent({
   name: 'OrganismModal',
   components: {
+    AtomModalCard,
+    AtomBox,
     AtomIcon,
     AtomTitle,
-    AtomBox,
     AtomSubtitle,
+    AtomTransitionFade,
+    // AtomLink,
+    MoleculeFieldWithInput,
+    AtomButton,
   },
   props: {
+    icon: {
+      type: String,
+      default: 'key',
+    },
+    title: {
+      type: String,
+      default: 'Download CV',
+    },
+    subtitle: {
+      type: String,
+      default: 'Remember the key? 👀',
+    },
+    linkDescription: {
+      type: String,
+      default: 'Click for German and English CV',
+    },
+    description: {
+      type: String,
+      default: 'Download via Google Drive. Thank you!',
+    },
+    field: {
+      type: Object as PropType<Field>,
+      default: () => ({ message: 'Paste the received passphrase' }),
+    },
+    input: {
+      type: Object as PropType<Input>,
+      default: () => ({ placeholder: 'Enter passphrase' }),
+    },
     encryptedCvUrl: {
       type: String,
       default:
-        'U2FsdGVkX1+03T5UHH33937wHhIX909MaDEoIUZPKABVaa7CgptTQJacfOVii2kV',
+        'U2FsdGVkX1/fQLTliQTRNckvv0bKuSJbx3gnTQHBkIsjlskiHgrrWYV2wwIQCV4V4YufL2qtzVp6VjjbHNofZ8Lj8W6j0SN/4wYx1Wf6XJPt2eJWT8pUWiIUy3wRXhr0',
     },
   },
+  data() {
+    return {
+      decryptedCvUrl: '',
+    };
+  },
   created() {
-    // const url = 'https://google.com';
+    // const url = '';
     // const passphrase = '';
     // const encryptedUrl = this.encryptWithAES(url, passphrase);
     // console.log(encryptedUrl);
-    // const decryptedUrl = this.decryptWithAES(encryptedUrl, passphrase);
-    // console.log(decryptedUrl);
+    // const decryptedUrl = this.decryptWithAES(passphrase);
   },
   methods: {
     encryptWithAES(text: string, passphrase: string): string {
       return AES.encrypt(text, passphrase).toString();
     },
-    decryptWithAES(ciphertext: string, passphrase: string): string {
-      const bytes = AES.decrypt(ciphertext, passphrase);
-      const originalText = bytes.toString(enc.Utf8);
-      return originalText;
+    decryptWithAES(passphrase: string): void {
+      const bytes = AES.decrypt(this.encryptedCvUrl, passphrase);
+      this.decryptedCvUrl = bytes.toString(enc.Utf8);
+      if (this.decryptedCvUrl.includes('https')) {
+        useToast();
+      }
     },
   },
 });
