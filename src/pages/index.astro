@@ -10,11 +10,7 @@ import {
   OrganismSkills,
   OrganismFooter,
 } from '@/components/organisms';
-import {
-  MoleculeWelcome,
-  MoleculeIframe,
-  MoleculeDownloadButton,
-} from '@/components/molecules';
+import { MoleculeWelcome, MoleculeIframe } from '@/components/molecules';
 import type {
   Welcome,
   Iframe,
@@ -163,7 +159,6 @@ const skillSets: SkillSet[] = [
     />
     <OrganismSkills slot="skills" skillSets={skillSets} client:only="vue" />
   </OrganismCV>
-  <MoleculeDownloadButton client:idle />
   <!-- <Card
       href="https://astro.build/chat/"
       title="Community"

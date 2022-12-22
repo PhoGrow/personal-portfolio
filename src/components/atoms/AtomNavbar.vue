@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="container border-bottom">
+    <div class="container has-border-bottom">
       <slot></slot>
     </div>
   </nav>
@@ -14,8 +14,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.border-bottom {
-  border-bottom: 1px solid #943100;
-}
-</style>
+<style scoped></style>

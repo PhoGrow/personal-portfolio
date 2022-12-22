@@ -5,22 +5,35 @@
 $border-radius: 2rem;
 
 // Set your colors
-$pastel-yellow: #fff3c9;
-$pastel-orange: #ffdbc9;
-$pastel-yellow-light: findLightColor($pastel-yellow);
-$pastel-orange-dark: findDarkColor($pastel-orange);
+$primary: #fff3c9; // pastel-yellow
+$secondary: #ffdbc9; // pastel-orange
+$primary-light: findLightColor($primary);
+$secondary-dark: findDarkColor($secondary);
+
+// Setup $colors to use as Bulma classes
+$custom-colors: (
+  'primary': (
+    $primary,
+    $primary-light,
+  ),
+  'secondary': (
+    $secondary,
+    $secondary-dark,
+  ),
+);
+$colors: mergeColorMaps($colors, $custom-colors);
 
 // Body
-$body-background-color: $pastel-yellow;
+$body-background-color: $primary;
 
 // Link
-$link: $pastel-orange-dark;
+$link: $secondary-dark;
 
 // Button
 $button-focus-box-shadow-color: transparent;
 
 // Box
-$box-background-color: $pastel-yellow-light;
+$box-background-color: $primary-light;
 $box-radius: $border-radius;
 $box-shadow: none;
 $box-padding: $border-radius;
@@ -33,19 +46,20 @@ $tooltip-arrow-margin: 0.5rem;
 $tooltip-arrow-size: 0px;
 
 // Footer
-$footer-background-color: $pastel-orange-dark;
+$footer-background-color: $secondary-dark;
 $footer-padding: 3rem 2rem;
 
-// Hr
-// $hr-background-color: $grey-lighter;
+// Other CSS
 
-// Card
-// $card-shadow: none;
-// $card-radius: 2rem;
-// $card-content-padding: 3rem;
+// Iframe
+iframe {
+  border-radius: $border-radius;
+}
 
-// Skeleton
-// $skeleton-border-radius: 2rem;
+// Border
+.has-border-bottom {
+  border-bottom: 1px solid $secondary-dark;
+}
 
 // Import Bulma and Oruga's Bulma theme
 @import 'bulma/bulma.sass';

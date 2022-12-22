@@ -8,12 +8,13 @@
     <slot name="education"></slot>
     <AtomSpace value="4" />
     <slot name="skills"></slot>
+    <MoleculeDownloadButton />
   </MoleculeHero>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { MoleculeHero } from '@/components/molecules';
+import { MoleculeHero, MoleculeDownloadButton } from '@/components/molecules';
 import { AtomTitle, AtomSpace } from '@/components/atoms';
 
 export default defineComponent({
@@ -22,6 +23,7 @@ export default defineComponent({
     MoleculeHero,
     AtomTitle,
     AtomSpace,
+    MoleculeDownloadButton,
   },
   props: {
     hasHorizontalPadding: Boolean,

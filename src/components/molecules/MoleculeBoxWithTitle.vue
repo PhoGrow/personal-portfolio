@@ -1,6 +1,6 @@
 <template>
   <AtomBox class="pt-4">
-    <AtomExtendBg class="box py-4">
+    <AtomExtendBg class="box py-4" :has-background="hasBackground">
       <AtomTitle :text="title" />
     </AtomExtendBg>
     <div class="pt-2">
@@ -25,6 +25,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    hasBackground: Boolean,
   },
 });
 </script>

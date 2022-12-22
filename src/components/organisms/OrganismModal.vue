@@ -1,22 +1,19 @@
 <template>
   <AtomModalCard>
-    <AtomBox class="has-text-centered has-background-yellow">
-      <AtomIcon :icon="icon" size="large" class="box mb-3" />
-      <AtomTitle :text="title" />
-      <AtomSubtitle :text="subtitle" />
+    <AtomBox class="has-text-centered has-background-primary">
+      <AtomIcon :icon="content.icon" size="large" class="box mb-3" />
+      <AtomTitle :text="content.title" />
+      <AtomSubtitle :text="content.subtitle" />
       <AtomTransitionFade>
         <div v-if="decryptedCvUrl">
-          <!-- <AtomBox class="has-background-yellow-light">
+          <AtomBox>
             <AtomLink
               :href="decryptedCvUrl"
-              :title="linkDescription"
+              :title="decryptedCvUrl"
               class="has-text-weight-semibold"
             />
-          </AtomBox> -->
-          <AtomButton :href="decryptedCvUrl" class="mb-3">{{
-            linkDescription
-          }}</AtomButton>
-          <p>{{ description }}</p>
+          </AtomBox>
+          <p>{{ content.description }}</p>
         </div>
         <MoleculeFieldWithInput
           v-else
@@ -40,12 +37,11 @@ import {
   AtomTitle,
   AtomSubtitle,
   AtomTransitionFade,
-  // AtomLink,
-  AtomButton,
+  AtomLink,
 } from '@/components/atoms';
 import { useToast } from '@/stores';
 import { AES, enc } from 'crypto-js';
-import type { Field, Input } from '@/types';
+import type { Modal, Field, Input } from '@/types';
 
 export default defineComponent({
   name: 'OrganismModal',
@@ -56,34 +52,37 @@ export default defineComponent({
     AtomTitle,
     AtomSubtitle,
     AtomTransitionFade,
-    // AtomLink,
+    AtomLink,
     MoleculeFieldWithInput,
-    AtomButton,
   },
   props: {
-    icon: {
-      type: String,
-      default: 'key',
+    lockedContent: {
+      type: Object as PropType<Modal>,
+      default: () => ({
+        icon: 'key',
+        title: 'Download CV',
+        subtitle: 'Remember the key? 👀',
+      }),
     },
-    title: {
-      type: String,
-      default: 'Download CV',
+    unlockedContent: {
+      type: Object as PropType<Modal>,
+      default: () => ({
+        icon: 'download',
+        title: 'Download CV',
+        subtitle: 'Here you go!',
+        description: 'Download via Google Drive. Thank you!',
+      }),
     },
-    subtitle: {
-      type: String,
-      default: 'Remember the key? 👀',
-    },
-    linkDescription: {
-      type: String,
-      default: 'Click for German and English CV',
-    },
-    description: {
-      type: String,
-      default: 'Download via Google Drive. Thank you!',
-    },
-    field: {
+    emptyField: {
       type: Object as PropType<Field>,
       default: () => ({ message: 'Paste the received passphrase' }),
+    },
+    filledField: {
+      type: Object as PropType<Field>,
+      default: () => ({
+        variant: 'danger',
+        message: 'This passphrase is incorrect',
+      }),
     },
     input: {
       type: Object as PropType<Input>,
@@ -97,15 +96,23 @@ export default defineComponent({
   },
   data() {
     return {
+      hasInput: false,
       decryptedCvUrl: '',
     };
+  },
+  computed: {
+    content(): Modal {
+      return this.decryptedCvUrl ? this.unlockedContent : this.lockedContent;
+    },
+    field(): Field {
+      return this.hasInput ? this.filledField : this.emptyField;
+    },
   },
   created() {
     // const url = '';
     // const passphrase = '';
     // const encryptedUrl = this.encryptWithAES(url, passphrase);
     // console.log(encryptedUrl);
-    // const decryptedUrl = this.decryptWithAES(passphrase);
   },
   methods: {
     encryptWithAES(text: string, passphrase: string): string {
@@ -113,9 +120,19 @@ export default defineComponent({
     },
     decryptWithAES(passphrase: string): void {
       const bytes = AES.decrypt(this.encryptedCvUrl, passphrase);
-      this.decryptedCvUrl = bytes.toString(enc.Utf8);
-      if (this.decryptedCvUrl.includes('https')) {
-        useToast();
+      try {
+        this.decryptedCvUrl = bytes.toString(enc.Utf8);
+      } catch (error) {
+        if ((error as Error).message === 'Malformed UTF-8 data') {
+          return;
+        }
+        console.log(error);
+      } finally {
+        if (this.decryptedCvUrl.includes('https')) {
+          useToast();
+        } else {
+          this.hasInput = passphrase ? true : false;
+        }
       }
     },
   },

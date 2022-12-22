@@ -20,8 +20,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-iframe {
-  border-radius: 2rem;
-}
-</style>
+<style scoped></style>

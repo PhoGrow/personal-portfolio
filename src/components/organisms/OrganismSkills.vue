@@ -9,7 +9,7 @@
           { 'mb-4': isMobileScreen && i !== skillSets.length - 1 },
         ]"
       >
-        <AtomExtendBg custom-class="has-background-yellow" :top="1.25">
+        <AtomExtendBg :top="1.25">
           <AtomSubtitle
             :text="skillSet.title"
             class="has-text-weight-semibold is-4 has-text-centered"

@@ -18,7 +18,7 @@
       </AtomColumn>
       <AtomColumn class="is-narrow m-4" />
       <AtomColumn class="is-6">
-        <AtomExtendBg custom-class="has-background-yellow" :top="0.5">
+        <AtomExtendBg :top="0.5">
           <p>
             <AtomSubtitle
               tag="span"

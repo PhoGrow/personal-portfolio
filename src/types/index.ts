@@ -2,6 +2,10 @@ export interface Title {
   title: string;
 }
 
+export interface Subtitle {
+  subtitle: string;
+}
+
 export interface Source {
   src: string;
 }
@@ -18,8 +22,7 @@ export interface Iframe extends Title, Source {
   caption: string;
 }
 
-export interface Welcome extends Linkage {
-  subtitle: string;
+export interface Welcome extends Linkage, Subtitle {
   callToAction: string;
 }
 
@@ -63,4 +66,9 @@ export interface Input {
   size?: string;
   isRounded?: boolean;
   hasStatusIcon?: boolean;
+}
+
+export interface Modal extends Title, Subtitle {
+  icon: string;
+  description?: string;
 }

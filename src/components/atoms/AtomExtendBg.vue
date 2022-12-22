@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="['is-sticky', isMobileScreen ? `py-4 ${customClass}` : '']"
+    :class="[
+      'is-sticky',
+      isMobileScreen && hasBackground ? 'has-background-primary py-4' : '',
+    ]"
     :style="{
       top: `${isMobileScreen ? 0 : top}rem`,
       margin: `0 ${margin}`,
@@ -22,9 +25,9 @@ export default defineComponent({
       type: String,
       default: '-2rem',
     },
-    customClass: {
-      type: String,
-      default: '',
+    hasBackground: {
+      type: Boolean,
+      default: true,
     },
     top: {
       type: Number,
