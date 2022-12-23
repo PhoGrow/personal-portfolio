@@ -1,19 +1,18 @@
-import { createSharedComposable, useMediaQuery } from '@vueuse/core';
-import { useProgrammatic } from '@oruga-ui/oruga-next';
-import { MoleculeNotification } from '@/components/molecules';
+import { useEducationStore } from './education';
+import { useIframeStore } from './iframe';
+import { usePersonalInfoStore } from './personalInfo';
+import { useProfileStore } from './profile';
+import { useSkillsStore } from './skills';
+import { useWelcomeStore } from './welcome';
+import { useMobileBreakpoint, useToast } from './sharedComposables';
 
-const useMobileBreakpoint = createSharedComposable(() =>
-  useMediaQuery('(max-width: 768px)')
-);
-
-const { oruga } = useProgrammatic();
-function useToast(): void {
-  oruga.notification.open({
-    duration: 4000,
-    component: MoleculeNotification,
-    position: 'bottom',
-    variant: 'dark',
-  });
-}
-
-export { useMobileBreakpoint, useToast };
+export {
+  useEducationStore,
+  useIframeStore,
+  usePersonalInfoStore,
+  useProfileStore,
+  useSkillsStore,
+  useWelcomeStore,
+  useMobileBreakpoint,
+  useToast,
+};

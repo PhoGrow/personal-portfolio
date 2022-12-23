@@ -21,7 +21,7 @@ import MoleculeHero from '@/components/molecules/MoleculeHero.vue';
 import { AtomColumns, AtomColumn } from '@/components/atoms';
 
 export default defineComponent({
-  name: 'LandingPage',
+  name: 'OrganismLandingPage',
   components: {
     MoleculeHero,
     AtomColumns,
