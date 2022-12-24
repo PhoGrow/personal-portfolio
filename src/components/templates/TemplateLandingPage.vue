@@ -4,33 +4,30 @@
       <OrganismNavbar />
     </template>
     <template #welcome>
-      <MoleculeWelcome :welcome="welcome" />
+      <OrganismWelcome />
     </template>
     <template #work>
-      <MoleculeIframe :iframe="iframe" />
+      <OrganismIframe />
     </template>
   </OrganismLandingPage>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { OrganismLandingPage, OrganismNavbar } from '@/components/organisms';
-import { MoleculeWelcome, MoleculeIframe } from '@/components/molecules';
-import { useWelcomeStore, useIframeStore } from '@/stores';
+import {
+  OrganismLandingPage,
+  OrganismNavbar,
+  OrganismWelcome,
+  OrganismIframe,
+} from '@/components/organisms';
 
 export default defineComponent({
   name: 'TemplateLandingPage',
   components: {
     OrganismLandingPage,
     OrganismNavbar,
-    MoleculeWelcome,
-    MoleculeIframe,
-  },
-  setup() {
-    const { $state: welcome } = useWelcomeStore();
-    const { $state: iframe } = useIframeStore();
-
-    return { welcome, iframe };
+    OrganismWelcome,
+    OrganismIframe,
   },
 });
 </script>

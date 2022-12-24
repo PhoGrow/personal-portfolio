@@ -9,32 +9,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
-import { AtomFigure, AtomIframe, AtomFigcaption } from '@/components/atoms';
-import { useMobileBreakpoint } from '@/stores';
-import type { Iframe } from '@/types';
+import { defineComponent } from 'vue';
+import AtomFigure from '@/components/atoms/AtomFigure.vue';
+import AtomIframe from '@/components/atoms/AtomIframe.vue';
+import AtomFigcaption from '@/components/atoms/AtomFigcaption.vue';
+import { useIframeStore, useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
-  name: 'MoleculeIframe',
+  name: 'OrganismIframe',
   components: {
     AtomFigure,
     AtomIframe,
     AtomFigcaption,
   },
-  props: {
-    iframe: {
-      type: Object as PropType<Iframe>,
-      required: true,
-    },
-  },
   setup() {
+    const { src, title, caption } = useIframeStore();
     const isMobileScreen = useMobileBreakpoint();
-    return { isMobileScreen };
-  },
-  data() {
-    return {
-      ...this.iframe,
-    };
+
+    return { src, title, caption, isMobileScreen };
   },
 });
 </script>

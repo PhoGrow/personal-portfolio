@@ -4,6 +4,7 @@ import type { SkillSet, Linkage } from '@/types';
 export const useSkillsStore = defineStore({
   id: 'skills',
   state: () => ({
+    title: 'Skills',
     skillSets: [
       {
         title: `Hard skills`,

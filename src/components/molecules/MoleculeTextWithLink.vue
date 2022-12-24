@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import { AtomLink } from '@/components/atoms';
+import AtomLink from '@/components/atoms/AtomLink.vue';
 import type { Linkage } from '@/types';
 
 export default defineComponent({

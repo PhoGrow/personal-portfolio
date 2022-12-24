@@ -18,7 +18,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MoleculeHero from '@/components/molecules/MoleculeHero.vue';
-import { AtomColumns, AtomColumn } from '@/components/atoms';
+import AtomColumns from '@/components/atoms/AtomColumns.vue';
+import AtomColumn from '@/components/atoms/AtomColumn.vue';
 
 export default defineComponent({
   name: 'OrganismLandingPage',

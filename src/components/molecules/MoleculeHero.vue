@@ -11,7 +11,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomHero, AtomHeroHead, AtomHeroBody } from '@/components/atoms';
+import AtomHero from '@/components/atoms/AtomHero.vue';
+import AtomHeroHead from '@/components/atoms/AtomHeroHead.vue';
+import AtomHeroBody from '@/components/atoms/AtomHeroBody.vue';
 
 export default defineComponent({
   name: 'MoleculeHero',

@@ -1,5 +1,9 @@
 <template>
-  <MoleculeHero :has-horizontal-padding="hasHorizontalPadding">
+  <MoleculeHero
+    v-if="isCvVisible"
+    :id="href.substring(1)"
+    :has-horizontal-padding="hasHorizontalPadding"
+  >
     <AtomTitle :text="title" class="is-1 has-text-centered" />
     <slot name="personal-info"></slot>
     <AtomSpace value="4" />
@@ -8,14 +12,17 @@
     <slot name="education"></slot>
     <AtomSpace value="4" />
     <slot name="skills"></slot>
-    <MoleculeDownloadButton />
+    <OrganismDownloadButton />
   </MoleculeHero>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { MoleculeHero, MoleculeDownloadButton } from '@/components/molecules';
-import { AtomTitle, AtomSpace } from '@/components/atoms';
+import OrganismDownloadButton from '@/components/organisms/OrganismDownloadButton.vue';
+import MoleculeHero from '@/components/molecules/MoleculeHero.vue';
+import AtomTitle from '@/components/atoms/AtomTitle.vue';
+import AtomSpace from '@/components/atoms/AtomSpace.vue';
+import { useWelcomeStore, useGlobalState } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismCV',
@@ -23,7 +30,7 @@ export default defineComponent({
     MoleculeHero,
     AtomTitle,
     AtomSpace,
-    MoleculeDownloadButton,
+    OrganismDownloadButton,
   },
   props: {
     hasHorizontalPadding: Boolean,
@@ -31,6 +38,12 @@ export default defineComponent({
       type: String,
       default: 'CV',
     },
+  },
+  setup() {
+    const { href } = useWelcomeStore();
+    const { isCvVisible } = useGlobalState();
+
+    return { href, isCvVisible };
   },
 });
 </script>

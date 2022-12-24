@@ -28,20 +28,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
+import { defineComponent } from 'vue';
 import MoleculeFieldWithInput from '@/components/molecules/MoleculeFieldWithInput.vue';
-import {
-  AtomModalCard,
-  AtomBox,
-  AtomIcon,
-  AtomTitle,
-  AtomSubtitle,
-  AtomTransitionFade,
-  AtomLink,
-} from '@/components/atoms';
-import { useToast } from '@/stores';
+import AtomModalCard from '@/components/atoms/AtomModalCard.vue';
+import AtomBox from '@/components/atoms/AtomBox.vue';
+import AtomIcon from '@/components/atoms/AtomIcon.vue';
+import AtomTitle from '@/components/atoms/AtomTitle.vue';
+import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
+import AtomTransitionFade from '@/components/atoms/AtomTransitionFade.vue';
+import AtomLink from '@/components/atoms/AtomLink.vue';
+import { useModalStore, useToast } from '@/stores';
 import { AES, enc } from 'crypto-js';
-import type { Modal, Field, Input } from '@/types';
+import type { Modal, Field } from '@/types';
 
 export default defineComponent({
   name: 'OrganismModal',
@@ -55,44 +53,23 @@ export default defineComponent({
     AtomLink,
     MoleculeFieldWithInput,
   },
-  props: {
-    lockedContent: {
-      type: Object as PropType<Modal>,
-      default: () => ({
-        icon: 'key',
-        title: 'Download CV',
-        subtitle: 'Remember the key? 👀',
-      }),
-    },
-    unlockedContent: {
-      type: Object as PropType<Modal>,
-      default: () => ({
-        icon: 'download',
-        title: 'Download CV',
-        subtitle: 'Here you go!',
-        description: 'Download via Google Drive. Thank you!',
-      }),
-    },
-    emptyField: {
-      type: Object as PropType<Field>,
-      default: () => ({ message: 'Paste the received passphrase' }),
-    },
-    filledField: {
-      type: Object as PropType<Field>,
-      default: () => ({
-        variant: 'danger',
-        message: 'This passphrase is incorrect',
-      }),
-    },
-    input: {
-      type: Object as PropType<Input>,
-      default: () => ({ placeholder: 'Enter passphrase' }),
-    },
-    encryptedCvUrl: {
-      type: String,
-      default:
-        'U2FsdGVkX1/fQLTliQTRNckvv0bKuSJbx3gnTQHBkIsjlskiHgrrWYV2wwIQCV4V4YufL2qtzVp6VjjbHNofZ8Lj8W6j0SN/4wYx1Wf6XJPt2eJWT8pUWiIUy3wRXhr0',
-    },
+  setup() {
+    const {
+      lockedContent,
+      unlockedContent,
+      emptyField,
+      filledField,
+      input,
+      encryptedCvUrl,
+    } = useModalStore();
+    return {
+      lockedContent,
+      unlockedContent,
+      emptyField,
+      filledField,
+      input,
+      encryptedCvUrl,
+    };
   },
   data() {
     return {

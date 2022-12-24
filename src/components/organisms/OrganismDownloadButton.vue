@@ -20,13 +20,15 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useProgrammatic } from '@oruga-ui/oruga-next';
-import { OrganismModal } from '@/components/organisms';
-import { AtomTooltip, AtomButton, AtomIcon } from '@/components/atoms';
+import OrganismModal from '@/components/organisms/OrganismModal.vue';
+import AtomTooltip from '@/components/atoms/AtomTooltip.vue';
+import AtomButton from '@/components/atoms/AtomButton.vue';
+import AtomIcon from '@/components/atoms/AtomIcon.vue';
 import { useElementBounding } from '@vueuse/core';
 import { useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
-  name: 'MoleculeDownloadButton',
+  name: 'OrganismDownloadButton',
   components: {
     AtomTooltip,
     AtomButton,

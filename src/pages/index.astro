@@ -1,19 +1,41 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { TemplateLandingPage, TemplateCV } from '@/components/templates';
-import { OrganismFooter } from '@/components/organisms';
+import {
+  OrganismLandingPage,
+  OrganismNavbar,
+  OrganismWelcome,
+  OrganismIframe,
+  OrganismCV,
+  OrganismPersonalInfo,
+  OrganismProfile,
+  OrganismEducation,
+  OrganismSkills,
+  OrganismFooter,
+} from '@/components/organisms';
+// import { useNameStore } from '@/stores';
+// const { firstName, lastName } = useNameStore();
+// `${firstName} ${lastName}`
 // import Card from '@/components/Card.astro';
 ---
 
-<Layout title="Rene Dietz">
-  <TemplateLandingPage client:load />
-  <TemplateCV client:idle />
+<Layout title="Personal portfolio">
+  <OrganismLandingPage client:load>
+    <OrganismNavbar slot="navbar" client:load />
+    <OrganismWelcome slot="welcome" client:load />
+    <OrganismIframe slot="work" client:load />
+  </OrganismLandingPage>
+  <OrganismCV client:idle>
+    <OrganismPersonalInfo slot="personal-info" client:visible />
+    <OrganismProfile slot="profile" client:visible />
+    <OrganismEducation slot="education" client:visible />
+    <OrganismSkills slot="skills" client:visible />
+  </OrganismCV>
+  <OrganismFooter client:idle />
   <!-- <Card
       href="https://astro.build/chat/"
       title="Community"
       body="Come say hi to our amazing Discord community. ❤️"
     /> -->
-  <OrganismFooter />
 </Layout>
 
 <style></style>

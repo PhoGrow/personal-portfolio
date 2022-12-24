@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <MoleculeBoxWithTitle :title="title">
     <MoleculeTextWithLink
@@ -11,12 +10,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
-import {
-  MoleculeBoxWithTitle,
-  MoleculeTextWithLink,
-} from '@/components/molecules';
-import type { Linkage } from '@/types';
+import { defineComponent } from 'vue';
+import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
+import MoleculeTextWithLink from '@/components/molecules/MoleculeTextWithLink.vue';
+import { useProfileStore } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismProfile',
@@ -24,19 +21,9 @@ export default defineComponent({
     MoleculeBoxWithTitle,
     MoleculeTextWithLink,
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Profile',
-    },
-    text: {
-      type: String,
-      required: true,
-    },
-    linkage: {
-      type: Object as PropType<Linkage>,
-      default: () => ({}),
-    },
+  setup() {
+    const { title, text, linkage } = useProfileStore();
+    return { title, text, linkage };
   },
 });
 </script>

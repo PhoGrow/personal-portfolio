@@ -9,7 +9,8 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import { AtomField, AtomInput } from '@/components/atoms';
+import AtomField from '@/components/atoms/AtomField.vue';
+import AtomInput from '@/components/atoms/AtomInput.vue';
 import type { Field, Input } from '@/types';
 
 export default defineComponent({

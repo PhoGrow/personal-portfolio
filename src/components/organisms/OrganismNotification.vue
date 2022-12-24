@@ -10,27 +10,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomIcon, AtomSubtitle } from '@/components/atoms';
+import AtomIcon from '@/components/atoms/AtomIcon.vue';
+import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
+import { useNotificationStore } from '@/stores';
 
 export default defineComponent({
-  name: 'MoleculeNotification',
+  name: 'OrganismNotification',
   components: {
     AtomIcon,
     AtomSubtitle,
   },
-  props: {
-    icon: {
-      type: String,
-      default: 'emoji_events',
-    },
-    title: {
-      type: String,
-      default: 'Achievement unlocked',
-    },
-    description: {
-      type: String,
-      default: `Access Rene's CV`,
-    },
+  setup() {
+    const { icon, title, description } = useNotificationStore();
+    return { icon, title, description };
   },
 });
 </script>

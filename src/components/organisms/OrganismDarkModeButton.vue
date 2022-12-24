@@ -6,11 +6,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomButton, AtomIcon } from '@/components/atoms';
+import AtomButton from '@/components/atoms/AtomButton.vue';
+import AtomIcon from '@/components/atoms/AtomIcon.vue';
 import { useDark, useToggle } from '@vueuse/core';
 
 export default defineComponent({
-  name: 'MoleculeDarkModeButton',
+  name: 'OrganismDarkModeButton',
   components: {
     AtomButton,
     AtomIcon,

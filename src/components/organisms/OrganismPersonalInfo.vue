@@ -22,17 +22,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
+import { defineComponent } from 'vue';
 import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
 import MoleculeTextWithIcon from '@/components/molecules/MoleculeTextWithIcon.vue';
-import {
-  AtomColumns,
-  AtomColumn,
-  AtomHeading,
-  AtomLink,
-} from '@/components/atoms';
-import { useMobileBreakpoint } from '@/stores';
-import type { PersonalInfo, Linkage } from '@/types';
+import AtomColumns from '@/components/atoms/AtomColumns.vue';
+import AtomColumn from '@/components/atoms/AtomColumn.vue';
+import AtomHeading from '@/components/atoms/AtomHeading.vue';
+import AtomLink from '@/components/atoms/AtomLink.vue';
+import { usePersonalInfoStore, useMobileBreakpoint } from '@/stores';
+import type { Linkage } from '@/types';
 
 export default defineComponent({
   name: 'OrganismPersonalInfo',
@@ -44,27 +42,11 @@ export default defineComponent({
     MoleculeTextWithIcon,
     AtomLink,
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Personal info',
-    },
-    info: {
-      type: Object as PropType<PersonalInfo>,
-      required: true,
-    },
-    descWithIcon: {
-      type: String,
-      default: 'Locked',
-    },
-    icon: {
-      type: String,
-      default: 'lock',
-    },
-  },
   setup() {
+    const { title, info, descWithIcon, icon } = usePersonalInfoStore();
     const isMobileScreen = useMobileBreakpoint();
-    return { isMobileScreen };
+
+    return { title, info, descWithIcon, icon, isMobileScreen };
   },
   methods: {
     getHalfInfo(index: number): [string, string][] {

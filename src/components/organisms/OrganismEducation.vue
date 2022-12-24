@@ -50,19 +50,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
 import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
 import MoleculeTextWithLink from '@/components/molecules/MoleculeTextWithLink.vue';
-import {
-  AtomColumns,
-  AtomColumn,
-  AtomSubtitle,
-  AtomExtendBg,
-  AtomSpace,
-  AtomHeading,
-} from '@/components/atoms';
-import { useMobileBreakpoint } from '@/stores';
-import type { Education } from '@/types';
+import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
+import AtomColumns from '@/components/atoms/AtomColumns.vue';
+import AtomColumn from '@/components/atoms/AtomColumn.vue';
+import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
+import AtomSpace from '@/components/atoms/AtomSpace.vue';
+import AtomHeading from '@/components/atoms/AtomHeading.vue';
+import { useEducationStore, useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismEducation',
@@ -76,19 +73,11 @@ export default defineComponent({
     AtomHeading,
     MoleculeTextWithLink,
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Education',
-    },
-    education: {
-      type: Array as PropType<Education[]>,
-      required: true,
-    },
-  },
   setup() {
+    const { title, education } = useEducationStore();
     const isMobileScreen = useMobileBreakpoint();
-    return { isMobileScreen };
+
+    return { title, education, isMobileScreen };
   },
 });
 </script>

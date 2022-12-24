@@ -5,7 +5,7 @@
         v-for="(skillSet, i) of skillSets"
         :key="skillSet.title"
         :class="[
-          'is-6',
+          `is-${12 / skillSets.length}`,
           { 'mb-4': isMobileScreen && i !== skillSets.length - 1 },
         ]"
       >
@@ -34,20 +34,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
-import {
-  MoleculeBoxWithTitle,
-  MoleculeTextWithLink,
-} from '@/components/molecules';
-import {
-  AtomColumns,
-  AtomColumn,
-  AtomExtendBg,
-  AtomSubtitle,
-  AtomBox,
-} from '@/components/atoms';
-import { useMobileBreakpoint } from '@/stores';
-import type { SkillSet } from '@/types';
+import { defineComponent } from 'vue';
+import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
+import MoleculeTextWithLink from '@/components/molecules/MoleculeTextWithLink.vue';
+import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
+import AtomColumns from '@/components/atoms/AtomColumns.vue';
+import AtomColumn from '@/components/atoms/AtomColumn.vue';
+import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
+import AtomBox from '@/components/atoms/AtomBox.vue';
+import { useSkillsStore, useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismSkills',
@@ -60,19 +55,11 @@ export default defineComponent({
     AtomBox,
     MoleculeTextWithLink,
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Skills',
-    },
-    skillSets: {
-      type: Array as PropType<SkillSet[]>,
-      required: true,
-    },
-  },
   setup() {
+    const { title, skillSets } = useSkillsStore();
     const isMobileScreen = useMobileBreakpoint();
-    return { isMobileScreen };
+
+    return { title, skillSets, isMobileScreen };
   },
 });
 </script>

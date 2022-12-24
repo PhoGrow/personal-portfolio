@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AtomIcon } from '@/components/atoms';
+import AtomIcon from '@/components/atoms/AtomIcon.vue';
 
 export default defineComponent({
   name: 'MoleculeTextWithIcon',

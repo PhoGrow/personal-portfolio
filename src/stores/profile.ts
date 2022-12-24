@@ -4,6 +4,7 @@ import type { Linkage } from '@/types';
 export const useProfileStore = defineStore({
   id: 'profile',
   state: () => ({
+    title: 'Profile',
     text: `Creative and persistent fresh graduate looking for a first position as a frontend developer.
       Gained fundamental technical knowledge in web, media, and design through studies in media technology.
       Self-taught developer in creating intuitive and responsive web applications who loves to work with enthusiastic individuals on meaningful projects.

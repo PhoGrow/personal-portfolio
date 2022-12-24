@@ -1,16 +1,16 @@
 <template>
-  <OrganismCV :id="href.substring(1)">
+  <OrganismCV>
     <template #personal-info>
-      <OrganismPersonalInfo :info="personalInfo" />
+      <OrganismPersonalInfo />
     </template>
     <template #profile>
-      <OrganismProfile v-bind="profile" />
+      <OrganismProfile />
     </template>
     <template #education>
-      <OrganismEducation :education="education" />
+      <OrganismEducation />
     </template>
     <template #skills>
-      <OrganismSkills :skill-sets="skillSets" />
+      <OrganismSkills />
     </template>
   </OrganismCV>
 </template>
@@ -24,13 +24,6 @@ import {
   OrganismEducation,
   OrganismSkills,
 } from '@/components/organisms';
-import {
-  useWelcomeStore,
-  usePersonalInfoStore,
-  useProfileStore,
-  useEducationStore,
-  useSkillsStore,
-} from '@/stores';
 
 export default defineComponent({
   name: 'TemplateCV',
@@ -40,15 +33,6 @@ export default defineComponent({
     OrganismProfile,
     OrganismEducation,
     OrganismSkills,
-  },
-  setup() {
-    const { href } = useWelcomeStore();
-    const { $state: personalInfo } = usePersonalInfoStore();
-    const { $state: profile } = useProfileStore();
-    const { education } = useEducationStore();
-    const { skillSets } = useSkillsStore();
-
-    return { href, personalInfo, profile, education, skillSets };
   },
 });
 </script>

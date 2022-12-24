@@ -4,6 +4,7 @@ import type { Education } from '@/types';
 export const useEducationStore = defineStore({
   id: 'education',
   state: () => ({
+    title: 'Education',
     education: [
       {
         period: '2020 – 2022',

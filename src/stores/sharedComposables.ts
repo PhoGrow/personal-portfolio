@@ -1,19 +1,29 @@
-import { createSharedComposable, useMediaQuery } from '@vueuse/core';
+import {
+  createSharedComposable,
+  useMediaQuery,
+  createGlobalState,
+} from '@vueuse/core';
+import { ref } from 'vue';
 import { useProgrammatic } from '@oruga-ui/oruga-next';
-import { MoleculeNotification } from '@/components/molecules';
+import OrganismNotification from '@/components/organisms/OrganismNotification.vue';
 
 const useMobileBreakpoint = createSharedComposable(() =>
   useMediaQuery('(max-width: 768px)')
 );
 
+const useGlobalState = createGlobalState(() => {
+  const isCvVisible = ref(false);
+  return { isCvVisible };
+});
+
 const { oruga } = useProgrammatic();
 function useToast(): void {
   oruga.notification.open({
     duration: 4000,
-    component: MoleculeNotification,
+    component: OrganismNotification,
     position: 'bottom',
     variant: 'dark',
   });
 }
 
-export { useMobileBreakpoint, useToast };
+export { useMobileBreakpoint, useGlobalState, useToast };

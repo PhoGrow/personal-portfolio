@@ -6,6 +6,10 @@ export interface Subtitle {
   subtitle: string;
 }
 
+export interface Icon {
+  icon: string;
+}
+
 export interface Source {
   src: string;
 }
@@ -24,6 +28,11 @@ export interface Iframe extends Title, Source {
 
 export interface Welcome extends Linkage, Subtitle {
   callToAction: string;
+}
+
+export interface Name {
+  firstName: string;
+  lastName: string;
 }
 
 export interface PersonalInfo {
@@ -68,7 +77,10 @@ export interface Input {
   hasStatusIcon?: boolean;
 }
 
-export interface Modal extends Title, Subtitle {
-  icon: string;
+export interface Modal extends Title, Subtitle, Icon {
   description?: string;
+}
+
+export interface Notification extends Title, Icon {
+  description: string;
 }
