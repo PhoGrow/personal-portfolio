@@ -1,24 +1,22 @@
 <template>
-  <AtomBox class="pt-4">
+  <div class="box pt-4">
     <AtomExtendBg class="box py-4" :has-background="hasBackground">
       <AtomTitle :text="title" />
     </AtomExtendBg>
     <div class="pt-2">
       <slot></slot>
     </div>
-  </AtomBox>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AtomBox from '@/components/atoms/AtomBox.vue';
 import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
 import AtomTitle from '@/components/atoms/AtomTitle.vue';
 
 export default defineComponent({
   name: 'MoleculeBoxWithTitle',
   components: {
-    AtomBox,
     AtomExtendBg,
     AtomTitle,
   },

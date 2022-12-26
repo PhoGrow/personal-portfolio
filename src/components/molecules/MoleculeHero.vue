@@ -1,27 +1,21 @@
 <template>
-  <AtomHero :is-fullheight="isFullheight">
-    <AtomHeroHead v-if="hasHeroHead">
+  <section :class="['hero', { 'is-fullheight': isFullheight }]">
+    <div v-if="hasHeroHead" class="hero-head">
       <slot name="header"></slot>
-    </AtomHeroHead>
-    <AtomHeroBody :class="{ 'px-0': !hasHorizontalPadding }">
-      <slot></slot>
-    </AtomHeroBody>
-  </AtomHero>
+    </div>
+    <div :class="['hero-body', { 'px-0': !hasHorizontalPadding }]">
+      <div class="container">
+        <slot></slot>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AtomHero from '@/components/atoms/AtomHero.vue';
-import AtomHeroHead from '@/components/atoms/AtomHeroHead.vue';
-import AtomHeroBody from '@/components/atoms/AtomHeroBody.vue';
 
 export default defineComponent({
   name: 'MoleculeHero',
-  components: {
-    AtomHero,
-    AtomHeroHead,
-    AtomHeroBody,
-  },
   props: {
     isFullheight: Boolean,
     hasHeroHead: Boolean,

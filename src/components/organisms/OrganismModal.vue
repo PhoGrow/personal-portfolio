@@ -1,18 +1,18 @@
 <template>
-  <AtomModalCard>
-    <AtomBox class="has-text-centered has-background-primary">
+  <div class="modal-card">
+    <div class="box has-text-centered has-background-primary">
       <AtomIcon :icon="content.icon" size="large" class="box mb-3" />
       <AtomTitle :text="content.title" />
       <AtomSubtitle :text="content.subtitle" />
       <AtomTransitionFade>
         <div v-if="decryptedCvUrl">
-          <AtomBox>
+          <div class="box">
             <AtomLink
               :href="decryptedCvUrl"
               :title="decryptedCvUrl"
               class="has-text-weight-semibold"
             />
-          </AtomBox>
+          </div>
           <p>{{ content.description }}</p>
         </div>
         <MoleculeFieldWithInput
@@ -23,15 +23,13 @@
           @input="decryptWithAES"
         />
       </AtomTransitionFade>
-    </AtomBox>
-  </AtomModalCard>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MoleculeFieldWithInput from '@/components/molecules/MoleculeFieldWithInput.vue';
-import AtomModalCard from '@/components/atoms/AtomModalCard.vue';
-import AtomBox from '@/components/atoms/AtomBox.vue';
 import AtomIcon from '@/components/atoms/AtomIcon.vue';
 import AtomTitle from '@/components/atoms/AtomTitle.vue';
 import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
@@ -44,8 +42,6 @@ import type { Modal, Field } from '@/types';
 export default defineComponent({
   name: 'OrganismModal',
   components: {
-    AtomModalCard,
-    AtomBox,
     AtomIcon,
     AtomTitle,
     AtomSubtitle,

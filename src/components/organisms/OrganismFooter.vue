@@ -1,23 +1,21 @@
 <template>
-  <AtomFooter v-if="isCvVisible" class="has-text-white has-text-centered">
+  <footer v-if="isCvVisible" class="footer has-text-white has-text-centered">
     <AtomSubtitle
       :text="`Made with ♥︎ by ${fullName}`"
       class="has-text-white mb-0"
     />
     <p>Thanks for taking the time!</p>
-  </AtomFooter>
+  </footer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AtomFooter from '@/components/atoms/AtomFooter.vue';
 import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
 import { useNameStore, useGlobalState } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismFooter',
   components: {
-    AtomFooter,
     AtomSubtitle,
   },
   setup() {

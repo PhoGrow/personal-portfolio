@@ -8,7 +8,7 @@
       ref="el"
       tag="button"
       size="large"
-      class="is-fixed has-background-secondary p-5"
+      class="is-fixed has-background-secondary p-5 animate-border-color"
       :style="{ right: buttonRight, bottom: buttonBottom }"
       @click="showModal"
     >

@@ -1,32 +1,26 @@
 <template>
-  <AtomNavbar>
-    <AtomNavbarBrand>
-      <AtomNavbarItem>
-        <AtomImage src="favicon.svg" :alt="fullName" />
-      </AtomNavbarItem>
-      <AtomNavbarItem>
-        <OrganismDarkModeButton />
-      </AtomNavbarItem>
-    </AtomNavbarBrand>
-  </AtomNavbar>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container has-border-bottom">
+      <div class="navbar-brand">
+        <div class="navbar-item">
+          <img src="favicon.svg" :alt="fullName" />
+        </div>
+        <div class="navbar-item">
+          <OrganismDarkModeButton />
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import OrganismDarkModeButton from '@/components/organisms/OrganismDarkModeButton.vue';
-import AtomNavbar from '@/components/atoms/AtomNavbar.vue';
-import AtomNavbarBrand from '@/components/atoms/AtomNavbarBrand.vue';
-import AtomNavbarItem from '@/components/atoms/AtomNavbarItem.vue';
-import AtomImage from '@/components/atoms/AtomImage.vue';
 import { useNameStore } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismNavbar',
   components: {
-    AtomNavbar,
-    AtomNavbarBrand,
-    AtomNavbarItem,
-    AtomImage,
     OrganismDarkModeButton,
   },
   setup() {
@@ -36,4 +30,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.navbar-brand {
+  flex-grow: 1;
+  justify-content: space-between;
+}
+</style>

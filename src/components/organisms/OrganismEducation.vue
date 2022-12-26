@@ -53,10 +53,10 @@
 import { defineComponent } from 'vue';
 import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
 import MoleculeTextWithLink from '@/components/molecules/MoleculeTextWithLink.vue';
-import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
 import AtomColumns from '@/components/atoms/AtomColumns.vue';
 import AtomColumn from '@/components/atoms/AtomColumn.vue';
 import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
+import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
 import AtomSpace from '@/components/atoms/AtomSpace.vue';
 import AtomHeading from '@/components/atoms/AtomHeading.vue';
 import { useEducationStore, useMobileBreakpoint } from '@/stores';

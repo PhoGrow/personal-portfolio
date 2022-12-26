@@ -15,10 +15,13 @@
             class="has-text-weight-semibold is-4 has-text-centered"
           />
         </AtomExtendBg>
-        <AtomBox
+        <div
           v-for="({ property, linkage }, j) of skillSet.skills"
           :key="property"
-          :class="['is-size-5 mb-0', { 'has-background-white': j % 2 !== 0 }]"
+          :class="[
+            'box is-size-5 mb-0',
+            { 'has-background-white': j % 2 !== 0 },
+          ]"
         >
           <MoleculeTextWithLink
             v-if="linkage"
@@ -27,7 +30,7 @@
             :linkage="linkage"
           />
           <p v-else>{{ property }}</p>
-        </AtomBox>
+        </div>
       </AtomColumn>
     </AtomColumns>
   </MoleculeBoxWithTitle>
@@ -37,11 +40,10 @@
 import { defineComponent } from 'vue';
 import MoleculeBoxWithTitle from '@/components/molecules/MoleculeBoxWithTitle.vue';
 import MoleculeTextWithLink from '@/components/molecules/MoleculeTextWithLink.vue';
-import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
 import AtomColumns from '@/components/atoms/AtomColumns.vue';
 import AtomColumn from '@/components/atoms/AtomColumn.vue';
+import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
 import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
-import AtomBox from '@/components/atoms/AtomBox.vue';
 import { useSkillsStore, useMobileBreakpoint } from '@/stores';
 
 export default defineComponent({
@@ -52,7 +54,6 @@ export default defineComponent({
     AtomColumn,
     AtomExtendBg,
     AtomSubtitle,
-    AtomBox,
     MoleculeTextWithLink,
   },
   setup() {

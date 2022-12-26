@@ -61,6 +61,21 @@ iframe {
   border-bottom: 1px solid $secondary-dark;
 }
 
+// Animation
+@keyframes borderColor {
+  from {
+    border-color: transparent;
+  }
+
+  to {
+    border-color: $secondary-dark;
+  }
+}
+
+.animate-border-color {
+  animation: 2s ease-in-out infinite alternate borderColor;
+}
+
 // Import Bulma and Oruga's Bulma theme
 @import 'bulma/bulma.sass';
 @import '@oruga-ui/theme-bulma/dist/scss/bulma.scss';
