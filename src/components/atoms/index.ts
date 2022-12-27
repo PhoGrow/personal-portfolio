@@ -2,8 +2,6 @@ import AtomButton from './AtomButton.vue';
 import AtomColumn from './AtomColumn.vue';
 import AtomColumns from './AtomColumns.vue';
 import AtomExtendBg from './AtomExtendBg.vue';
-import AtomFigcaption from './AtomFigcaption.vue';
-import AtomFigure from './AtomFigure.vue';
 import AtomHeading from './AtomHeading.vue';
 import AtomIcon from './AtomIcon.vue';
 import AtomLink from './AtomLink.vue';
@@ -18,8 +16,6 @@ export {
   AtomColumn,
   AtomColumns,
   AtomExtendBg,
-  AtomFigcaption,
-  AtomFigure,
   AtomHeading,
   AtomIcon,
   AtomLink,

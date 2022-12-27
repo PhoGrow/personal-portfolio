@@ -17,15 +17,15 @@ import {
 
 <Layout title="Personal portfolio">
   <OrganismLandingPage client:load>
-    <OrganismNavbar slot="navbar" client:load />
-    <OrganismWelcome slot="welcome" client:load />
+    <OrganismNavbar slot="navbar" client:only="vue" />
+    <OrganismWelcome slot="welcome" client:only="vue" />
     <OrganismIframe slot="work" client:load />
   </OrganismLandingPage>
   <OrganismCV client:idle>
     <OrganismPersonalInfo slot="personal-info" client:visible />
     <OrganismProfile slot="profile" client:visible />
     <OrganismEducation slot="education" client:visible />
-    <OrganismSkills slot="skills" client:visible />
+    <OrganismSkills slot="skills" client:only="vue" />
   </OrganismCV>
   <OrganismFooter client:idle />
   <!-- <Card

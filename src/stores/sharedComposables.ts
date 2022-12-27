@@ -1,6 +1,7 @@
 import {
   createSharedComposable,
   useMediaQuery,
+  useDark,
   createGlobalState,
 } from '@vueuse/core';
 import { ref } from 'vue';
@@ -11,6 +12,8 @@ const useMobileBreakpoint = createSharedComposable(() =>
   useMediaQuery('(max-width: 768px)')
 );
 
+const useDarkMode = createSharedComposable(useDark);
+
 const useGlobalState = createGlobalState(() => {
   const isCvVisible = ref(false);
   return { isCvVisible };
@@ -18,12 +21,13 @@ const useGlobalState = createGlobalState(() => {
 
 const { oruga } = useProgrammatic();
 function useToast(): void {
+  const isDark = useDarkMode();
   oruga.notification.open({
     duration: 4000,
     component: OrganismNotification,
     position: 'bottom',
-    variant: 'dark',
+    variant: isDark.value ? 'secondary' : 'dark',
   });
 }
 
-export { useMobileBreakpoint, useGlobalState, useToast };
+export { useMobileBreakpoint, useDarkMode, useGlobalState, useToast };

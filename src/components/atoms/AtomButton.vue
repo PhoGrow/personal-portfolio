@@ -8,6 +8,7 @@
       {
         'is-rounded': isRounded,
         'has-background-transparent': isTransparent,
+        'is-dark': isDark,
       },
     ]"
   >
@@ -17,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useDarkMode } from '@/stores';
 
 export default defineComponent({
   name: 'AtomButton',
@@ -42,6 +44,10 @@ export default defineComponent({
       default: true,
     },
     isTransparent: Boolean,
+  },
+  setup() {
+    const isDark = useDarkMode();
+    return { isDark };
   },
 });
 </script>

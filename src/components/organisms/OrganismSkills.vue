@@ -20,7 +20,7 @@
           :key="property"
           :class="[
             'box is-size-5 mb-0',
-            { 'has-background-white': j % 2 !== 0 },
+            j % 2 !== 0 ? `has-background-${isDark ? 'dark' : 'white'}` : '',
           ]"
         >
           <MoleculeTextWithLink
@@ -44,7 +44,7 @@ import AtomColumns from '@/components/atoms/AtomColumns.vue';
 import AtomColumn from '@/components/atoms/AtomColumn.vue';
 import AtomExtendBg from '@/components/atoms/AtomExtendBg.vue';
 import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
-import { useSkillsStore, useMobileBreakpoint } from '@/stores';
+import { useSkillsStore, useMobileBreakpoint, useDarkMode } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismSkills',
@@ -59,8 +59,9 @@ export default defineComponent({
   setup() {
     const { title, skillSets } = useSkillsStore();
     const isMobileScreen = useMobileBreakpoint();
+    const isDark = useDarkMode();
 
-    return { title, skillSets, isMobileScreen };
+    return { title, skillSets, isMobileScreen, isDark };
   },
 });
 </script>

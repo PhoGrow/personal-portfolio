@@ -1,0 +1,36 @@
+html.dark {
+  background-color: $dark-primary;
+
+  body {
+    color: $medium-emphasis-text;
+  }
+
+  a {
+    color: $secondary;
+  }
+
+  iframe {
+    filter: brightness(0.8) contrast(1.2);
+  }
+
+  .title {
+    color: $primary;
+  }
+
+  .subtitle {
+    color: $high-emphasis-text;
+  }
+
+  .box {
+    background-color: $dark-primary-light;
+    color: $medium-emphasis-text;
+  }
+
+  .footer {
+    background-color: $dark-primary-light;
+  }
+
+  .has-border-bottom {
+    border-color: $secondary;
+  }
+}

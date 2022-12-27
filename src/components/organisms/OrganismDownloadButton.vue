@@ -1,6 +1,7 @@
 <template>
   <AtomTooltip
     :label="label"
+    :variant="isDark ? 'secondary' : 'dark'"
     class="is-fixed"
     :style="{ right: tooltipRight, bottom: tooltipBottom }"
   >
@@ -12,7 +13,11 @@
       :style="{ right: buttonRight, bottom: buttonBottom }"
       @click="showModal"
     >
-      <AtomIcon :icon="icon" size="medium" />
+      <AtomIcon
+        :icon="icon"
+        size="medium"
+        :class="{ 'has-text-secondary-dark': isDark }"
+      />
     </AtomButton>
   </AtomTooltip>
 </template>
@@ -25,7 +30,7 @@ import AtomTooltip from '@/components/atoms/AtomTooltip.vue';
 import AtomButton from '@/components/atoms/AtomButton.vue';
 import AtomIcon from '@/components/atoms/AtomIcon.vue';
 import { useElementBounding } from '@vueuse/core';
-import { useMobileBreakpoint } from '@/stores';
+import { useMobileBreakpoint, useDarkMode } from '@/stores';
 
 export default defineComponent({
   name: 'OrganismDownloadButton',
@@ -48,6 +53,7 @@ export default defineComponent({
     const el = ref(null);
     const { height, width } = useElementBounding(el);
     const isMobileScreen = useMobileBreakpoint();
+    const isDark = useDarkMode();
 
     const { oruga } = useProgrammatic();
     function toggleIsClipped(): void {
@@ -63,7 +69,7 @@ export default defineComponent({
       });
     }
 
-    return { el, height, width, isMobileScreen, showModal };
+    return { el, height, width, isMobileScreen, isDark, showModal };
   },
   computed: {
     buttonRight(): string {

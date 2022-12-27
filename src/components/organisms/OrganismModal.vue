@@ -1,16 +1,28 @@
 <template>
   <div class="modal-card">
-    <div class="box has-text-centered has-background-primary">
-      <AtomIcon :icon="content.icon" size="large" class="box mb-3" />
+    <div
+      :class="['box has-text-centered', { 'has-background-primary': !isDark }]"
+    >
+      <AtomIcon
+        :icon="content.icon"
+        size="large"
+        :class="[
+          'box mb-3',
+          { 'has-background-secondary has-text-secondary-dark': isDark },
+        ]"
+      />
       <AtomTitle :text="content.title" />
       <AtomSubtitle :text="content.subtitle" />
       <AtomTransitionFade>
         <div v-if="decryptedCvUrl">
-          <div class="box">
+          <div :class="['box', { 'has-background-secondary': isDark }]">
             <AtomLink
               :href="decryptedCvUrl"
               :title="decryptedCvUrl"
-              class="has-text-weight-semibold"
+              :class="[
+                'has-text-weight-semibold',
+                { 'has-text-secondary-dark': isDark },
+              ]"
             />
           </div>
           <p>{{ content.description }}</p>
@@ -35,7 +47,7 @@ import AtomTitle from '@/components/atoms/AtomTitle.vue';
 import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
 import AtomTransitionFade from '@/components/atoms/AtomTransitionFade.vue';
 import AtomLink from '@/components/atoms/AtomLink.vue';
-import { useModalStore, useToast } from '@/stores';
+import { useModalStore, useDarkMode, useToast } from '@/stores';
 import { AES, enc } from 'crypto-js';
 import type { Modal, Field } from '@/types';
 
@@ -58,6 +70,8 @@ export default defineComponent({
       input,
       encryptedCvUrl,
     } = useModalStore();
+    const isDark = useDarkMode();
+
     return {
       lockedContent,
       unlockedContent,
@@ -65,6 +79,7 @@ export default defineComponent({
       filledField,
       input,
       encryptedCvUrl,
+      isDark,
     };
   },
   data() {

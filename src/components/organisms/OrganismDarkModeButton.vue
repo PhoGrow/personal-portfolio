@@ -8,7 +8,8 @@
 import { defineComponent } from 'vue';
 import AtomButton from '@/components/atoms/AtomButton.vue';
 import AtomIcon from '@/components/atoms/AtomIcon.vue';
-import { useDark, useToggle } from '@vueuse/core';
+import { useDarkMode } from '@/stores';
+import { useToggle } from '@vueuse/core';
 
 export default defineComponent({
   name: 'OrganismDarkModeButton',
@@ -17,7 +18,7 @@ export default defineComponent({
     AtomIcon,
   },
   setup() {
-    const isDark = useDark();
+    const isDark = useDarkMode();
     const toggleDark = useToggle(isDark);
     return { isDark, toggleDark };
   },

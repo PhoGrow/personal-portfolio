@@ -9,6 +9,7 @@ import { useSkillsStore } from './skills';
 import { useWelcomeStore } from './welcome';
 import {
   useMobileBreakpoint,
+  useDarkMode,
   useGlobalState,
   useToast,
 } from './sharedComposables';
@@ -24,6 +25,7 @@ export {
   useSkillsStore,
   useWelcomeStore,
   useMobileBreakpoint,
+  useDarkMode,
   useGlobalState,
   useToast,
 };
