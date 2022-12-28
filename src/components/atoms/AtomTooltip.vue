@@ -26,6 +26,10 @@ export default defineComponent({
       type: String,
       default: '1rem',
     },
+    fontWeight: {
+      type: Number,
+      default: 500,
+    },
   },
 });
 </script>
@@ -33,5 +37,6 @@ export default defineComponent({
 <style>
 .b-tooltip .tooltip-content {
   font-size: v-bind(fontSize);
+  font-weight: v-bind(fontWeight);
 }
 </style>

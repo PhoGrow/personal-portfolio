@@ -21,13 +21,10 @@ html.dark {
     color: $high-emphasis-text;
   }
 
-  .box {
-    background-color: $dark-primary-light;
-    color: $medium-emphasis-text;
-  }
-
+  .box,
   .footer {
     background-color: $dark-primary-light;
+    color: $medium-emphasis-text;
   }
 
   .has-border-bottom {

@@ -80,6 +80,7 @@ export default defineComponent({
       input,
       encryptedCvUrl,
       isDark,
+      useToast,
     };
   },
   data() {
@@ -117,7 +118,7 @@ export default defineComponent({
         console.log(error);
       } finally {
         if (this.decryptedCvUrl.includes('https')) {
-          useToast();
+          this.useToast();
         } else {
           this.hasInput = passphrase ? true : false;
         }
