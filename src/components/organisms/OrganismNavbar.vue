@@ -3,7 +3,7 @@
     <div class="container has-border-bottom">
       <div class="navbar-brand">
         <div class="navbar-item">
-          <img src="favicon.svg" :alt="fullName" />
+          <img src="/favicon.svg" :alt="fullName" />
         </div>
         <div class="navbar-item">
           <OrganismDarkModeButton />

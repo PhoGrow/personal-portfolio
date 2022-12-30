@@ -5,8 +5,8 @@ $primary-light: findLightColor($primary);
 $secondary-dark: findDarkColor($secondary);
 
 // Dark mode (https://m2.material.io/design/color/dark-theme.html)
-$dark-primary: #121212; // 00dp
-$dark-primary-light: #212121; // 02dp
+$dark-primary: #252421; // #121212 w/ 8% $primary
+$dark-primary-light: #2f2e2b; // #1d1d1d w/ 8% $primary
 $high-emphasis-text: rgba(
   $color: #ffffff,
   $alpha: 0.87,
