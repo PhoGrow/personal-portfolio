@@ -1,10 +1,14 @@
 <template>
-  <o-field :label="label" :variant="variant" :message="message">
+  <o-field
+    :label="field.label"
+    :variant="field.variant"
+    :message="field.message"
+  >
     <o-input
-      :placeholder="placeholder"
-      :size="size"
-      :rounded="isRounded ?? true"
-      :status-icon="hasStatusIcon"
+      :placeholder="input.placeholder"
+      :size="input.size"
+      :rounded="input.isRounded ?? true"
+      :status-icon="input.hasStatusIcon"
       @update:model-value="(value: string) => $emit('input', value)"
     ></o-input>
   </o-field>
@@ -27,12 +31,6 @@ export default defineComponent({
     },
   },
   emits: ['input'],
-  data() {
-    return {
-      ...this.field,
-      ...this.input,
-    };
-  },
 });
 </script>
 

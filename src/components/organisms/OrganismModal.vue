@@ -48,7 +48,8 @@ import AtomSubtitle from '@/components/atoms/AtomSubtitle.vue';
 import AtomTransitionFade from '@/components/atoms/AtomTransitionFade.vue';
 import AtomLink from '@/components/atoms/AtomLink.vue';
 import { useModalStore, useDarkMode, useToast } from '@/stores';
-import { AES, enc } from 'crypto-js';
+import AES from 'crypto-js/aes';
+import ENC from 'crypto-js/enc-utf8';
 import type { Modal, Field } from '@/types';
 
 export default defineComponent({
@@ -110,7 +111,7 @@ export default defineComponent({
     decryptWithAES(passphrase: string): void {
       const bytes = AES.decrypt(this.encryptedCvUrl, passphrase);
       try {
-        this.decryptedCvUrl = bytes.toString(enc.Utf8);
+        this.decryptedCvUrl = bytes.toString(ENC);
       } catch (error) {
         if ((error as Error).message === 'Malformed UTF-8 data') {
           return;
