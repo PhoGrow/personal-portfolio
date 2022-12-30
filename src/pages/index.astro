@@ -23,7 +23,7 @@ import {
   <OrganismCV client:idle>
     <OrganismPersonalInfo slot="personal-info" client:visible />
     <OrganismProfile slot="profile" client:visible />
-    <OrganismEducation slot="education" client:visible />
+    <OrganismEducation slot="education" client:only="vue" />
     <OrganismSkills slot="skills" client:only="vue" />
   </OrganismCV>
   <OrganismFooter client:idle />

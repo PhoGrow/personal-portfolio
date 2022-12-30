@@ -2,7 +2,9 @@
   <div
     :class="[
       'is-sticky',
-      isMobileScreen && hasBackground ? 'has-background-primary py-4' : '',
+      isMobileScreen && hasBackground
+        ? `has-background-${isDark ? `dark` : `primary`} py-4`
+        : '',
     ]"
     :style="{
       top: `${isMobileScreen ? 0 : top}rem`,
@@ -16,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useMobileBreakpoint } from '@/stores';
+import { useMobileBreakpoint, useDarkMode } from '@/stores';
 
 export default defineComponent({
   name: 'AtomExtendBg',
@@ -36,7 +38,9 @@ export default defineComponent({
   },
   setup() {
     const isMobileScreen = useMobileBreakpoint();
-    return { isMobileScreen };
+    const isDark = useDarkMode();
+
+    return { isMobileScreen, isDark };
   },
   computed: {
     padding(): string {

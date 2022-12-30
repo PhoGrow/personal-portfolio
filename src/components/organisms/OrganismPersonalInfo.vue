@@ -74,12 +74,12 @@ export default defineComponent({
       );
     },
     isLink(description: string): boolean {
-      return description.includes('www');
+      return description.includes('https');
     },
     linkage(description: string): Linkage {
       return {
-        title: description.replace('www.', ''),
-        href: 'https://' + description,
+        title: description.replace('https://', ''),
+        href: description,
       };
     },
   },
