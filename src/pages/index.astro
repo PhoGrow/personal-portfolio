@@ -18,7 +18,7 @@ import {
   <OrganismLandingPage client:load>
     <OrganismNavbar slot="navbar" client:only="vue" />
     <OrganismWelcome slot="welcome" client:only="vue" />
-    <OrganismIframe slot="work" client:load />
+    <OrganismIframe slot="work" client:only="vue" />
   </OrganismLandingPage>
   <OrganismCV client:idle>
     <OrganismPersonalInfo slot="personal-info" client:visible />
