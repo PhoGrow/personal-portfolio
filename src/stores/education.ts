@@ -52,7 +52,7 @@ export const useEducationStore = defineStore({
           },
           {
             property: 'Internship ',
-            description: `Acoustics engineering office at IST Ingenieurbüro Stöcker (Burscheid, Germany) from 10/2019 – 12/2019`,
+            description: `Technical acoustician at IST Ingenieurbüro Stöcker (Burscheid, Germany) from 10/2019 – 12/2019`,
           },
         ],
       },
