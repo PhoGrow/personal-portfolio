@@ -12,7 +12,7 @@ export const usePersonalInfoStore = defineStore({
       mobileNumber: descWithIcon,
       languages: 'German (native), English (upper-intermediate)',
       website: 'https://renedietz.netlify.app',
-      linkedIn: 'https://linkedin.com/in/rene-dietz',
+      linkedIn: 'https://linkedin.com/in/renedietz',
     } as PersonalInfo,
     descWithIcon,
     icon: 'lock',
