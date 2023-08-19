@@ -1,3 +1,8 @@
+// import { createPinia } from 'pinia';
+// export const store = createPinia();
+
+// export * from './counter';
+
 import { useEducationStore } from './education';
 import { useIframeStore } from './iframe';
 import { useModalStore } from './modal';

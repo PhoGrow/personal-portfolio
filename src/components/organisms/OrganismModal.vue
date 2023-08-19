@@ -129,4 +129,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style>
+.modal-content {
+  display: flex;
+  justify-content: center;
+}
+</style>

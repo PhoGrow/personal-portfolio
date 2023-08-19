@@ -1,7 +1,7 @@
 {
   "name": "personal-portfolio",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -11,27 +11,26 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vue": "^1.2.1",
-    "@oruga-ui/oruga-next": "^0.5.9",
-    "@oruga-ui/theme-bulma": "^0.2.8",
-    "@vueuse/core": "^9.6.0",
-    "astro": "^1.6.12",
+    "@astrojs/vue": "^2.2.1",
+    "@oruga-ui/oruga-next": "^0.6.0",
+    "@oruga-ui/theme-bulma": "^0.2.11",
+    "@vueuse/core": "^10.3.0",
+    "astro": "^2.10.12",
     "crypto-js": "^4.1.1",
-    "pinia": "^2.0.28",
-    "vue": "^3.2.45"
+    "pinia": "^2.1.6",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.2.0",
     "@types/crypto-js": "^4.1.1",
-    "@typescript-eslint/parser": "^5.45.0",
-    "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/eslint-config-typescript": "^11.0.2",
-    "eslint": "^8.29.0",
-    "eslint-plugin-astro": "^0.21.0",
-    "eslint-plugin-vue": "^9.8.0",
-    "prettier": "^2.8.0",
-    "prettier-plugin-astro": "^0.7.0",
-    "sass": "^1.56.1",
-    "typescript": "^4.9.3"
+    "@typescript-eslint/parser": "^6.4.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-astro": "^0.28.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.2",
+    "prettier-plugin-astro": "^0.11.1",
+    "sass": "^1.66.1",
+    "typescript": "^5.1.6",
+    "vue-eslint-parser": "^9.3.1"
   }
 }

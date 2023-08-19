@@ -3,7 +3,7 @@
     :is="tag"
     :href="tag === 'a' ? href : null"
     :class="[
-      `button is-${size}`,
+      `button is-responsive is-${size}`,
       variant ? `is-${variant}` : '',
       {
         'is-rounded': isRounded,
@@ -25,7 +25,10 @@ export default defineComponent({
   props: {
     tag: {
       type: String,
-      default: 'a',
+      default: 'a', // button
+      validator(tag: string) {
+        return ['button', 'a'].includes(tag);
+      },
     },
     href: {
       type: String,
@@ -34,6 +37,9 @@ export default defineComponent({
     size: {
       type: String,
       default: 'medium',
+      validator(size: string) {
+        return ['small', 'normal', 'medium', 'large'].includes(size);
+      },
     },
     variant: {
       type: String,
