@@ -1,15 +1,16 @@
 import { defineStore } from 'pinia';
-import type { Name } from '@/types';
 
-export const useNameStore = defineStore({
-  id: 'name',
-  state: () =>
-    ({
-      firstName: 'Rene',
-      lastName: 'Dietz',
-    } as Name),
+export const useNameStore = defineStore('name', {
+  state: (): Name => ({
+    firstName: 'Rene',
+    lastName: 'Dietz',
+  }),
   getters: {
     fullName: (state) => `${state.firstName} ${state.lastName}`,
   },
-  actions: {},
 });
+
+export interface Name {
+  firstName: string;
+  lastName: string;
+}

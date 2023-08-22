@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
-import type { Education } from '@/types';
+import type { Linkage } from '.';
 
-export const useEducationStore = defineStore({
-  id: 'education',
+export const useEducationStore = defineStore('education', {
   state: () => ({
     title: 'Education',
     education: [
@@ -58,6 +57,17 @@ export const useEducationStore = defineStore({
       },
     ] as Education[],
   }),
-  getters: {},
-  actions: {},
 });
+
+export interface Education {
+  period: string;
+  location: string;
+  degree: string;
+  gpa: string;
+  university: string;
+  activities: {
+    property: string;
+    description: string;
+    linkage?: Linkage;
+  }[];
+}

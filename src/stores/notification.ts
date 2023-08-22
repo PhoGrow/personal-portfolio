@@ -1,17 +1,19 @@
 import { defineStore } from 'pinia';
-import { useNameStore } from './name';
-import type { Notification } from '@/types';
+import { useNameStore } from '.';
 
-export const useNotificationStore = defineStore({
-  id: 'notification',
-  state: () => {
+export const useNotificationStore = defineStore('notification', {
+  state: (): Notification => {
     const { firstName } = useNameStore();
     return {
       icon: 'emoji_events',
       title: 'Achievement unlocked',
       description: `Access ${firstName}'s CV`,
-    } as Notification;
+    };
   },
-  getters: {},
-  actions: {},
 });
+
+export interface Notification {
+  icon: string;
+  title: string;
+  description: string;
+}

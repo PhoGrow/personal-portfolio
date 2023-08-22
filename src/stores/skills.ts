@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
-import type { SkillSet, Linkage } from '@/types';
+import type { Linkage } from '.';
 
-export const useSkillsStore = defineStore({
-  id: 'skills',
+export const useSkillsStore = defineStore('skills', {
   state: () => ({
     title: 'Skills',
     skillSets: [
@@ -38,6 +37,12 @@ export const useSkillsStore = defineStore({
       },
     ] as SkillSet[],
   }),
-  getters: {},
-  actions: {},
 });
+
+export interface SkillSet {
+  title: string;
+  skills: {
+    property: string;
+    linkage?: Linkage;
+  }[];
+}

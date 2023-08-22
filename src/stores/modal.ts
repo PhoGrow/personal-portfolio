@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia';
-import type { Modal, Field, Input } from '@/types';
 
-export const useModalStore = defineStore({
-  id: 'modal',
+export const useModalStore = defineStore('modal', {
   state: () => ({
     // Content
     lockedContent: {
@@ -31,6 +29,24 @@ export const useModalStore = defineStore({
     encryptedCvUrl:
       'U2FsdGVkX1/fQLTliQTRNckvv0bKuSJbx3gnTQHBkIsjlskiHgrrWYV2wwIQCV4V4YufL2qtzVp6VjjbHNofZ8Lj8W6j0SN/4wYx1Wf6XJPt2eJWT8pUWiIUy3wRXhr0',
   }),
-  getters: {},
-  actions: {},
 });
+
+export interface Modal {
+  title: string;
+  subtitle: string;
+  icon: string;
+  description?: string;
+}
+
+export interface Field {
+  label?: string;
+  variant?: string;
+  message?: string;
+}
+
+export interface Input {
+  placeholder?: string;
+  size?: string;
+  isRounded?: boolean;
+  hasStatusIcon?: boolean;
+}

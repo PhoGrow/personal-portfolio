@@ -1,22 +1,29 @@
 import { defineStore } from 'pinia';
-import type { PersonalInfo } from '@/types';
-const descWithIcon = 'Locked';
 
-export const usePersonalInfoStore = defineStore({
-  id: 'personalInfo',
-  state: () => ({
-    title: 'Personal info',
-    info: {
-      address: descWithIcon,
-      emailAddress: descWithIcon,
-      mobileNumber: descWithIcon,
-      languages: 'German (native), English (upper-intermediate)',
-      website: 'https://renedietz.netlify.app',
-      linkedIn: 'https://linkedin.com/in/renedietz',
-    } as PersonalInfo,
-    descWithIcon,
-    icon: 'lock',
-  }),
-  getters: {},
-  actions: {},
+export const usePersonalInfoStore = defineStore('personalInfo', {
+  state: () => {
+    const descWithIcon = 'Locked';
+    return {
+      title: 'Personal info',
+      info: {
+        address: descWithIcon,
+        emailAddress: descWithIcon,
+        mobileNumber: descWithIcon,
+        languages: 'German (native), English (upper-intermediate)',
+        website: 'https://renedietz.netlify.app',
+        linkedIn: 'https://linkedin.com/in/renedietz',
+      } as PersonalInfo,
+      descWithIcon,
+      icon: 'lock',
+    };
+  },
 });
+
+export interface PersonalInfo {
+  address: string;
+  emailAddress: string;
+  mobileNumber: string;
+  languages: string;
+  website: string;
+  linkedIn: string;
+}

@@ -1,36 +1,18 @@
-// import { createPinia } from 'pinia';
-// export const store = createPinia();
+import { createPinia } from 'pinia';
+export const store = createPinia();
 
-// export * from './counter';
+export * from './education';
+export * from './iframe';
+export * from './modal';
+export * from './name';
+export * from './notification';
+export * from './personalInfo';
+export * from './profile';
+export * from './skills';
+export * from './welcome';
+export * from './sharedComposables';
 
-import { useEducationStore } from './education';
-import { useIframeStore } from './iframe';
-import { useModalStore } from './modal';
-import { useNameStore } from './name';
-import { useNotificationStore } from './notification';
-import { usePersonalInfoStore } from './personalInfo';
-import { useProfileStore } from './profile';
-import { useSkillsStore } from './skills';
-import { useWelcomeStore } from './welcome';
-import {
-  useMobileBreakpoint,
-  useDarkMode,
-  useGlobalState,
-  useToast,
-} from './sharedComposables';
-
-export {
-  useEducationStore,
-  useIframeStore,
-  useModalStore,
-  useNameStore,
-  useNotificationStore,
-  usePersonalInfoStore,
-  useProfileStore,
-  useSkillsStore,
-  useWelcomeStore,
-  useMobileBreakpoint,
-  useDarkMode,
-  useGlobalState,
-  useToast,
-};
+export interface Linkage {
+  title: string;
+  href: string;
+}

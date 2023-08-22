@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
-import type { Linkage } from '@/types';
+import type { Linkage } from '.';
 
-export const useProfileStore = defineStore({
-  id: 'profile',
+export const useProfileStore = defineStore('profile', {
   state: () => ({
     title: 'Profile',
     text: `Creative and persistent fresh graduate looking for a first position as a frontend developer.
@@ -14,6 +13,4 @@ export const useProfileStore = defineStore({
       href: 'https://phogrow3d.com',
     } as Linkage,
   }),
-  getters: {},
-  actions: {},
 });

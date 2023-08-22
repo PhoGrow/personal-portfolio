@@ -1,32 +1,32 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import {
-  OrganismLandingPage,
-  OrganismNavbar,
-  OrganismWelcome,
-  OrganismIframe,
-  OrganismCV,
-  OrganismPersonalInfo,
-  OrganismProfile,
-  OrganismEducation,
-  OrganismSkills,
-  OrganismFooter,
+  OLandingPage,
+  ONavbar,
+  OWelcome,
+  OIframe,
+  OCv,
+  OPersonalInfo,
+  OProfile,
+  OEducation,
+  OSkills,
+  OFooter,
 } from '@/components/organisms';
 ---
 
 <Layout title="Personal portfolio">
-  <OrganismLandingPage client:load>
-    <OrganismNavbar slot="navbar" client:only="vue" />
-    <OrganismWelcome slot="welcome" client:only="vue" />
-    <OrganismIframe slot="work" client:only="vue" />
-  </OrganismLandingPage>
-  <OrganismCV client:idle>
-    <OrganismPersonalInfo slot="personal-info" client:only="vue" />
-    <OrganismProfile slot="profile" client:visible />
-    <OrganismEducation slot="education" client:only="vue" />
-    <OrganismSkills slot="skills" client:only="vue" />
-  </OrganismCV>
-  <OrganismFooter client:idle />
+  <OLandingPage client:load>
+    <ONavbar slot="navbar" client:only="vue" />
+    <OWelcome slot="welcome" client:only="vue" />
+    <OIframe slot="work" client:only="vue" />
+  </OLandingPage>
+  <OCv client:idle>
+    <OPersonalInfo slot="personal-info" client:only="vue" />
+    <OProfile slot="profile" client:visible />
+    <OEducation slot="education" client:only="vue" />
+    <OSkills slot="skills" client:only="vue" />
+  </OCv>
+  <OFooter client:idle />
 </Layout>
 
 <style></style>

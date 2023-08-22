@@ -1,31 +1,14 @@
-import OrganismCV from './OrganismCV.vue';
-import OrganismDarkModeButton from './OrganismDarkModeButton.vue';
-import OrganismDownloadButton from './OrganismDownloadButton.vue';
-import OrganismEducation from './OrganismEducation.vue';
-import OrganismFooter from './OrganismFooter.vue';
-import OrganismIframe from './OrganismIframe.vue';
-import OrganismLandingPage from './OrganismLandingPage.vue';
-import OrganismModal from './OrganismModal.vue';
-import OrganismNavbar from './OrganismNavbar.vue';
-import OrganismNotification from './OrganismNotification.vue';
-import OrganismPersonalInfo from './OrganismPersonalInfo.vue';
-import OrganismProfile from './OrganismProfile.vue';
-import OrganismSkills from './OrganismSkills.vue';
-import OrganismWelcome from './OrganismWelcome.vue';
-
-export {
-  OrganismCV,
-  OrganismDarkModeButton,
-  OrganismDownloadButton,
-  OrganismEducation,
-  OrganismFooter,
-  OrganismIframe,
-  OrganismLandingPage,
-  OrganismModal,
-  OrganismNavbar,
-  OrganismNotification,
-  OrganismPersonalInfo,
-  OrganismProfile,
-  OrganismSkills,
-  OrganismWelcome,
-};
+export { default as OCv } from './OCv.vue';
+export { default as ODarkModeButton } from './ODarkModeButton.vue';
+export { default as ODownloadButton } from './ODownloadButton.vue';
+export { default as OEducation } from './OEducation.vue';
+export { default as OFooter } from './OFooter.vue';
+export { default as OIframe } from './OIframe.vue';
+export { default as OLandingPage } from './OLandingPage.vue';
+export { default as OModal } from './OModal.vue';
+export { default as ONavbar } from './ONavbar.vue';
+export { default as ONotification } from './ONotification.vue';
+export { default as OPersonalInfo } from './OPersonalInfo.vue';
+export { default as OProfile } from './OProfile.vue';
+export { default as OSkills } from './OSkills.vue';
+export { default as OWelcome } from './OWelcome.vue';
