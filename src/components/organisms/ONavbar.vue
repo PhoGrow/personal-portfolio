@@ -6,7 +6,7 @@
           <img src="/favicon.svg" :alt="fullName" />
         </div>
         <div class="navbar-item">
-          <OrganismDarkModeButton />
+          <ODarkModeButton />
         </div>
       </div>
     </div>
@@ -15,13 +15,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import OrganismDarkModeButton from '@organisms/ODarkModeButton.vue';
-import { useNameStore, store } from '@/stores';
+import ODarkModeButton from '@organisms/ODarkModeButton.vue';
+import { useNameStore, store } from '@stores';
 
 export default defineComponent({
   name: 'ONavbar',
   components: {
-    OrganismDarkModeButton,
+    ODarkModeButton,
   },
   setup() {
     const { fullName } = useNameStore(store);

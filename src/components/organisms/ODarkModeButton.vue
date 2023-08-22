@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 import AButton from '@atoms/AButton.vue';
 import AIcon from '@atoms/AIcon.vue';
-import { useDarkMode } from '@/stores';
+import { useDarkMode } from '@stores';
 import { useToggle } from '@vueuse/core';
 
 export default defineComponent({

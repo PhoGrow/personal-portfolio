@@ -29,8 +29,8 @@ import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
 import AHeading from '@atoms/AHeading.vue';
 import ALink from '@atoms/ALink.vue';
-import { usePersonalInfoStore, useMobileBreakpoint, store } from '@/stores';
-import type { Linkage } from '@/stores';
+import { usePersonalInfoStore, useMobileBreakpoint, store } from '@stores';
+import type { Linkage } from '@stores';
 
 export default defineComponent({
   name: 'OPersonalInfo',

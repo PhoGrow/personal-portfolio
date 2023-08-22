@@ -24,7 +24,7 @@
 import { defineComponent } from 'vue';
 import ATransitionFade from '@atoms/ATransitionFade.vue';
 import ALink from '@atoms/ALink.vue';
-import { useIframeStore, useMobileBreakpoint, store } from '@/stores';
+import { useIframeStore, useMobileBreakpoint, store } from '@stores';
 
 export default defineComponent({
   name: 'OIframe',

@@ -59,7 +59,7 @@ import ASubtitle from '@atoms/ASubtitle.vue';
 import AExtendBg from '@atoms/AExtendBg.vue';
 import ASpace from '@atoms/ASpace.vue';
 import AHeading from '@atoms/AHeading.vue';
-import { useEducationStore, useMobileBreakpoint, store } from '@/stores';
+import { useEducationStore, useMobileBreakpoint, store } from '@stores';
 
 export default defineComponent({
   name: 'OEducation',

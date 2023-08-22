@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
 import { OField, OInput } from '@oruga-ui/oruga-next';
-import type { Field, Input } from '@/stores';
+import type { Field, Input } from '@stores';
 
 export default defineComponent({
   name: 'MFieldWithInput',

@@ -9,7 +9,7 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
 import ALink from '@atoms/ALink.vue';
-import type { Linkage } from '@/stores';
+import type { Linkage } from '@stores';
 
 export default defineComponent({
   name: 'MTextWithLink',

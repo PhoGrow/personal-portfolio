@@ -11,7 +11,7 @@ import { defineComponent } from 'vue';
 import ATitle from '@atoms/ATitle.vue';
 import ASubtitle from '@atoms/ASubtitle.vue';
 import AButton from '@atoms/AButton.vue';
-import { useWelcomeStore, useGlobalState, useToast, store } from '@/stores';
+import { useWelcomeStore, useGlobalState, useToast, store } from '@stores';
 
 export default defineComponent({
   name: 'OWelcome',

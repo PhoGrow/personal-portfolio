@@ -47,8 +47,8 @@ import ATitle from '@atoms/ATitle.vue';
 import ASubtitle from '@atoms/ASubtitle.vue';
 import ATransitionFade from '@atoms/ATransitionFade.vue';
 import ALink from '@atoms/ALink.vue';
-import { useModalStore, useDarkMode, useToast, store } from '@/stores';
-import type { Modal, Field } from '@/stores';
+import { useModalStore, useDarkMode, useToast, store } from '@stores';
+import type { Modal, Field } from '@stores';
 import AES from 'crypto-js/aes';
 import ENC from 'crypto-js/enc-utf8';
 

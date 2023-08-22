@@ -9,7 +9,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AProperty',
+  name: 'AHeading',
   props: {
     text: {
       type: String,

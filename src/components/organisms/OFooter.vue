@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ASubtitle from '@atoms/ASubtitle.vue';
-import { useNameStore, useDarkMode, useGlobalState, store } from '@/stores';
+import { useNameStore, useDarkMode, useGlobalState, store } from '@stores';
 
 export default defineComponent({
   name: 'OFooter',

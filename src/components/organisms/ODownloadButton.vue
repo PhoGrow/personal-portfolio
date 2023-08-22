@@ -25,12 +25,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useProgrammatic } from '@oruga-ui/oruga-next';
-import OrganismModal from '@organisms/OModal.vue';
+import OModal from '@organisms/OModal.vue';
 import ATooltip from '@atoms/ATooltip.vue';
 import AButton from '@atoms/AButton.vue';
 import AIcon from '@atoms/AIcon.vue';
 import { useElementBounding } from '@vueuse/core';
-import { useMobileBreakpoint, useDarkMode } from '@/stores';
+import { useMobileBreakpoint, useDarkMode } from '@stores';
 
 export default defineComponent({
   name: 'ODownloadButton',
@@ -63,7 +63,7 @@ export default defineComponent({
       const { oruga } = useProgrammatic();
       oruga.modal.open({
         canCancel: ['escape', 'outside', 'button'],
-        component: OrganismModal,
+        component: OModal,
         destroyOnHide: false,
         onClose: toggleIsClipped,
       });

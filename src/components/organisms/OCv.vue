@@ -12,17 +12,17 @@
     <slot name="education"></slot>
     <ASpace value="4" />
     <slot name="skills"></slot>
-    <OrganismDownloadButton />
+    <ODownloadButton />
   </MHero>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import OrganismDownloadButton from '@organisms/ODownloadButton.vue';
+import ODownloadButton from '@organisms/ODownloadButton.vue';
 import MHero from '@molecules/MHero.vue';
 import ATitle from '@atoms/ATitle.vue';
 import ASpace from '@atoms/ASpace.vue';
-import { useWelcomeStore, useGlobalState, store } from '@/stores';
+import { useWelcomeStore, useGlobalState, store } from '@stores';
 
 export default defineComponent({
   name: 'OCv',
@@ -30,7 +30,7 @@ export default defineComponent({
     MHero,
     ATitle,
     ASpace,
-    OrganismDownloadButton,
+    ODownloadButton,
   },
   props: {
     hasHorizontalPadding: Boolean,

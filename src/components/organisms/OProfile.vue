@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 import MBoxWithTitle from '@molecules/MBoxWithTitle.vue';
 import MTextWithLink from '@molecules/MTextWithLink.vue';
-import { useProfileStore, store } from '@/stores';
+import { useProfileStore, store } from '@stores';
 
 export default defineComponent({
   name: 'OProfile',

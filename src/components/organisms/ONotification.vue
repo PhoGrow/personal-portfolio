@@ -17,7 +17,7 @@
 import { defineComponent } from 'vue';
 import AIcon from '@atoms/AIcon.vue';
 import ASubtitle from '@atoms/ASubtitle.vue';
-import { useNotificationStore, useDarkMode, store } from '@/stores';
+import { useNotificationStore, useDarkMode, store } from '@stores';
 
 export default defineComponent({
   name: 'ONotification',

@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useDarkMode } from '@/stores';
+import { useDarkMode } from '@stores';
 
 export default defineComponent({
   name: 'AButton',

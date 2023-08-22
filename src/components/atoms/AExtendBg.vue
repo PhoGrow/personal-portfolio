@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useMobileBreakpoint, useDarkMode } from '@/stores';
+import { useMobileBreakpoint, useDarkMode } from '@stores';
 
 export default defineComponent({
   name: 'AExtendBg',
