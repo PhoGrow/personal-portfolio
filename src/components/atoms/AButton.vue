@@ -3,7 +3,7 @@
     :is="tag"
     :href="tag === 'a' ? href : null"
     :class="[
-      `button is-responsive is-${size}`,
+      `button is-${size}`,
       variant ? `is-${variant}` : '',
       {
         'is-rounded': isRounded,

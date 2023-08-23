@@ -1,5 +1,11 @@
 <template>
-  <AButton size="normal" class="p-4" is-transparent @click="toggleDark()">
+  <AButton
+    tag="button"
+    size="normal"
+    class="p-4"
+    is-transparent
+    @click="toggleDark()"
+  >
     <AIcon :icon="isDark ? 'dark_mode' : 'light_mode'" />
   </AButton>
 </template>

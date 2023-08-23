@@ -9,7 +9,8 @@ html.dark {
     color: $secondary;
   }
 
-  iframe {
+  iframe,
+  img {
     filter: brightness(0.8) contrast(1.2);
   }
 

@@ -43,4 +43,8 @@ export default defineComponent({
   font-size: v-bind(fontSize);
   font-weight: v-bind(fontWeight);
 }
+
+.b-tooltip .tooltip-trigger {
+  display: flex;
+}
 </style>

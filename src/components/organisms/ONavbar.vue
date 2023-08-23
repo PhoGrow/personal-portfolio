@@ -1,10 +1,20 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar is-fixed-top is-transparent backdrop-blur"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="container has-border-bottom">
       <div class="navbar-brand">
-        <div class="navbar-item">
-          <img src="/favicon.svg" :alt="fullName" />
-        </div>
+        <a class="navbar-item" href="#">
+          <ATooltip
+            label="That's me"
+            :variant="isDark ? 'secondary' : 'dark'"
+            position="right"
+          >
+            <img class="is-rounded" src="favicon.png" :alt="fullName" />
+          </ATooltip>
+        </a>
         <div class="navbar-item">
           <ODarkModeButton />
         </div>
@@ -16,16 +26,20 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ODarkModeButton from '@organisms/ODarkModeButton.vue';
-import { useNameStore, store } from '@stores';
+import ATooltip from '@atoms/ATooltip.vue';
+import { useNameStore, useDarkMode, store } from '@stores';
 
 export default defineComponent({
   name: 'ONavbar',
   components: {
+    ATooltip,
     ODarkModeButton,
   },
   setup() {
     const { fullName } = useNameStore(store);
-    return { fullName };
+    const isDark = useDarkMode();
+
+    return { fullName, isDark };
   },
 });
 </script>

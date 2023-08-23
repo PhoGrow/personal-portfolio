@@ -9,7 +9,7 @@
           { 'mb-4': isMobileScreen && i !== skillSets.length - 1 },
         ]"
       >
-        <AExtendBg :top="1.25">
+        <AExtendBg :top="3.5 + 1.25">
           <ASubtitle
             :text="skillSet.title"
             class="has-text-weight-semibold is-4 has-text-centered"
