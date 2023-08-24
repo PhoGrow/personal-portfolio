@@ -1,7 +1,7 @@
 <template>
   <ATooltip
     :label="label"
-    :variant="isDark ? 'secondary' : 'dark'"
+    position="left"
     class="is-fixed"
     :style="{ right: tooltipRight, bottom: tooltipBottom }"
   >

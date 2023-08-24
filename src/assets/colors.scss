@@ -1,17 +1,13 @@
 // Set your colors
-$primary: #fff3c9; // pastel-yellow
-$secondary: #ffdbc9; // pastel-orange
+// Primary
+$primary: #fff3da; // pastel-yellow
 $primary-light: findLightColor($primary);
+// Secondary
+$secondary: #dfccfb; // pastel-lila
 $secondary-dark: findDarkColor($secondary);
 
 // Dark mode (https://m2.material.io/design/color/dark-theme.html)
-$dark-primary: #252421; // #121212 w/ 8% $primary
-$dark-primary-light: #2f2e2b; // #1d1d1d w/ 8% $primary
-$high-emphasis-text: rgba(
-  $color: #ffffff,
-  $alpha: 0.87,
-);
-$medium-emphasis-text: rgba(
-  $color: #ffffff,
-  $alpha: 0.6,
-);
+$dark-primary: color-mix(in srgb, #121212, $primary 8%);
+$dark-primary-light: color-mix(in srgb, #1d1d1d, $primary 8%);
+$high-emphasis-text: rgb(255 255 255 / 0.87);
+$medium-emphasis-text: rgb(255 255 255 / 0.6);

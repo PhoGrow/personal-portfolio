@@ -7,7 +7,8 @@
       variant ? `is-${variant}` : '',
       {
         'is-rounded': isRounded,
-        'has-background-transparent': isTransparent,
+        'has-background-transparent has-border-color-transparent':
+          isTransparent,
         'is-dark': isDark,
       },
     ]"

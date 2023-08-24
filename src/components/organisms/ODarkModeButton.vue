@@ -1,8 +1,8 @@
 <template>
   <AButton
     tag="button"
-    size="normal"
-    class="p-4"
+    size="small"
+    style="aspect-ratio: 1"
     is-transparent
     @click="toggleDark()"
   >
@@ -26,6 +26,7 @@ export default defineComponent({
   setup() {
     const isDark = useDarkMode();
     const toggleDark = useToggle(isDark);
+
     return { isDark, toggleDark };
   },
 });

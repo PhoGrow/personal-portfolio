@@ -1,9 +1,17 @@
 <template>
-  <a :href="href" target="_blank" rel="noopener noreferrer">{{ title }}</a>
+  <a :href="href" :target="isExternal ? '_blank' : '_self'">
+    <template v-if="title">{{ title }}</template>
+    <slot v-else></slot>
+  </a>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
+export interface Link {
+  href: string;
+  title?: string;
+}
 
 export default defineComponent({
   name: 'ALink',
@@ -14,7 +22,12 @@ export default defineComponent({
     },
     title: {
       type: String,
-      required: true,
+      default: '',
+    },
+  },
+  computed: {
+    isExternal(): boolean {
+      return this.href.startsWith('http');
     },
   },
 });

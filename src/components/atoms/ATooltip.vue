@@ -1,5 +1,9 @@
 <template>
-  <OTooltip :label="label" :position="position" :variant="variant">
+  <OTooltip
+    :label="label"
+    :position="position"
+    :variant="variant || isDark ? 'secondary' : 'dark'"
+  >
     <slot></slot>
   </OTooltip>
 </template>
@@ -7,6 +11,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { OTooltip } from '@oruga-ui/oruga-next';
+import { useDarkMode } from '@stores';
+
+export interface Tooltip {
+  label: string;
+  position?: string;
+  variant?: string;
+  fontSize?: string;
+  fontWeight?: number;
+}
 
 export default defineComponent({
   name: 'ATooltip',
@@ -20,11 +33,11 @@ export default defineComponent({
     },
     position: {
       type: String,
-      default: 'left',
+      default: 'bottom',
     },
     variant: {
       type: String,
-      default: 'dark',
+      default: '',
     },
     fontSize: {
       type: String,
@@ -34,6 +47,10 @@ export default defineComponent({
       type: Number,
       default: 500,
     },
+  },
+  setup() {
+    const isDark = useDarkMode();
+    return { isDark };
   },
 });
 </script>
