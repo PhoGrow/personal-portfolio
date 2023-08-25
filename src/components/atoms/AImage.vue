@@ -5,13 +5,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-export interface Image {
-  src: string;
-  alt: string;
-  isRounded?: boolean;
-  isInverted?: boolean;
-}
-
 export default defineComponent({
   name: 'AImage',
   props: {

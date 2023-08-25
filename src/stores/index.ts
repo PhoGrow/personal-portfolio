@@ -5,6 +5,7 @@ export * from './education';
 export * from './iframe';
 export * from './modal';
 export * from './name';
+export * from './navbarItems';
 export * from './notification';
 export * from './personalInfo';
 export * from './profile';

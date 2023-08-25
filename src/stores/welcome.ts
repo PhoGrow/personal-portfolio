@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { useNameStore } from '.';
+import { useNameStore, store } from '.';
 
 export const useWelcomeStore = defineStore('welcome', {
   state: (): Welcome => {
-    const { fullName } = useNameStore();
+    const { fullName } = useNameStore(store);
     return {
       title: `Hi, I'm ${fullName} 👋`,
       subtitle: `I'm looking for a position as a frontend developer as an intern or in part-time 🧑‍💻`,

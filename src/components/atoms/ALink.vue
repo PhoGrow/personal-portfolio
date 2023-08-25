@@ -8,11 +8,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-export interface Link {
-  href: string;
-  title?: string;
-}
-
 export default defineComponent({
   name: 'ALink',
   props: {

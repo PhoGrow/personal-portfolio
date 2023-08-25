@@ -13,14 +13,6 @@ import { defineComponent } from 'vue';
 import { OTooltip } from '@oruga-ui/oruga-next';
 import { useDarkMode } from '@stores';
 
-export interface Tooltip {
-  label: string;
-  position?: string;
-  variant?: string;
-  fontSize?: string;
-  fontWeight?: number;
-}
-
 export default defineComponent({
   name: 'ATooltip',
   components: {

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { useNameStore } from '.';
+import { useNameStore, store } from '.';
 
 export const useNotificationStore = defineStore('notification', {
   state: (): Notification => {
-    const { firstName } = useNameStore();
+    const { firstName } = useNameStore(store);
     return {
       icon: 'emoji_events',
       title: 'Achievement unlocked',

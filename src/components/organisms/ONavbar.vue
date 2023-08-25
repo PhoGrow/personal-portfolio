@@ -7,27 +7,12 @@
     <div class="container has-border-bottom">
       <div class="navbar-brand is-flex-grow-1">
         <MNavbarItem
-          :link="{ href: '#' }"
-          :tooltip="{ label: `That's me!`, position: 'right' }"
-          :image="{ src: 'favicon.png', alt: fullName, isRounded: true }"
-          class="mr-auto"
-        />
-        <MNavbarItem
-          :link="{ href: 'https://github.com/PhoGrow/personal-portfolio' }"
-          :tooltip="{ label: 'Create your own portfolio site' }"
-          :image="{
-            src: 'logos/github.svg',
-            alt: 'GitHub',
-            isInverted: isDark,
-          }"
-        />
-        <MNavbarItem
-          :link="{ href: linkedIn }"
-          :tooltip="{ label: 'Contact me!' }"
-          :image="{ src: 'logos/linkedin.svg', alt: 'LinkedIn' }"
-        />
-        <MNavbarItem :tooltip="{ label: `${isDark ? 'Light' : 'Dark'} mode` }">
-          <ODarkModeButton />
+          v-for="(item, index) of navbarItems"
+          :key="item.tooltip.label"
+          v-bind="item"
+          :class="{ 'mr-auto': index === 0 }"
+        >
+          <ODarkModeButton v-if="index === navbarItems.length - 1" />
         </MNavbarItem>
       </div>
     </div>
@@ -38,12 +23,8 @@
 import { defineComponent } from 'vue';
 import ODarkModeButton from '@organisms/ODarkModeButton.vue';
 import MNavbarItem from '@molecules/MNavbarItem.vue';
-import {
-  useNameStore,
-  usePersonalInfoStore,
-  useDarkMode,
-  store,
-} from '@stores';
+import { useNavbarItemsStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'ONavbar',
@@ -52,11 +33,8 @@ export default defineComponent({
     ODarkModeButton,
   },
   setup() {
-    const { fullName } = useNameStore(store);
-    const { info } = usePersonalInfoStore(store);
-    const isDark = useDarkMode();
-
-    return { fullName, linkedIn: info.linkedIn, isDark };
+    const { navbarItems } = storeToRefs(useNavbarItemsStore(store));
+    return { navbarItems };
   },
 });
 </script>
