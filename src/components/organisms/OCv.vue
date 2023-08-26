@@ -7,8 +7,8 @@
     <ATitle :text="title" class="is-1 has-text-centered" />
     <slot name="personal-info"></slot>
     <ASpace value="4" />
-    <slot name="profile"></slot>
-    <ASpace value="4" />
+    <!-- <slot name="profile"></slot>
+    <ASpace value="4" /> -->
     <slot name="education"></slot>
     <ASpace value="4" />
     <slot name="skills"></slot>

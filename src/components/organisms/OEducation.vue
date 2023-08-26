@@ -18,7 +18,7 @@
       </AColumn>
       <AColumn class="is-narrow m-4" />
       <AColumn class="is-6">
-        <AExtendBg :top="3.5 + 0.5">
+        <AExtendBg :top="3.25 + 0.5">
           <p>
             <ASubtitle
               tag="span"

@@ -18,7 +18,7 @@ export const useNavbarItemsStore = defineStore('navbarItems', {
             label: `That's me!`,
             position: 'right',
           },
-          image: {
+          content: {
             src: 'favicon.png',
             alt: fullName,
             isRounded: true,
@@ -31,7 +31,7 @@ export const useNavbarItemsStore = defineStore('navbarItems', {
           tooltip: {
             label: 'Create your own portfolio site',
           },
-          image: {
+          content: {
             src: 'logos/github.svg',
             alt: 'GitHub',
             isInverted: isDark,
@@ -44,7 +44,7 @@ export const useNavbarItemsStore = defineStore('navbarItems', {
           tooltip: {
             label: 'Contact me!',
           },
-          image: {
+          content: {
             src: 'logos/linkedin.svg',
             alt: 'LinkedIn',
           },
@@ -60,9 +60,9 @@ export const useNavbarItemsStore = defineStore('navbarItems', {
 });
 
 export interface NavbarItem {
-  link: Link;
+  link?: Link;
   tooltip: Tooltip;
-  image: Image;
+  content?: Image;
 }
 
 export interface Link {

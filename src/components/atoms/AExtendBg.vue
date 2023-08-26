@@ -7,7 +7,7 @@
         : '',
     ]"
     :style="{
-      top: `${isMobileScreen ? 3.5 : top}rem`,
+      top: `${isMobileScreen ? 3.25 : top}rem`,
       margin: `0 ${margin}`,
       padding: `0 ${padding}`,
     }"
@@ -33,7 +33,7 @@ export default defineComponent({
     },
     top: {
       type: Number,
-      default: 3.5,
+      default: 3.25,
     },
   },
   setup() {

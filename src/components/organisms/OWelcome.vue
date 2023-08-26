@@ -1,15 +1,15 @@
 <template>
   <div>
     <ATitle :text="title" class="is-1 is-spaced" />
-    <ASubtitle :text="subtitle" class="is-3" />
+    <OProfile class="block is-size-5" />
     <AButton :href="href" @click.once="showCv">{{ callToAction }}</AButton>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import OProfile from '@organisms/OProfile.vue';
 import ATitle from '@atoms/ATitle.vue';
-import ASubtitle from '@atoms/ASubtitle.vue';
 import AButton from '@atoms/AButton.vue';
 import { useWelcomeStore, useGlobalState, useToast, store } from '@stores';
 
@@ -17,7 +17,7 @@ export default defineComponent({
   name: 'OWelcome',
   components: {
     ATitle,
-    ASubtitle,
+    OProfile,
     AButton,
   },
   setup() {

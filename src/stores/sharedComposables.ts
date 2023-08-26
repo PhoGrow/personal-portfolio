@@ -4,9 +4,10 @@ import {
   useDark,
   createGlobalState,
 } from '@vueuse/core';
-import { ref } from 'vue';
+import { ref, watchEffect, toValue, type Ref } from 'vue';
 import { useProgrammatic } from '@oruga-ui/oruga-next';
 import ONotification from '@organisms/ONotification.vue';
+import MarkdownIt from 'markdown-it';
 
 export const useMobileBreakpoint = createSharedComposable(() =>
   useMediaQuery('(max-width: 768px)'),
@@ -28,4 +29,13 @@ export const useToast = () => {
     position: 'bottom',
     variant: isDark.value ? 'secondary' : 'dark',
   });
+};
+
+export const useMarkdownToHtml = (markdown: string | Ref<string>) => {
+  const html = ref('');
+  watchEffect(() => {
+    const md = new MarkdownIt();
+    html.value = md.render(toValue(markdown));
+  });
+  return { html };
 };

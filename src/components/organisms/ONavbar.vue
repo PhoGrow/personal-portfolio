@@ -12,7 +12,7 @@
           v-bind="item"
           :class="{ 'mr-auto': index === 0 }"
         >
-          <ODarkModeButton v-if="index === navbarItems.length - 1" />
+          <ODarkModeButton />
         </MNavbarItem>
       </div>
     </div>
