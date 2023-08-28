@@ -10,7 +10,6 @@ export * from './notification';
 export * from './personalInfo';
 export * from './profile';
 export * from './skills';
-export * from './welcome';
 export * from './sharedComposables';
 
 export interface Linkage {

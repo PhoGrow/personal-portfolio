@@ -17,7 +17,8 @@ export const useDarkMode = createSharedComposable(useDark);
 
 export const useGlobalState = createGlobalState(() => {
   const isCvVisible = ref(false);
-  return { isCvVisible };
+  const cvId = ref('cv');
+  return { isCvVisible, cvId };
 });
 
 export const useToast = () => {

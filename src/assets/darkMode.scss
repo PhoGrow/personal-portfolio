@@ -13,11 +13,13 @@ html.dark {
     filter: brightness(0.8) contrast(1.2);
   }
 
-  .title {
+  .title,
+  h1 {
     color: $primary;
   }
 
-  .subtitle {
+  .subtitle,
+  .block > p {
     color: $high-emphasis-text;
   }
 

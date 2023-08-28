@@ -1,10 +1,8 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import {
-  OLandingPage,
+  OHeroBanner,
   ONavbar,
-  OWelcome,
-  OIframe,
   OCv,
   OPersonalInfo,
   OEducation,
@@ -14,16 +12,17 @@ import {
 ---
 
 <Layout title="Personal portfolio">
-  <OLandingPage client:load>
-    <ONavbar slot="navbar" client:only="vue" />
-    <OWelcome slot="welcome" client:only="vue" />
-    <OIframe slot="work" client:only="vue" />
-  </OLandingPage>
-  <OCv client:idle>
-    <OPersonalInfo slot="personal-info" client:only="vue" />
-    <OEducation slot="education" client:only="vue" />
-    <OSkills slot="skills" client:only="vue" />
-  </OCv>
+  <header>
+    <ONavbar client:only="vue" />
+  </header>
+  <main>
+    <OHeroBanner client:only="vue" />
+    <OCv client:idle>
+      <OPersonalInfo slot="personal-info" client:only="vue" />
+      <OEducation slot="education" client:only="vue" />
+      <OSkills slot="skills" client:only="vue" />
+    </OCv>
+  </main>
   <OFooter client:idle />
 </Layout>
 

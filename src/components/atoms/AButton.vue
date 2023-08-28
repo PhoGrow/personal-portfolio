@@ -33,7 +33,7 @@ export default defineComponent({
     },
     href: {
       type: String,
-      default: '#',
+      default: '#', // no default, no tag prop needed (href ? 'a' : 'button')
     },
     size: {
       type: String,

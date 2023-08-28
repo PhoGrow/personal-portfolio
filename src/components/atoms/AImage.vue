@@ -1,5 +1,10 @@
 <template>
-  <img :src="src" :alt="alt" :class="{ 'is-rounded': isRounded }" />
+  <img
+    :src="src"
+    :alt="alt"
+    :loading="isLazyLoaded ? 'lazy' : 'eager'"
+    :class="{ 'is-rounded': isRounded }"
+  />
 </template>
 
 <script lang="ts">
@@ -16,6 +21,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    isLazyLoaded: Boolean,
     isRounded: Boolean,
     isInverted: Boolean,
   },
@@ -33,6 +39,7 @@ img {
 }
 
 html.dark img {
-  filter: invert(v-bind(invert)) brightness(0.8) contrast(1.2);
+  filter: invert(v-bind(invert)) brightness(0.8) contrast(1.2)
+    drop-shadow(0px 0px 0px #ffffff);
 }
 </style>

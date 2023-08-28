@@ -1,7 +1,7 @@
 <template>
   <MHero
     v-if="isCvVisible"
-    :id="href.substring(1)"
+    :id="cvId"
     :has-horizontal-padding="hasHorizontalPadding"
   >
     <ATitle :text="title" class="is-1 has-text-centered" />
@@ -22,7 +22,7 @@ import ODownloadButton from '@organisms/ODownloadButton.vue';
 import MHero from '@molecules/MHero.vue';
 import ATitle from '@atoms/ATitle.vue';
 import ASpace from '@atoms/ASpace.vue';
-import { useWelcomeStore, useGlobalState, store } from '@stores';
+import { useGlobalState } from '@stores';
 
 export default defineComponent({
   name: 'OCv',
@@ -40,10 +40,8 @@ export default defineComponent({
     },
   },
   setup() {
-    const { href } = useWelcomeStore(store);
-    const { isCvVisible } = useGlobalState();
-
-    return { href, isCvVisible };
+    const { isCvVisible, cvId } = useGlobalState();
+    return { isCvVisible, cvId };
   },
 });
 </script>
