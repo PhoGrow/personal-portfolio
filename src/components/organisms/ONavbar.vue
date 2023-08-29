@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar is-fixed-top has-background-transparent backdrop-blur"
+    class="navbar is-fixed-top has-background-transparent has-backdrop-blur"
     role="navigation"
     aria-label="main navigation"
   >

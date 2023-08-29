@@ -55,7 +55,18 @@ const { title } = Astro.props;
     border-radius: 9999px;
   }
 
-  .backdrop-blur {
+  .has-backdrop-blur {
     backdrop-filter: blur(8px);
+  }
+
+  .has-line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .is-absolute {
+    position: absolute !important;
   }
 </style>

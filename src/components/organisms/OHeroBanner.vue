@@ -3,13 +3,27 @@
   <MHero is-fullheight-with-navbar>
     <AColumns class="is-vcentered is-flex-direction-row-reverse">
       <AColumn>
-        <AImage src="building_websites.svg" alt="Building websites" />
-        <!-- store: src, alt -->
+        <AImage :src="image.src" :alt="image.alt" />
       </AColumn>
       <AColumn class="is-narrow"></AColumn>
       <AColumn class="content is-medium">
         <h1>Hi, I'm {{ fullName }}.</h1>
-        <div class="block" v-html="summaryInHtml"></div>
+        <div class="block">
+          <div
+            :class="{ 'has-line-clamp-3': !isProfileFullyVisible }"
+            v-html="summaryInHtml"
+          ></div>
+          <AButton
+            v-if="!isProfileFullyVisible"
+            tag="button"
+            size="small"
+            variant="secondary"
+            class="is-pulled-right"
+            @click.once="isProfileExpanded = true"
+          >
+            Expand
+          </AButton>
+        </div>
         <AButton :href="`#${cvId}`" @click.once="showCv">
           Get to know me
         </AButton>
@@ -29,6 +43,7 @@ import {
   useNameStore,
   useProfileStore,
   useGlobalState,
+  useMobileBreakpoint,
   useToast,
   store,
 } from '@stores';
@@ -44,10 +59,29 @@ export default defineComponent({
   },
   setup() {
     const { fullName } = useNameStore(store);
-    const { summaryInHtml } = useProfileStore(store);
+    const { image, summaryInHtml } = useProfileStore(store);
     const { isCvVisible, cvId } = useGlobalState();
+    const isMobile = useMobileBreakpoint();
 
-    return { fullName, summaryInHtml, isCvVisible, cvId, useToast };
+    return {
+      fullName,
+      image,
+      summaryInHtml,
+      isCvVisible,
+      cvId,
+      isMobile,
+      useToast,
+    };
+  },
+  data() {
+    return {
+      isProfileExpanded: false,
+    };
+  },
+  computed: {
+    isProfileFullyVisible(): boolean {
+      return this.isProfileExpanded || this.isMobile || this.isCvVisible;
+    },
   },
   methods: {
     showCv() {

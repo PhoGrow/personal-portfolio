@@ -1,14 +1,9 @@
 <template>
-  <div
-    :class="['is-flex is-align-items-center', { 'has-text-white': !isDark }]"
-  >
-    <AIcon :icon="icon" size="large" />
+  <div class="is-flex is-align-items-center">
+    <AIcon icon="emoji_events" size="large" />
     <div class="ml-3">
-      <ASubtitle
-        :text="title"
-        :class="['mb-0', { 'has-text-secondary-dark': isDark }]"
-      />
-      <p>{{ description }}</p>
+      <p class="is-size-5 has-text-weight-medium">Achievement unlocked</p>
+      <p>Learn more about {{ firstName }}</p>
     </div>
   </div>
 </template>
@@ -16,20 +11,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AIcon from '@atoms/AIcon.vue';
-import ASubtitle from '@atoms/ASubtitle.vue';
-import { useNotificationStore, useDarkMode, store } from '@stores';
+import { useNameStore, store } from '@stores';
 
 export default defineComponent({
   name: 'ONotification',
   components: {
     AIcon,
-    ASubtitle,
   },
   setup() {
-    const { icon, title, description } = useNotificationStore(store);
-    const isDark = useDarkMode();
-
-    return { icon, title, description, isDark };
+    const { firstName } = useNameStore(store);
+    return { firstName };
   },
 });
 </script>

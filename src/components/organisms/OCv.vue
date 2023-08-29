@@ -1,47 +1,26 @@
 <template>
-  <MHero
-    v-if="isCvVisible"
-    :id="cvId"
-    :has-horizontal-padding="hasHorizontalPadding"
-  >
-    <ATitle :text="title" class="is-1 has-text-centered" />
-    <slot name="personal-info"></slot>
-    <ASpace value="4" />
-    <!-- <slot name="profile"></slot>
-    <ASpace value="4" /> -->
-    <slot name="education"></slot>
-    <ASpace value="4" />
-    <slot name="skills"></slot>
-    <ODownloadButton />
-  </MHero>
+  <div v-if="isCvVisible" :id="cvId">
+    <MHero v-for="name of sections" :key="name" :has-horizontal-padding="false">
+      <slot :name="name"></slot>
+    </MHero>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ODownloadButton from '@organisms/ODownloadButton.vue';
 import MHero from '@molecules/MHero.vue';
-import ATitle from '@atoms/ATitle.vue';
-import ASpace from '@atoms/ASpace.vue';
-import { useGlobalState } from '@stores';
+import { useCvStore, useGlobalState, store } from '@stores';
 
 export default defineComponent({
   name: 'OCv',
   components: {
     MHero,
-    ATitle,
-    ASpace,
-    ODownloadButton,
-  },
-  props: {
-    hasHorizontalPadding: Boolean,
-    title: {
-      type: String,
-      default: 'CV',
-    },
   },
   setup() {
+    const { sections } = useCvStore(store);
     const { isCvVisible, cvId } = useGlobalState();
-    return { isCvVisible, cvId };
+
+    return { sections, isCvVisible, cvId };
   },
 });
 </script>
