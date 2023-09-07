@@ -14,7 +14,7 @@ export const useEducationStore = defineStore('education', {
         activities: [
           {
             property: 'Achievement',
-            description: `Participation in the first round of the entrepreneurship program KickStart@TH Köln in 2021 to fund the master's project PhoGrow and continue development for founding in 2023`,
+            description: `Participation in the first round of the entrepreneurship program KickStart@TH Köln in 2021 to fund the master's project PhoGrow`,
             linkage: {
               title: 'KickStart@TH Köln',
               href: 'https://www.th-koeln.de/forschung/kickstartth-koeln_77116.php',

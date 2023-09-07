@@ -1,49 +1,73 @@
 <template>
-  <MBoxWithTitle :title="title">
-    <AColumns class="is-variable is-4">
-      <AColumn
-        v-for="(skillSet, i) of skillSets"
-        :key="skillSet.title"
+  <AColumns>
+    <AColumn>
+      <div
+        v-for="({ category, subcategories, items, rating }, i) of hardSkills"
+        :key="category"
         :class="[
-          `is-${12 / skillSets.length}`,
-          { 'mb-4': isMobileScreen && i !== skillSets.length - 1 },
+          'box is-relative h-full pt-6',
+          { 'mb-6': i !== hardSkills.length - 1 },
         ]"
       >
-        <AExtendBg :top="3.25 + 1.25">
-          <ASubtitle
-            :text="skillSet.title"
-            class="has-text-weight-semibold is-4 has-text-centered"
-          />
-        </AExtendBg>
-        <div
-          v-for="({ property, linkage }, j) of skillSet.skills"
-          :key="property"
-          :class="[
-            'box is-size-5 mb-0',
-            j % 2 !== 0 ? `has-background-${isDark ? 'dark' : 'white'}` : '',
-          ]"
+        <MTagWithProgress
+          :tag="{ size: 'large', variant: isDark ? 'primary' : 'white' }"
+          :progress="
+            rating?.length
+              ? { value: rating[0], max: rating[1] }
+              : ({} as Progress)
+          "
+          class="is-absolute"
         >
-          <MTextWithLink
-            v-if="linkage"
-            tag="p"
-            :text="property"
-            :linkage="linkage"
-          />
-          <p v-else>{{ property }}</p>
+          {{ category }}
+        </MTagWithProgress>
+        <template v-if="subcategories?.length">
+          <div v-for="subcat of subcategories" :key="subcat.name" class="block">
+            <MTagWithProgress
+              :tag="{ variant: 'secondary' }"
+              :progress="{ value: subcat.rating[0], max: subcat.rating[1] }"
+            >
+              {{ subcat.name }}
+            </MTagWithProgress>
+            <MTags :tags="subcat.items" />
+          </div>
+        </template>
+        <MTags v-if="items?.length" :tags="items" />
+      </div>
+    </AColumn>
+    <AColumn class="is-narrow"></AColumn>
+    <AColumn>
+      <div class="box is-relative h-full pt-6">
+        <MTagWithProgress
+          :tag="{ size: 'large', variant: isDark ? 'primary' : 'white' }"
+          class="is-absolute"
+        >
+          {{ softSkills.title }}
+        </MTagWithProgress>
+        <div
+          class="h-full is-flex is-flex-wrap-wrap is-align-content-space-between"
+        >
+          <p
+            v-for="item of softSkills.items"
+            :key="item"
+            :class="`title w-full px-5 py-4 is-rounded has-background-${
+              isDark ? 'dark' : 'white'
+            }`"
+          >
+            {{ item }}
+          </p>
         </div>
-      </AColumn>
-    </AColumns>
-  </MBoxWithTitle>
+      </div>
+    </AColumn>
+  </AColumns>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MBoxWithTitle from '@molecules/MBoxWithTitle.vue';
-import MTextWithLink from '@molecules/MTextWithLink.vue';
+import MTagWithProgress from '@molecules/MTagWithProgress.vue';
+import MTags from '@molecules/MTags.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
-import AExtendBg from '@atoms/AExtendBg.vue';
-import ASubtitle from '@atoms/ASubtitle.vue';
+import type { Progress } from '@atoms/AProgress.vue';
 import {
   useSkillsStore,
   useMobileBreakpoint,
@@ -54,19 +78,17 @@ import {
 export default defineComponent({
   name: 'OSkills',
   components: {
-    MBoxWithTitle,
     AColumns,
     AColumn,
-    AExtendBg,
-    ASubtitle,
-    MTextWithLink,
+    MTagWithProgress,
+    MTags,
   },
   setup() {
-    const { title, skillSets } = useSkillsStore(store);
-    const isMobileScreen = useMobileBreakpoint();
+    const { hardSkills, softSkills } = useSkillsStore(store);
+    const isMobile = useMobileBreakpoint();
     const isDark = useDarkMode();
 
-    return { title, skillSets, isMobileScreen, isDark };
+    return { hardSkills, softSkills, isMobile, isDark };
   },
 });
 </script>

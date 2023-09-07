@@ -8,5 +8,4 @@ export { default as OHeroBanner } from './OHeroBanner.vue';
 export { default as OModal } from './OModal.vue';
 export { default as ONavbar } from './ONavbar.vue';
 export { default as ONotification } from './ONotification.vue';
-export { default as OPersonalInfo } from './OPersonalInfo.vue';
 export { default as OSkills } from './OSkills.vue';

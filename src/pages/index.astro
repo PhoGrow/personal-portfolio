@@ -4,11 +4,10 @@ import {
   OHeroBanner,
   ONavbar,
   OCv,
-  OPersonalInfo,
   OEducation,
   OSkills,
   OFooter,
-} from '@/components/organisms';
+} from '@components/organisms';
 ---
 
 <Layout title="Personal portfolio">
@@ -18,7 +17,6 @@ import {
   <main>
     <OHeroBanner client:only="vue" />
     <OCv client:idle>
-      <OPersonalInfo slot="personal-info" client:only="vue" />
       <OEducation slot="education" client:only="vue" />
       <OSkills slot="skills" client:only="vue" />
     </OCv>

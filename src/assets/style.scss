@@ -4,16 +4,20 @@
 @import './darkMode.scss';
 
 // Initial variables
-$border-radius: 2rem;
+$border-radius: 1.5rem;
 
 // Setup $colors to use as Bulma classes
 $custom-colors: (
   'primary': (
     $primary,
+    $primary-invert,
     $primary-light,
+    $primary-dark,
   ),
   'secondary': (
     $secondary,
+    $secondary-invert,
+    $secondary-light,
     $secondary-dark,
   ),
 );
@@ -42,6 +46,9 @@ $notification-radius: $border-radius;
 $tooltip-arrow-margin: 0.5rem;
 $tooltip-arrow-size: 0px;
 
+// Progress bar
+$progress-bar-background-color: $white;
+
 // Footer
 $footer-background-color: $secondary-dark;
 $footer-padding: 3rem 2rem;
@@ -56,6 +63,11 @@ iframe {
 // Border
 .has-border-bottom {
   border-bottom: 1px solid $secondary-dark;
+}
+
+.columns.is-absolute {
+  width: calc(100% - $border-radius);
+  top: calc(-#{$border-radius} + 0.25rem);
 }
 
 // Animation

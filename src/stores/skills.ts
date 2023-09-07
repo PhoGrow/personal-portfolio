@@ -1,48 +1,73 @@
 import { defineStore } from 'pinia';
-import type { Linkage } from '.';
 
 export const useSkillsStore = defineStore('skills', {
-  state: () => ({
-    title: 'Skills',
-    skillSets: [
+  state: (): Skills => ({
+    hardSkills: [
       {
-        title: `Hard skills`,
-        skills: [
+        category: 'My web skills',
+        subcategories: [
           {
-            property: `Frontend: Vue 3, including TypeScript, Bulma, Oruga, etc.`,
+            name: 'Frontend',
+            items: ['Vue', 'Astro', 'Oruga', 'Bulma', 'Pinia', 'TypeScript'],
+            rating: [3, 5],
           },
           {
-            property: `Backend: ME(V)N stack (MongoDB, Express, Node), including TypeScript, OpenAPI, JWT, etc.`,
+            name: 'Backend',
+            items: [
+              'Node',
+              'Express',
+              'MongoDB',
+              'OpenAPI',
+              'JWT',
+              'TypeScript',
+            ],
+            rating: [3, 5],
           },
           {
-            property: `First touchpoints with dApps (decentralized apps), including Ethers, Hardhat, Solidity, etc.`,
+            name: 'DevOps',
+            items: ['Docker', 'Ansible'],
+            rating: [1, 5],
           },
-          { property: `Determine great UI/UX, create presentations, etc.` },
+          {
+            name: 'Create',
+            items: ['Presentations', 'Documentations'],
+            rating: [3, 5],
+          },
+          {
+            name: 'Determine',
+            items: ['User interfaces', 'User experiences'],
+            rating: [3, 5],
+          },
         ],
       },
-      {
-        title: `Soft skills`,
-        skills: [
-          { property: `Eager to learn and disciplined` },
-          { property: `Friend of teamwork and project management` },
-          { property: `Assume responsibility` },
-          {
-            property: `Participation in seminars of ELEVEL on the topics project management, productivity, and personal finances and taxes in 2022`,
-            linkage: {
-              title: `ELEVEL`,
-              href: `https://www.elevel-academy.de`,
-            } as Linkage,
-          },
-        ],
-      },
-    ] as SkillSet[],
+    ],
+    softSkills: {
+      title: 'My other skills',
+      items: [
+        'Reliable',
+        'Time management',
+        'Teamwork',
+        'Eye for detail',
+        'Enthusiastic',
+        'Problem solver',
+      ],
+    },
   }),
 });
 
-export interface SkillSet {
-  title: string;
-  skills: {
-    property: string;
-    linkage?: Linkage;
+export interface Skills {
+  hardSkills: {
+    category: string;
+    subcategories?: {
+      name: string;
+      items: string[];
+      rating: [value: number, best: number];
+    }[];
+    items?: string[];
+    rating?: [value: number, best: number];
   }[];
+  softSkills: {
+    title: string;
+    items: string[];
+  };
 }

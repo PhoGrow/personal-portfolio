@@ -7,7 +7,6 @@ export * from './iframe';
 export * from './modal';
 export * from './name';
 export * from './navbarItems';
-export * from './personalInfo';
 export * from './profile';
 export * from './skills';
 export * from './sharedComposables';

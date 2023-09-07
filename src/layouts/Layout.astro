@@ -34,9 +34,17 @@ const { title } = Astro.props;
     scroll-behavior: smooth;
   }
 
+  body {
+    overflow-x: clip;
+  }
+
   .is-sticky {
     position: sticky;
     top: 0;
+  }
+
+  .is-absolute {
+    position: absolute !important;
   }
 
   .is-fixed {
@@ -66,7 +74,11 @@ const { title } = Astro.props;
     overflow: hidden;
   }
 
-  .is-absolute {
-    position: absolute !important;
+  .h-full {
+    height: 100%;
+  }
+
+  .w-full {
+    width: 100%;
   }
 </style>

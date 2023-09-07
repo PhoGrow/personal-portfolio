@@ -1,9 +1,13 @@
 // Set your colors
 // Primary
 $primary: #fff3da; // pastel-yellow
+$primary-invert: findColorInvert($primary);
 $primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
 // Secondary
 $secondary: #dfccfb; // pastel-lila
+$secondary-invert: findColorInvert($secondary);
+$secondary-light: findLightColor($secondary);
 $secondary-dark: findDarkColor($secondary);
 
 // Dark mode (https://m2.material.io/design/color/dark-theme.html)

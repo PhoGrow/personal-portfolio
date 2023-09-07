@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia';
-import { useNameStore, usePersonalInfoStore, useDarkMode, store } from '.';
+import { useNameStore, useDarkMode, store } from '.';
 import { computed } from 'vue';
 
 export const useNavbarItemsStore = defineStore('navbarItems', {
   state: () => {
     const { fullName } = useNameStore(store);
-    const { info } = usePersonalInfoStore(store);
     const isDark = useDarkMode();
 
     return {
@@ -39,7 +38,7 @@ export const useNavbarItemsStore = defineStore('navbarItems', {
         },
         {
           link: {
-            href: info.linkedIn,
+            href: 'https://linkedin.com/in/renedietz',
           },
           tooltip: {
             label: 'Contact me!',
