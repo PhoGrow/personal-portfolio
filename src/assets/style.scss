@@ -65,8 +65,7 @@ iframe {
   border-bottom: 1px solid $secondary-dark;
 }
 
-.columns.is-absolute {
-  width: calc(100% - $border-radius);
+.tag.is-absolute {
   top: calc(-#{$border-radius} + 0.25rem);
 }
 

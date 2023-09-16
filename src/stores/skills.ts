@@ -4,70 +4,50 @@ export const useSkillsStore = defineStore('skills', {
   state: (): Skills => ({
     hardSkills: [
       {
-        category: 'My web skills',
-        subcategories: [
-          {
-            name: 'Frontend',
-            items: ['Vue', 'Astro', 'Oruga', 'Bulma', 'Pinia', 'TypeScript'],
-            rating: [3, 5],
-          },
-          {
-            name: 'Backend',
-            items: [
-              'Node',
-              'Express',
-              'MongoDB',
-              'OpenAPI',
-              'JWT',
-              'TypeScript',
-            ],
-            rating: [3, 5],
-          },
-          {
-            name: 'DevOps',
-            items: ['Docker', 'Ansible'],
-            rating: [1, 5],
-          },
-          {
-            name: 'Create',
-            items: ['Presentations', 'Documentations'],
-            rating: [3, 5],
-          },
-          {
-            name: 'Determine',
-            items: ['User interfaces', 'User experiences'],
-            rating: [3, 5],
-          },
-        ],
+        name: 'Frontend',
+        items: ['Vue', 'Astro', 'Oruga', 'Bulma', 'Pinia', 'TypeScript'],
+        rating: [3, 5],
+      },
+      {
+        name: 'Backend',
+        items: ['Node', 'Express', 'MongoDB', 'OpenAPI', 'JWT', 'TypeScript'],
+        rating: [3, 5],
+      },
+      {
+        name: 'DevOps',
+        items: ['Docker', 'Ansible'],
+        rating: [1, 5],
+      },
+      {
+        name: 'Create',
+        items: ['Presentations', 'Documentations'],
+        rating: [3, 5],
+      },
+      {
+        name: 'Determine',
+        items: ['User interfaces', 'User experiences'],
+        rating: [3, 5],
       },
     ],
-    softSkills: {
-      title: 'My other skills',
-      items: [
-        'Reliable',
-        'Time management',
-        'Teamwork',
-        'Eye for detail',
-        'Enthusiastic',
-        'Problem solver',
-      ],
-    },
+    softSkills: [
+      { icon: 'task_alt', name: 'Reliability' },
+      { icon: 'event_note', name: 'Time management' },
+      { icon: 'diversity_3', name: 'Teamwork' },
+      { icon: 'troubleshoot', name: 'Eye for detail' },
+      { icon: 'thumb_up_alt', name: 'Enthusiasm' },
+      { icon: 'construction', name: 'Problem solving' },
+    ],
   }),
 });
 
 export interface Skills {
   hardSkills: {
-    category: string;
-    subcategories?: {
-      name: string;
-      items: string[];
-      rating: [value: number, best: number];
-    }[];
-    items?: string[];
-    rating?: [value: number, best: number];
+    name: string;
+    items: string[];
+    rating: [value: number, best: number];
   }[];
   softSkills: {
-    title: string;
-    items: string[];
-  };
+    icon: string;
+    name: string;
+  }[];
 }

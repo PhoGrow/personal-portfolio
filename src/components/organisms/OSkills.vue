@@ -1,94 +1,77 @@
 <template>
   <AColumns>
     <AColumn>
-      <div
-        v-for="({ category, subcategories, items, rating }, i) of hardSkills"
-        :key="category"
-        :class="[
-          'box is-relative h-full pt-6',
-          { 'mb-6': i !== hardSkills.length - 1 },
-        ]"
-      >
-        <MTagWithProgress
-          :tag="{ size: 'large', variant: isDark ? 'primary' : 'white' }"
-          :progress="
-            rating?.length
-              ? { value: rating[0], max: rating[1] }
-              : ({} as Progress)
-          "
-          class="is-absolute"
+      <MBoxWithTag title="My hard skills">
+        <div
+          v-for="{ name, items, rating } of hardSkills"
+          :key="name"
+          class="block"
         >
-          {{ category }}
-        </MTagWithProgress>
-        <template v-if="subcategories?.length">
-          <div v-for="subcat of subcategories" :key="subcat.name" class="block">
-            <MTagWithProgress
-              :tag="{ variant: 'secondary' }"
-              :progress="{ value: subcat.rating[0], max: subcat.rating[1] }"
-            >
-              {{ subcat.name }}
-            </MTagWithProgress>
-            <MTags :tags="subcat.items" />
-          </div>
-        </template>
-        <MTags v-if="items?.length" :tags="items" />
-      </div>
+          <AColumns class="is-vcentered is-mobile">
+            <AColumn class="is-narrow">
+              <ATag variant="secondary">{{ name }}</ATag>
+            </AColumn>
+            <AColumn>
+              <AProgress :value="rating[0]" :max="rating[1]" />
+            </AColumn>
+          </AColumns>
+          <MTags :tags="items" />
+        </div>
+      </MBoxWithTag>
     </AColumn>
     <AColumn class="is-narrow"></AColumn>
     <AColumn>
-      <div class="box is-relative h-full pt-6">
-        <MTagWithProgress
-          :tag="{ size: 'large', variant: isDark ? 'primary' : 'white' }"
-          class="is-absolute"
+      <MBoxWithTag title="My soft skills">
+        <ul
+          class="is-flex is-flex-wrap-wrap is-align-content-space-between h-full"
         >
-          {{ softSkills.title }}
-        </MTagWithProgress>
-        <div
-          class="h-full is-flex is-flex-wrap-wrap is-align-content-space-between"
-        >
-          <p
-            v-for="item of softSkills.items"
-            :key="item"
-            :class="`title w-full px-5 py-4 is-rounded has-background-${
+          <li
+            v-for="{ icon, name } of softSkills"
+            :key="name"
+            :class="`is-flex is-align-items-center title w-full px-5 py-4 is-rounded has-background-${
               isDark ? 'dark' : 'white'
             }`"
           >
-            {{ item }}
-          </p>
-        </div>
-      </div>
+            <AIcon
+              :icon="icon"
+              size="medium"
+              :variant="isDark ? 'secondary' : 'dark'"
+            />
+            <span class="ml-3">{{ name }}</span>
+          </li>
+        </ul>
+      </MBoxWithTag>
     </AColumn>
   </AColumns>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MTagWithProgress from '@molecules/MTagWithProgress.vue';
+import MBoxWithTag from '@molecules/MBoxWithTag.vue';
 import MTags from '@molecules/MTags.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
-import type { Progress } from '@atoms/AProgress.vue';
-import {
-  useSkillsStore,
-  useMobileBreakpoint,
-  useDarkMode,
-  store,
-} from '@/stores';
+import ATag from '@atoms/ATag.vue';
+import AProgress from '@atoms/AProgress.vue';
+import AIcon from '@atoms/AIcon.vue';
+import { useSkillsStore, useDarkMode, store } from '@/stores';
 
 export default defineComponent({
   name: 'OSkills',
   components: {
     AColumns,
     AColumn,
-    MTagWithProgress,
+    MBoxWithTag,
+    ATag,
+    AProgress,
     MTags,
+    AIcon,
   },
   setup() {
     const { hardSkills, softSkills } = useSkillsStore(store);
-    const isMobile = useMobileBreakpoint();
     const isDark = useDarkMode();
 
-    return { hardSkills, softSkills, isMobile, isDark };
+    return { hardSkills, softSkills, isDark };
   },
 });
 </script>

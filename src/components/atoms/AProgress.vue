@@ -14,13 +14,6 @@
 import { defineComponent } from 'vue';
 import { useDarkMode } from '@stores';
 
-export interface Progress {
-  value: number;
-  max: number;
-  size?: string;
-  variant?: string;
-}
-
 export default defineComponent({
   name: 'AProgress',
   props: {

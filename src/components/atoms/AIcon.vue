@@ -1,5 +1,5 @@
 <template>
-  <span :class="['icon', `is-${size}`]">
+  <span :class="[`icon is-${size}`, variant ? `has-text-${variant}` : '']">
     <i
       class="material-icons-round"
       :style="{ fontSize: `${fontSizes[size]}rem` }"
@@ -22,6 +22,10 @@ export default defineComponent({
     size: {
       type: String,
       default: 'normal',
+    },
+    variant: {
+      type: String,
+      default: '',
     },
   },
   data() {
