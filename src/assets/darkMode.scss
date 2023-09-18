@@ -32,4 +32,13 @@ html.dark {
   .has-border-bottom {
     border-color: $secondary;
   }
+
+  .carousel .carousel-indicator .indicator-item {
+    .indicator-style {
+      background-color: transparent !important;
+    }
+    .indicator-style.is-active {
+      background-color: $primary !important;
+    }
+  }
 }

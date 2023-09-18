@@ -65,8 +65,23 @@ iframe {
   border-bottom: 1px solid $secondary-dark;
 }
 
+// Tag
 .tag.is-absolute {
   top: calc(-#{$border-radius} + 0.25rem);
+}
+
+// Carousel
+.carousel .carousel-indicator {
+  padding: calc($border-radius / 2) !important;
+  .indicator-item {
+    .indicator-style {
+      background-color: $secondary !important;
+    }
+    .indicator-style.is-active {
+      background-color: $secondary-dark !important;
+      width: $border-radius !important;
+    }
+  }
 }
 
 // Animation
