@@ -1,32 +1,21 @@
 <template>
-  <footer
-    v-if="isCvVisible"
-    :class="['footer has-text-centered', { 'has-text-white': !isDark }]"
-  >
-    <ASubtitle
-      :text="`Made with ♥︎ by ${fullName}`"
-      :class="['mb-0', { 'has-text-white': !isDark }]"
-    />
-    <p>Thanks for taking the time!</p>
+  <footer v-if="isCvVisible" class="footer has-text-centered">
+    <p>Made with ♥︎ by {{ fullName }}</p>
+    <p class="heading mb-0">Thanks for taking the time!</p>
   </footer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ASubtitle from '@atoms/ASubtitle.vue';
-import { useNameStore, useDarkMode, useGlobalState, store } from '@stores';
+import { useNameStore, useGlobalState, store } from '@stores';
 
 export default defineComponent({
   name: 'OFooter',
-  components: {
-    ASubtitle,
-  },
   setup() {
     const { fullName } = useNameStore(store);
-    const isDark = useDarkMode();
     const { isCvVisible } = useGlobalState();
 
-    return { fullName, isDark, isCvVisible };
+    return { fullName, isCvVisible };
   },
 });
 </script>

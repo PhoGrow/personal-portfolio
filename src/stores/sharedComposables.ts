@@ -32,7 +32,7 @@ export const useToast = () => {
   });
 };
 
-export const useMarkdownToHtml = (markdown: string | Ref<string>) => {
+export const useMdToHtml = (markdown: string | Ref<string>) => {
   const html = ref('');
   watchEffect(() => {
     const md = new MarkdownIt();

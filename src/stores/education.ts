@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import { useMarkdownToHtml } from '.';
 
 export const useEducationStore = defineStore('education', {
   state: (): Education[] => [
@@ -52,14 +51,6 @@ export const useEducationStore = defineStore('education', {
       ],
     },
   ],
-  getters: {
-    descriptionInHtml: () => {
-      return (descriptionInMd: string) => {
-        const { html } = useMarkdownToHtml(descriptionInMd);
-        return html;
-      };
-    },
-  },
 });
 
 export interface Education {

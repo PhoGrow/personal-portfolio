@@ -6,6 +6,7 @@ import {
   OCv,
   OEducation,
   OSkills,
+  OInterests,
   OFooter,
 } from '@components/organisms';
 ---
@@ -19,6 +20,7 @@ import {
     <OCv client:idle>
       <OEducation slot="education" client:only="vue" />
       <OSkills slot="skills" client:only="vue" />
+      <OInterests slot="interests" client:only="vue" />
     </OCv>
   </main>
   <OFooter client:idle />

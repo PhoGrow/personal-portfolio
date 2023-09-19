@@ -4,6 +4,7 @@ export { default as ODownloadButton } from './ODownloadButton.vue';
 export { default as OEducation } from './OEducation.vue';
 export { default as OFooter } from './OFooter.vue';
 export { default as OIframe } from './OIframe.vue';
+export { default as OInterests } from './OInterests.vue';
 export { default as OHeroBanner } from './OHeroBanner.vue';
 export { default as OModal } from './OModal.vue';
 export { default as ONavbar } from './ONavbar.vue';
