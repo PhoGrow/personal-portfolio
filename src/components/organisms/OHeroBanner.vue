@@ -47,6 +47,7 @@ import {
   useToast,
   store,
 } from '@stores';
+import confetti from 'canvas-confetti';
 
 export default defineComponent({
   name: 'OHeroBanner',
@@ -84,9 +85,15 @@ export default defineComponent({
     },
   },
   methods: {
-    showCv() {
+    async showCv() {
       this.isCvVisible = true;
       this.useToast();
+      await confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.8 },
+        disableForReducedMotion: true,
+      });
     },
   },
 });
