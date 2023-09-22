@@ -36,9 +36,10 @@ html.dark {
   .carousel .carousel-indicator .indicator-item {
     .indicator-style {
       background-color: transparent !important;
+      border-color: $secondary !important;
     }
     .indicator-style.is-active {
-      background-color: $primary !important;
+      background-color: $secondary !important;
     }
   }
 }

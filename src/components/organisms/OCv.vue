@@ -1,5 +1,5 @@
 <template>
-  <div v-show="isCvVisible" :id="cvId" class="pt-6">
+  <div v-show="isCvVisible" :id="cvId" class="py-6">
     <MHero v-for="name of sections" :key="name" :has-horizontal-padding="false">
       <slot :name="name"></slot>
     </MHero>

@@ -1,21 +1,25 @@
 <template>
-  <OTooltip
-    :label="label"
-    :position="position"
-    :variant="variant || isDark ? 'secondary' : 'dark'"
-  >
-    <slot></slot>
-  </OTooltip>
+  <AClientOnly>
+    <OTooltip
+      :label="label"
+      :position="position"
+      :variant="variant || isDark ? 'secondary' : 'dark'"
+    >
+      <slot></slot>
+    </OTooltip>
+  </AClientOnly>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import AClientOnly from '@atoms/AClientOnly.vue';
 import { OTooltip } from '@oruga-ui/oruga-next';
 import { useDarkMode } from '@stores';
 
 export default defineComponent({
   name: 'ATooltip',
   components: {
+    AClientOnly,
     OTooltip,
   },
   props: {
@@ -31,14 +35,6 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    fontSize: {
-      type: String,
-      default: '1rem',
-    },
-    fontWeight: {
-      type: Number,
-      default: 500,
-    },
   },
   setup() {
     const isDark = useDarkMode();
@@ -49,8 +45,8 @@ export default defineComponent({
 
 <style>
 .b-tooltip .tooltip-content {
-  font-size: v-bind(fontSize);
-  font-weight: v-bind(fontWeight);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .b-tooltip .tooltip-trigger {

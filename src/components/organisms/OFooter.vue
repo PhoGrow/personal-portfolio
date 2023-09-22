@@ -10,12 +10,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useNameStore, useGlobalState, store } from '@stores';
+import { useProfileStore, useGlobalState, store } from '@stores';
 
 export default defineComponent({
   name: 'OFooter',
   setup() {
-    const { fullName } = useNameStore(store);
+    const { fullName } = useProfileStore(store);
     const { isCvVisible } = useGlobalState();
 
     return { fullName, isCvVisible };

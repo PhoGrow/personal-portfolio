@@ -40,7 +40,6 @@ import AColumn from '@atoms/AColumn.vue';
 import AButton from '@atoms/AButton.vue';
 import AImage from '@atoms/AImage.vue';
 import {
-  useNameStore,
   useProfileStore,
   useGlobalState,
   useMobileBreakpoint,
@@ -59,8 +58,7 @@ export default defineComponent({
     AImage,
   },
   setup() {
-    const { fullName } = useNameStore(store);
-    const { image, summaryInHtml } = useProfileStore(store);
+    const { fullName, image, summaryInHtml } = useProfileStore(store);
     const { isCvVisible, cvId } = useGlobalState();
     const isMobile = useMobileBreakpoint();
 

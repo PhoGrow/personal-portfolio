@@ -1,7 +1,6 @@
 <template>
   <a :href="href" :target="isExternal ? '_blank' : '_self'">
-    <template v-if="title">{{ title }}</template>
-    <slot v-else></slot>
+    <slot></slot>
   </a>
 </template>
 
@@ -15,10 +14,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    title: {
-      type: String,
-      default: '',
-    },
   },
   computed: {
     isExternal(): boolean {
@@ -28,8 +23,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-a {
-  overflow-wrap: break-word;
-}
-</style>
+<style scoped></style>

@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AIcon from '@atoms/AIcon.vue';
-import { useNameStore, store } from '@stores';
+import { useProfileStore, store } from '@stores';
 
 export default defineComponent({
   name: 'ONotification',
@@ -19,7 +19,7 @@ export default defineComponent({
     AIcon,
   },
   setup() {
-    const { firstName } = useNameStore(store);
+    const { firstName } = useProfileStore(store);
     return { firstName };
   },
 });

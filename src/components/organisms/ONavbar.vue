@@ -6,14 +6,29 @@
   >
     <div class="container has-border-bottom">
       <div class="navbar-brand is-flex-grow-1">
-        <MNavbarItem
-          v-for="(item, index) of navbarItems"
-          :key="item.tooltip.label"
-          v-bind="item"
-          :class="{ 'mr-auto': index === 0 }"
+        <ALink href="#" class="navbar-item mr-auto">
+          <ATooltip label="That's me!" position="right">
+            <AImage src="favicon.png" :alt="fullName" is-rounded />
+          </ATooltip>
+        </ALink>
+        <ALink
+          href="https://github.com/PhoGrow/personal-portfolio"
+          class="navbar-item"
         >
-          <ODarkModeButton />
-        </MNavbarItem>
+          <ATooltip label="Create your own portfolio site">
+            <AImage src="logos/github.svg" alt="GitHub" :is-inverted="isDark" />
+          </ATooltip>
+        </ALink>
+        <ALink :href="linkedIn" class="navbar-item">
+          <ATooltip label="Contact me!">
+            <AImage src="logos/linkedin.svg" alt="LinkedIn" />
+          </ATooltip>
+        </ALink>
+        <div class="navbar-item">
+          <ATooltip :label="`${isDark ? 'Light' : 'Dark'} mode`">
+            <ODarkModeButton />
+          </ATooltip>
+        </div>
       </div>
     </div>
   </nav>
@@ -22,19 +37,24 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ODarkModeButton from '@organisms/ODarkModeButton.vue';
-import MNavbarItem from '@molecules/MNavbarItem.vue';
-import { useNavbarItemsStore, store } from '@stores';
-import { storeToRefs } from 'pinia';
+import ALink from '@atoms/ALink.vue';
+import ATooltip from '@atoms/ATooltip.vue';
+import AImage from '@atoms/AImage.vue';
+import { useProfileStore, useDarkMode, store } from '@stores';
 
 export default defineComponent({
   name: 'ONavbar',
   components: {
-    MNavbarItem,
+    ALink,
+    ATooltip,
+    AImage,
     ODarkModeButton,
   },
   setup() {
-    const { navbarItems } = storeToRefs(useNavbarItemsStore(store));
-    return { navbarItems };
+    const { fullName, linkedIn } = useProfileStore(store);
+    const isDark = useDarkMode();
+
+    return { fullName, linkedIn, isDark };
   },
 });
 </script>
