@@ -10,19 +10,26 @@
         <h1>Hi, I'm {{ fullName }}.</h1>
         <div class="block">
           <div
-            :class="{ 'has-line-clamp-3': !isProfileFullyVisible }"
+            v-for="[device, lineClamp] of [
+              ['mobile', 3],
+              ['tablet', 6],
+            ] as [string, number][]"
+            :key="device"
+            :class="[
+              `is-hidden-${device}`,
+              !(isProfileExpanded || isCvVisible)
+                ? `has-line-clamp-${lineClamp}`
+                : '',
+            ]"
             v-html="summaryInHtml"
           ></div>
-          <AButton
-            v-if="!isProfileFullyVisible"
-            tag="button"
-            size="small"
-            variant="secondary"
-            class="is-pulled-right"
+          <MButtonWithIcon
+            v-if="!(isProfileExpanded || isCvVisible)"
+            icon="expand_circle_down"
+            :variant="isDark ? 'secondary' : 'dark'"
+            is-pulled-right
             @click.once="isProfileExpanded = true"
-          >
-            Expand
-          </AButton>
+          />
         </div>
         <AButton :href="`#${cvId}`" @click.once="showCv">
           Get to know me
@@ -35,6 +42,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MHero from '@molecules/MHero.vue';
+import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
 import AButton from '@atoms/AButton.vue';
@@ -42,7 +50,7 @@ import AImage from '@atoms/AImage.vue';
 import {
   useProfileStore,
   useGlobalState,
-  useMobileBreakpoint,
+  useDarkMode,
   useToast,
   store,
 } from '@stores';
@@ -56,11 +64,12 @@ export default defineComponent({
     AColumn,
     AButton,
     AImage,
+    MButtonWithIcon,
   },
   setup() {
     const { fullName, image, summaryInHtml } = useProfileStore(store);
     const { isCvVisible, cvId } = useGlobalState();
-    const isMobile = useMobileBreakpoint();
+    const isDark = useDarkMode();
 
     return {
       fullName,
@@ -68,7 +77,7 @@ export default defineComponent({
       summaryInHtml,
       isCvVisible,
       cvId,
-      isMobile,
+      isDark,
       useToast,
     };
   },
@@ -76,11 +85,6 @@ export default defineComponent({
     return {
       isProfileExpanded: false,
     };
-  },
-  computed: {
-    isProfileFullyVisible(): boolean {
-      return this.isProfileExpanded || this.isMobile || this.isCvVisible;
-    },
   },
   methods: {
     async showCv() {

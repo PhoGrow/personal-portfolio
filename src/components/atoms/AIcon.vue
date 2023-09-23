@@ -1,19 +1,31 @@
 <template>
-  <span :class="[`icon is-${size}`, variant ? `has-text-${variant}` : '']">
-    <i
-      class="material-icons-round"
-      :style="{ fontSize: `${fontSizes[size]}rem` }"
+  <AClientOnly>
+    <span
+      :class="[
+        `icon is-${size}`,
+        `has-text-${variant || (isDark ? 'secondary' : 'dark')}`,
+      ]"
     >
-      {{ icon }}
-    </i>
-  </span>
+      <i
+        class="material-icons-round"
+        :style="{ fontSize: `${fontSizes[size]}rem` }"
+      >
+        {{ icon }}
+      </i>
+    </span>
+  </AClientOnly>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import AClientOnly from '@atoms/AClientOnly.vue';
+import { useDarkMode } from '@stores';
 
 export default defineComponent({
   name: 'AIcon',
+  components: {
+    AClientOnly,
+  },
   props: {
     icon: {
       type: String,
@@ -21,12 +33,19 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: 'normal',
+      default: 'large',
+      validator(size: string) {
+        return ['small', 'normal', 'medium', 'large'].includes(size);
+      },
     },
     variant: {
       type: String,
       default: '',
     },
+  },
+  setup() {
+    const isDark = useDarkMode();
+    return { isDark };
   },
   data() {
     return {
@@ -35,7 +54,9 @@ export default defineComponent({
         normal: 1.5,
         medium: 2,
         large: 3,
-      } as { [size: string]: number },
+      } as {
+        [size: string]: number;
+      },
     };
   },
 });

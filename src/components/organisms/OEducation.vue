@@ -8,9 +8,9 @@
           @change="(itemNumber) => (carouselItemNumber = itemNumber)"
         >
           <MIconWithTitle
-            class="h-full"
             icon="school"
             :title="getEducationItem('topic') as string"
+            is-fullheight
           />
         </MCarousel>
       </AColumn>

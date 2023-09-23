@@ -1,39 +1,41 @@
 <template>
-  <component
-    :is="tag"
-    :href="tag === 'a' ? href : null"
-    :class="[
-      `button is-${size}`,
-      variant ? `is-${variant}` : '',
-      {
-        'is-rounded': isRounded,
-        'has-background-transparent has-border-color-transparent':
-          isTransparent,
-        'is-dark': isDark,
-      },
-    ]"
-  >
-    <slot></slot>
-  </component>
+  <AClientOnly>
+    <component
+      :is="href ? 'a' : 'button'"
+      :href="href || null"
+      :class="[
+        `button is-${size}`,
+        variant ? `is-${variant}` : '',
+        {
+          'is-dark': isDark && !variant,
+          'is-rounded': isRounded,
+          'has-background-transparent has-border-color-transparent':
+            isTransparent,
+          'is-pulled-right': isPulledRight,
+        },
+      ]"
+      :style="isSquare ? 'aspect-ratio: 1' : ''"
+      @click="$emit('click')"
+    >
+      <slot></slot>
+    </component>
+  </AClientOnly>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import AClientOnly from '@atoms/AClientOnly.vue';
 import { useDarkMode } from '@stores';
 
 export default defineComponent({
   name: 'AButton',
+  components: {
+    AClientOnly,
+  },
   props: {
-    tag: {
-      type: String,
-      default: 'a', // button
-      validator(tag: string) {
-        return ['button', 'a'].includes(tag);
-      },
-    },
     href: {
       type: String,
-      default: '#', // no default, no tag prop needed (href ? 'a' : 'button')
+      default: '',
     },
     size: {
       type: String,
@@ -51,7 +53,10 @@ export default defineComponent({
       default: true,
     },
     isTransparent: Boolean,
+    isSquare: Boolean,
+    isPulledRight: Boolean,
   },
+  emits: ['click'],
   setup() {
     const isDark = useDarkMode();
     return { isDark };

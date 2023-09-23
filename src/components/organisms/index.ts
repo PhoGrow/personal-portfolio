@@ -1,5 +1,4 @@
 export { default as OCv } from './OCv.vue';
-export { default as ODarkModeButton } from './ODarkModeButton.vue';
 export { default as OEducation } from './OEducation.vue';
 export { default as OFooter } from './OFooter.vue';
 export { default as OInterests } from './OInterests.vue';

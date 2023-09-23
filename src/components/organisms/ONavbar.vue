@@ -26,7 +26,10 @@
         </ALink>
         <div class="navbar-item">
           <ATooltip :label="`${isDark ? 'Light' : 'Dark'} mode`">
-            <ODarkModeButton />
+            <MButtonWithIcon
+              :icon="isDark ? 'dark_mode' : 'light_mode'"
+              @click="toggleDark()"
+            />
           </ATooltip>
         </div>
       </div>
@@ -36,11 +39,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ODarkModeButton from '@organisms/ODarkModeButton.vue';
+import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
 import ALink from '@atoms/ALink.vue';
 import ATooltip from '@atoms/ATooltip.vue';
 import AImage from '@atoms/AImage.vue';
 import { useProfileStore, useDarkMode, store } from '@stores';
+import { useToggle } from '@vueuse/core';
 
 export default defineComponent({
   name: 'ONavbar',
@@ -48,13 +52,14 @@ export default defineComponent({
     ALink,
     ATooltip,
     AImage,
-    ODarkModeButton,
+    MButtonWithIcon,
   },
   setup() {
     const { fullName, linkedIn } = useProfileStore(store);
     const isDark = useDarkMode();
+    const toggleDark = useToggle(isDark);
 
-    return { fullName, linkedIn, isDark };
+    return { fullName, linkedIn, isDark, toggleDark };
   },
 });
 </script>

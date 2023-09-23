@@ -16,9 +16,9 @@ import {
     <ONavbar client:load />
   </header>
   <main>
-    <OHeroBanner client:only="vue" />
+    <OHeroBanner client:load />
     <OCv client:idle>
-      <OEducation slot="education" client:only="vue" />
+      <OEducation slot="education" client:visible />
       <OSkills slot="skills" client:only="vue" />
       <OInterests slot="interests" client:only="vue" />
     </OCv>

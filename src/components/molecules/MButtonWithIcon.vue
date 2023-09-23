@@ -1,12 +1,10 @@
 <template>
-  <AButton
-    tag="button"
-    size="small"
-    style="aspect-ratio: 1"
-    is-transparent
-    @click="toggleDark()"
-  >
-    <AIcon :icon="isDark ? 'dark_mode' : 'light_mode'" />
+  <AButton size="small" is-transparent is-square>
+    <AIcon
+      :icon="icon"
+      size="normal"
+      :variant="variant || (isDark ? 'primary' : 'dark')"
+    />
   </AButton>
 </template>
 
@@ -15,19 +13,26 @@ import { defineComponent } from 'vue';
 import AButton from '@atoms/AButton.vue';
 import AIcon from '@atoms/AIcon.vue';
 import { useDarkMode } from '@stores';
-import { useToggle } from '@vueuse/core';
 
 export default defineComponent({
-  name: 'ODarkModeButton',
+  name: 'MButtonWithIcon',
   components: {
     AButton,
     AIcon,
   },
+  props: {
+    icon: {
+      type: String,
+      required: true,
+    },
+    variant: {
+      type: String,
+      default: '',
+    },
+  },
   setup() {
     const isDark = useDarkMode();
-    const toggleDark = useToggle(isDark);
-
-    return { isDark, toggleDark };
+    return { isDark };
   },
 });
 </script>

@@ -1,10 +1,6 @@
 <template>
   <div class="box is-relative h-full pt-6">
-    <ATag
-      class="is-absolute"
-      size="large"
-      :variant="isDark ? 'primary' : 'white'"
-    >
+    <ATag size="large" :variant="isDark ? 'primary' : 'white'" is-absolute>
       {{ title }}
     </ATag>
     <slot></slot>
