@@ -2,44 +2,41 @@
   <AColumns>
     <AColumn>
       <MBoxWithTag title="My hard skills">
-        <div
-          v-for="{ name, items, rating } of hardSkills"
-          :key="name"
-          class="block"
-        >
-          <AColumns class="is-vcentered is-mobile">
-            <AColumn class="is-narrow">
-              <ATag variant="secondary">{{ name }}</ATag>
-            </AColumn>
-            <AColumn>
-              <AProgress :value="rating[0]" :max="rating[1]" />
-            </AColumn>
-          </AColumns>
-          <MTags :tags="items" />
-        </div>
+        <AUnorderedList>
+          <li
+            v-for="{ name, items, rating } of hardSkills"
+            :key="name"
+            class="block w-full"
+          >
+            <AColumns class="is-vcentered is-mobile">
+              <AColumn class="is-narrow">
+                <ATag variant="secondary">{{ name }}</ATag>
+              </AColumn>
+              <AColumn>
+                <AProgress :value="rating[0]" :max="rating[1]" />
+              </AColumn>
+            </AColumns>
+            <MTags :tags="items" />
+          </li>
+        </AUnorderedList>
       </MBoxWithTag>
     </AColumn>
     <AColumn class="is-narrow"></AColumn>
     <AColumn>
       <MBoxWithTag title="My soft skills">
-        <ul
-          class="is-flex is-flex-wrap-wrap is-align-content-space-between h-full"
-        >
-          <li
+        <AUnorderedList>
+          <MIconWithTitle
             v-for="{ icon, name } of softSkills"
             :key="name"
-            :class="`is-flex is-align-items-center title w-full px-5 py-4 is-rounded has-background-${
-              isDark ? 'dark' : 'white'
-            }`"
-          >
-            <AIcon
-              :icon="icon"
-              size="medium"
-              :variant="isDark ? 'secondary' : 'dark'"
-            />
-            <span class="ml-3">{{ name }}</span>
-          </li>
-        </ul>
+            tag="li"
+            :icon="icon"
+            size="medium"
+            :title="name"
+            :is-justify-content-center="false"
+            has-small-padding
+            is-fullwidth
+          />
+        </AUnorderedList>
       </MBoxWithTag>
     </AColumn>
   </AColumns>
@@ -49,11 +46,12 @@
 import { defineComponent } from 'vue';
 import MBoxWithTag from '@molecules/MBoxWithTag.vue';
 import MTags from '@molecules/MTags.vue';
+import MIconWithTitle from '@molecules/MIconWithTitle.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
+import AUnorderedList from '@atoms/AUnorderedList.vue';
 import ATag from '@atoms/ATag.vue';
 import AProgress from '@atoms/AProgress.vue';
-import AIcon from '@atoms/AIcon.vue';
 import { useSkillsStore, useDarkMode, store } from '@/stores';
 
 export default defineComponent({
@@ -62,10 +60,11 @@ export default defineComponent({
     AColumns,
     AColumn,
     MBoxWithTag,
+    AUnorderedList,
     ATag,
     AProgress,
     MTags,
-    AIcon,
+    MIconWithTitle,
   },
   setup() {
     const { hardSkills, softSkills } = useSkillsStore(store);

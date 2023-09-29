@@ -1,15 +1,21 @@
 <template>
   <AClientOnly>
-    <section
+    <component
+      :is="tag"
       :class="[
-        'box is-flex is-align-items-center is-justify-content-center py-6',
+        'box is-flex is-align-items-center',
         `has-background-${isDark ? 'dark' : 'white'}`,
-        { 'h-full': isFullheight },
+        `py-${hasSmallPadding ? 4 : 6}`,
+        {
+          'h-full': isFullheight,
+          'w-full': isFullwidth,
+          'is-justify-content-center': isJustifyContentCenter,
+        },
       ]"
     >
-      <AIcon :icon="icon" />
+      <AIcon :icon="icon" :size="size" />
       <p class="title ml-3">{{ title }}</p>
-    </section>
+    </component>
   </AClientOnly>
 </template>
 
@@ -26,15 +32,29 @@ export default defineComponent({
     AIcon,
   },
   props: {
+    tag: {
+      type: String,
+      default: 'section',
+    },
     icon: {
       type: String,
       required: true,
+    },
+    size: {
+      type: String,
+      default: 'large',
     },
     title: {
       type: String,
       required: true,
     },
+    hasSmallPadding: Boolean,
     isFullheight: Boolean,
+    isFullwidth: Boolean,
+    isJustifyContentCenter: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup() {
     const isDark = useDarkMode();

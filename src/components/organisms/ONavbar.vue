@@ -25,7 +25,10 @@
           </ATooltip>
         </ALink>
         <div class="navbar-item">
-          <ATooltip :label="`${isDark ? 'Light' : 'Dark'} mode`">
+          <ATooltip
+            :label="`${isDark ? 'Light' : 'Dark'} mode`"
+            :position="isMobile ? 'left' : 'bottom'"
+          >
             <MButtonWithIcon
               :icon="isDark ? 'dark_mode' : 'light_mode'"
               @click="toggleDark()"
@@ -43,7 +46,12 @@ import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
 import ALink from '@atoms/ALink.vue';
 import ATooltip from '@atoms/ATooltip.vue';
 import AImage from '@atoms/AImage.vue';
-import { useProfileStore, useDarkMode, store } from '@stores';
+import {
+  useProfileStore,
+  useDarkMode,
+  useMobileBreakpoint,
+  store,
+} from '@stores';
 import { useToggle } from '@vueuse/core';
 
 export default defineComponent({
@@ -58,8 +66,9 @@ export default defineComponent({
     const { fullName, linkedIn } = useProfileStore(store);
     const isDark = useDarkMode();
     const toggleDark = useToggle(isDark);
+    const isMobile = useMobileBreakpoint();
 
-    return { fullName, linkedIn, isDark, toggleDark };
+    return { fullName, linkedIn, isDark, toggleDark, isMobile };
   },
 });
 </script>

@@ -3,7 +3,7 @@
     <OTooltip
       :label="label"
       :position="position"
-      :variant="variant || isDark ? 'secondary' : 'dark'"
+      :variant="variant || (isDark ? 'secondary' : 'dark')"
     >
       <slot></slot>
     </OTooltip>

@@ -12,7 +12,7 @@
           <div
             v-for="[device, lineClamp] of [
               ['mobile', 3],
-              ['tablet', 6],
+              ['tablet', 5],
             ] as [string, number][]"
             :key="device"
             :class="[

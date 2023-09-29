@@ -18,9 +18,9 @@ import {
   <main>
     <OHeroBanner client:load />
     <OCv client:idle>
+      <OSkills slot="skills" client:visible />
       <OEducation slot="education" client:visible />
-      <OSkills slot="skills" client:only="vue" />
-      <OInterests slot="interests" client:only="vue" />
+      <OInterests slot="interests" client:visible />
     </OCv>
   </main>
   <OFooter client:idle />
