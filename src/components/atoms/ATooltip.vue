@@ -30,6 +30,9 @@ export default defineComponent({
     position: {
       type: String,
       default: 'bottom',
+      validator(position: string) {
+        return ['top', 'bottom', 'left', 'right'].includes(position);
+      },
     },
     variant: {
       type: String,

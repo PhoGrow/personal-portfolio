@@ -1,5 +1,5 @@
 <template>
-  <footer v-if="isCvVisible" class="footer has-text-centered">
+  <footer v-show="isCvVisible" class="footer has-text-centered">
     <p>
       Made with <span class="is-inline-flex heartbeat">♥︎</span> by
       {{ fullName }}

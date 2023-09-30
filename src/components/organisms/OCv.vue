@@ -7,20 +7,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, type PropType } from 'vue';
 import MHero from '@molecules/MHero.vue';
-import { useCvStore, useGlobalState, store } from '@stores';
+import { useGlobalState } from '@stores';
 
 export default defineComponent({
   name: 'OCv',
   components: {
     MHero,
   },
+  props: {
+    sections: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+  },
   setup() {
-    const { sections } = useCvStore(store);
     const { isCvVisible, cvId } = useGlobalState();
-
-    return { sections, isCvVisible, cvId };
+    return { isCvVisible, cvId };
   },
 });
 </script>

@@ -16,7 +16,9 @@
                 <AProgress :value="rating[0]" :max="rating[1]" />
               </AColumn>
             </AColumns>
-            <MTags :tags="items" />
+            <div class="tags">
+              <ATag v-for="item of items" :key="item">{{ item }}</ATag>
+            </div>
           </li>
         </AUnorderedList>
       </MBoxWithTag>
@@ -45,7 +47,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MBoxWithTag from '@molecules/MBoxWithTag.vue';
-import MTags from '@molecules/MTags.vue';
 import MIconWithTitle from '@molecules/MIconWithTitle.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
@@ -63,7 +64,6 @@ export default defineComponent({
     AUnorderedList,
     ATag,
     AProgress,
-    MTags,
     MIconWithTitle,
   },
   setup() {

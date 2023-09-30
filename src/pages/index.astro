@@ -9,6 +9,9 @@ import {
   OInterests,
   OFooter,
 } from '@components/organisms';
+
+// Slot names of CV have to be equal
+const cvSectionOrder = ['skills', 'education', 'interests'];
 ---
 
 <Layout title="Personal portfolio">
@@ -17,7 +20,7 @@ import {
   </header>
   <main>
     <OHeroBanner client:load />
-    <OCv client:idle>
+    <OCv sections={cvSectionOrder} client:idle>
       <OSkills slot="skills" client:visible />
       <OEducation slot="education" client:visible />
       <OInterests slot="interests" client:visible />

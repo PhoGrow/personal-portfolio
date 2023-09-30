@@ -4,10 +4,10 @@ export const useEducationStore = defineStore('education', {
   state: (): Education[] => [
     {
       topic: 'Master studies',
-      period: '2020 – 2022',
-      location: 'Cologne, Germany',
-      degree: 'M.Sc. Media Technology',
-      gpa: 'Ø1.2',
+      period: [2020, 2022],
+      location: ['Cologne', 'Germany'],
+      degree: ['M.Sc.', 'Media Technology'],
+      gpa: 1.2,
       university: 'TH Köln – University of Applied Sciences',
       activities: [
         {
@@ -28,10 +28,10 @@ export const useEducationStore = defineStore('education', {
     },
     {
       topic: 'Bachelor studies',
-      period: '2015 – 2020',
-      location: 'Cologne, Germany',
-      degree: 'B.Sc. Media Technology',
-      gpa: 'Ø1.9',
+      period: [2015, 2020],
+      location: ['Cologne', 'Germany'],
+      degree: ['B.Sc.', 'Media Technology'],
+      gpa: 1.9,
       university: 'TH Köln – University of Applied Sciences',
       activities: [
         {
@@ -55,10 +55,10 @@ export const useEducationStore = defineStore('education', {
 
 export interface Education {
   topic: string;
-  period: string;
-  location: string;
-  degree: string;
-  gpa: string;
+  period: [start: number, end: number];
+  location: [city: string, country: string];
+  degree: [graduation: string, study: string];
+  gpa: number;
   university: string;
   activities: {
     name: string;

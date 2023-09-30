@@ -18,18 +18,23 @@
       <ATransitionFade>
         <AColumn :key="carouselItemNumber">
           <div class="block">
-            <p class="heading">{{ getEducationItem('period') }}</p>
+            <p class="heading">
+              {{ (getEducationItem('period') as [number, number])[0] }} –
+              {{ (getEducationItem('period') as [number, number])[1] }}
+            </p>
             <p>
-              <span class="title is-5 mr-2">{{
-                getEducationItem('degree')
-              }}</span>
-              <span class="has-text-grey">{{ getEducationItem('gpa') }}</span>
+              <span class="title is-5 mr-2">
+                {{ (getEducationItem('degree') as [string, string])[0] }}
+                {{ (getEducationItem('degree') as [string, string])[1] }}
+              </span>
+              <span class="has-text-grey">Ø{{ getEducationItem('gpa') }}</span>
             </p>
             <p>
               <span class="mr-2">{{ getEducationItem('university') }}</span>
-              <span class="has-text-grey">{{
-                getEducationItem('location')
-              }}</span>
+              <span class="has-text-grey">
+                {{ (getEducationItem('location') as [string, string])[0] }},
+                {{ (getEducationItem('location') as [string, string])[1] }}
+              </span>
             </p>
           </div>
           <ul>
@@ -42,7 +47,15 @@
               }[]"
               :key="name"
               :class="{
-                'mb-3': i !== getEducationItem('activities').length - 1,
+                'mb-3':
+                  i !==
+                  (
+                    getEducationItem('activities') as {
+                      name: string;
+                      descriptionInMd: string;
+                    }[]
+                  ).length -
+                    1,
               }"
             >
               <span class="has-text-weight-medium mr-2">{{ name }}</span>
