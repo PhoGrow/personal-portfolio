@@ -10,7 +10,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ATag from '@atoms/ATag.vue';
-import { useDarkMode } from '@/stores';
+import { useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'MBoxWithTag',
@@ -24,7 +25,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
     return { isDark };
   },
 });

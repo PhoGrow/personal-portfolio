@@ -14,7 +14,6 @@
       },
     ]"
     :style="isSquare ? 'aspect-ratio: 1' : ''"
-    @click="$emit('click')"
   >
     <slot></slot>
   </component>
@@ -22,7 +21,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useDarkMode } from '@stores';
+import { useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
@@ -51,9 +51,8 @@ export default defineComponent({
     isSquare: Boolean,
     isPulledRight: Boolean,
   },
-  emits: ['click'],
   setup() {
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
     const isMounted = useMounted();
 
     return { isDark, isMounted };

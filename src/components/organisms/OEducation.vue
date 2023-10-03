@@ -76,8 +76,9 @@ import MIconWithTitle from '@molecules/MIconWithTitle.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
 import ATransitionFade from '@atoms/ATransitionFade.vue';
-import { useEducationStore, useDarkMode, useMdToHtml, store } from '@stores';
+import { useEducationStore, useUtilStore, useMdToHtml, store } from '@stores';
 import type { Education } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'OEducation',
@@ -91,7 +92,7 @@ export default defineComponent({
   },
   setup() {
     const educationStore = useEducationStore(store);
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
 
     return { educationStore, isDark };
   },

@@ -53,7 +53,8 @@ import AColumn from '@atoms/AColumn.vue';
 import AUnorderedList from '@atoms/AUnorderedList.vue';
 import ATag from '@atoms/ATag.vue';
 import AProgress from '@atoms/AProgress.vue';
-import { useSkillsStore, useDarkMode, store } from '@/stores';
+import { useSkillsStore, useUtilStore, store } from '@/stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'OSkills',
@@ -68,7 +69,7 @@ export default defineComponent({
   },
   setup() {
     const { hardSkills, softSkills } = useSkillsStore(store);
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
 
     return { hardSkills, softSkills, isDark };
   },

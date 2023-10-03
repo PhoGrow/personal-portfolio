@@ -30,7 +30,7 @@
             :position="isMobile ? 'left' : 'bottom'"
           >
             <MButtonWithIcon
-              :icon="isDark ? 'dark_mode' : 'light_mode'"
+              :icon="`${isDark ? 'dark' : 'light'}_mode`"
               @click="toggleDark()"
             />
           </ATooltip>
@@ -46,12 +46,8 @@ import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
 import ALink from '@atoms/ALink.vue';
 import ATooltip from '@atoms/ATooltip.vue';
 import AImage from '@atoms/AImage.vue';
-import {
-  useProfileStore,
-  useDarkMode,
-  useMobileBreakpoint,
-  store,
-} from '@stores';
+import { useProfileStore, useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 import { useToggle } from '@vueuse/core';
 
 export default defineComponent({
@@ -64,9 +60,8 @@ export default defineComponent({
   },
   setup() {
     const { fullName, linkedIn } = useProfileStore(store);
-    const isDark = useDarkMode();
+    const { isDark, isMobile } = storeToRefs(useUtilStore(store));
     const toggleDark = useToggle(isDark);
-    const isMobile = useMobileBreakpoint();
 
     return { fullName, linkedIn, isDark, toggleDark, isMobile };
   },

@@ -12,7 +12,8 @@
 import { defineComponent } from 'vue';
 import AButton from '@atoms/AButton.vue';
 import AIcon from '@atoms/AIcon.vue';
-import { useDarkMode } from '@stores';
+import { useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'MButtonWithIcon',
@@ -31,7 +32,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
     return { isDark };
   },
 });

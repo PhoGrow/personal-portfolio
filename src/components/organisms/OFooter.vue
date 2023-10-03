@@ -10,13 +10,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useProfileStore, useGlobalState, store } from '@stores';
+import { useProfileStore, useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'OFooter',
   setup() {
     const { fullName } = useProfileStore(store);
-    const { isCvVisible } = useGlobalState();
+    const { isCvVisible } = storeToRefs(useUtilStore(store));
 
     return { fullName, isCvVisible };
   },

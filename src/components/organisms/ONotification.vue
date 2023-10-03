@@ -11,7 +11,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AIcon from '@atoms/AIcon.vue';
-import { useProfileStore, useDarkMode, store } from '@stores';
+import { useProfileStore, useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'ONotification',
@@ -20,7 +21,7 @@ export default defineComponent({
   },
   setup() {
     const { firstName } = useProfileStore(store);
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
 
     return { firstName, isDark };
   },

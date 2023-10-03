@@ -15,7 +15,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useDarkMode } from '@stores';
+import { useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
@@ -35,7 +36,7 @@ export default defineComponent({
     isAbsolute: Boolean,
   },
   setup() {
-    const isDark = useDarkMode();
+    const { isDark } = storeToRefs(useUtilStore(store));
     const isMounted = useMounted();
 
     return { isDark, isMounted };

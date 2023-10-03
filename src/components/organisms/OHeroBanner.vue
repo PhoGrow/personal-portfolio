@@ -41,19 +41,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ONotification from '@organisms/ONotification.vue';
 import MHero from '@molecules/MHero.vue';
 import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
 import AButton from '@atoms/AButton.vue';
 import AImage from '@atoms/AImage.vue';
-import {
-  useProfileStore,
-  useGlobalState,
-  useDarkMode,
-  useToast,
-  store,
-} from '@stores';
+import { useProfileStore, useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
+import { useProgrammatic } from '@oruga-ui/oruga-next';
 import confetti from 'canvas-confetti';
 
 export default defineComponent({
@@ -66,17 +63,31 @@ export default defineComponent({
     AImage,
     MButtonWithIcon,
   },
+  props: {
+    cvId: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
     const { fullName, image, summaryInHtml } = useProfileStore(store);
-    const { isCvVisible, cvId } = useGlobalState();
-    const isDark = useDarkMode();
+    const { isCvVisible, isDark } = storeToRefs(useUtilStore(store));
+
+    const useToast = () => {
+      const { oruga } = useProgrammatic();
+      oruga.notification.open({
+        duration: 4000,
+        component: ONotification,
+        position: 'bottom',
+        variant: isDark.value ? 'secondary' : 'dark',
+      });
+    };
 
     return {
       fullName,
       image,
       summaryInHtml,
       isCvVisible,
-      cvId,
       isDark,
       useToast,
     };

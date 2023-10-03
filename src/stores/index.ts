@@ -5,4 +5,4 @@ export * from './education';
 export * from './interests';
 export * from './profile';
 export * from './skills';
-export * from './sharedComposables';
+export * from './util';

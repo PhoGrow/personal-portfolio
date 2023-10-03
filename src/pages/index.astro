@@ -1,15 +1,17 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import {
-  OHeroBanner,
   ONavbar,
+  OHeroBanner,
   OCv,
-  OEducation,
   OSkills,
+  OEducation,
   OInterests,
   OFooter,
 } from '@components/organisms';
 
+// ID value of CV to be scrolled (#)
+const cvId = 'cv';
 // Slot names of CV have to be equal
 const cvSectionOrder = ['skills', 'education', 'interests'];
 ---
@@ -19,8 +21,8 @@ const cvSectionOrder = ['skills', 'education', 'interests'];
     <ONavbar client:load />
   </header>
   <main>
-    <OHeroBanner client:load />
-    <OCv sections={cvSectionOrder} client:idle>
+    <OHeroBanner cvId={cvId} client:load />
+    <OCv id={cvId} sections={cvSectionOrder} client:idle>
       <OSkills slot="skills" client:visible />
       <OEducation slot="education" client:visible />
       <OInterests slot="interests" client:visible />

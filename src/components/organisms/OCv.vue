@@ -1,5 +1,5 @@
 <template>
-  <div v-show="isCvVisible" :id="cvId">
+  <div v-show="isCvVisible">
     <MHero v-for="name of sections" :key="name" :has-horizontal-padding="false">
       <slot :name="name"></slot>
     </MHero>
@@ -9,7 +9,8 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
 import MHero from '@molecules/MHero.vue';
-import { useGlobalState } from '@stores';
+import { useUtilStore, store } from '@stores';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'OCv',
@@ -23,8 +24,8 @@ export default defineComponent({
     },
   },
   setup() {
-    const { isCvVisible, cvId } = useGlobalState();
-    return { isCvVisible, cvId };
+    const { isCvVisible } = storeToRefs(useUtilStore(store));
+    return { isCvVisible };
   },
 });
 </script>
