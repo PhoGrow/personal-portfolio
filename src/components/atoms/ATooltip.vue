@@ -1,25 +1,22 @@
 <template>
-  <AClientOnly>
-    <OTooltip
-      :label="label"
-      :position="position"
-      :variant="variant || (isDark ? 'secondary' : 'dark')"
-    >
-      <slot></slot>
-    </OTooltip>
-  </AClientOnly>
+  <OTooltip
+    :label="isMounted ? label : ''"
+    :position="position"
+    :variant="isMounted ? variant || (isDark ? 'secondary' : 'dark') : ''"
+  >
+    <slot></slot>
+  </OTooltip>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AClientOnly from '@atoms/AClientOnly.vue';
 import { OTooltip } from '@oruga-ui/oruga-next';
 import { useDarkMode } from '@stores';
+import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
   name: 'ATooltip',
   components: {
-    AClientOnly,
     OTooltip,
   },
   props: {
@@ -41,7 +38,9 @@ export default defineComponent({
   },
   setup() {
     const isDark = useDarkMode();
-    return { isDark };
+    const isMounted = useMounted();
+
+    return { isDark, isMounted };
   },
 });
 </script>

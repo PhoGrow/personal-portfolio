@@ -1,37 +1,32 @@
 <template>
-  <AClientOnly>
-    <component
-      :is="href ? 'a' : 'button'"
-      :href="href || null"
-      :class="[
-        `button is-${size}`,
-        variant ? `is-${variant}` : '',
-        {
-          'is-dark': isDark && !variant,
-          'is-rounded': isRounded,
-          'has-background-transparent has-border-color-transparent':
-            isTransparent,
-          'is-pulled-right': isPulledRight,
-        },
-      ]"
-      :style="isSquare ? 'aspect-ratio: 1' : ''"
-      @click="$emit('click')"
-    >
-      <slot></slot>
-    </component>
-  </AClientOnly>
+  <component
+    :is="href ? 'a' : 'button'"
+    :href="href || null"
+    :class="[
+      `button is-${size}`,
+      variant ? `is-${variant}` : '',
+      {
+        'is-dark': isMounted && isDark && !variant,
+        'is-rounded': isRounded,
+        'has-background-transparent has-border-color-transparent':
+          isTransparent,
+        'is-pulled-right': isPulledRight,
+      },
+    ]"
+    :style="isSquare ? 'aspect-ratio: 1' : ''"
+    @click="$emit('click')"
+  >
+    <slot></slot>
+  </component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AClientOnly from '@atoms/AClientOnly.vue';
 import { useDarkMode } from '@stores';
+import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
   name: 'AButton',
-  components: {
-    AClientOnly,
-  },
   props: {
     href: {
       type: String,
@@ -59,7 +54,9 @@ export default defineComponent({
   emits: ['click'],
   setup() {
     const isDark = useDarkMode();
-    return { isDark };
+    const isMounted = useMounted();
+
+    return { isDark, isMounted };
   },
 });
 </script>

@@ -1,30 +1,25 @@
 <template>
-  <AClientOnly>
-    <span
-      :class="[
-        `tag is-rounded is-${size}`,
-        `is-${variant || (isDark ? 'dark' : 'white')}`,
-        {
-          'has-text-weight-medium': size === 'large',
-          'is-absolute': isAbsolute,
-        },
-      ]"
-    >
-      <slot></slot>
-    </span>
-  </AClientOnly>
+  <span
+    :class="[
+      `tag is-rounded is-${size}`,
+      isMounted ? `is-${variant || (isDark ? 'dark' : 'white')}` : '',
+      {
+        'has-text-weight-medium': size === 'large',
+        'is-absolute': isAbsolute,
+      },
+    ]"
+  >
+    <slot></slot>
+  </span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AClientOnly from '@atoms/AClientOnly.vue';
 import { useDarkMode } from '@stores';
+import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
   name: 'ATag',
-  components: {
-    AClientOnly,
-  },
   props: {
     size: {
       type: String,
@@ -41,7 +36,9 @@ export default defineComponent({
   },
   setup() {
     const isDark = useDarkMode();
-    return { isDark };
+    const isMounted = useMounted();
+
+    return { isDark, isMounted };
   },
 });
 </script>

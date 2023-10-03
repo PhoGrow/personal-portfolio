@@ -1,34 +1,31 @@
 <template>
-  <AClientOnly>
-    <component
-      :is="tag"
-      :class="[
-        'box is-flex is-align-items-center',
-        `has-background-${isDark ? 'dark' : 'white'}`,
-        `py-${hasSmallPadding ? 4 : 6}`,
-        {
-          'h-full': isFullheight,
-          'w-full': isFullwidth,
-          'is-justify-content-center': isJustifyContentCenter,
-        },
-      ]"
-    >
-      <AIcon :icon="icon" :size="size" />
-      <p class="title ml-3">{{ title }}</p>
-    </component>
-  </AClientOnly>
+  <component
+    :is="tag"
+    :class="[
+      'box is-flex is-align-items-center',
+      isMounted ? `has-background-${isDark ? 'dark' : 'white'}` : '',
+      `py-${hasSmallPadding ? 4 : 6}`,
+      {
+        'h-full': isFullheight,
+        'w-full': isFullwidth,
+        'is-justify-content-center': isJustifyContentCenter,
+      },
+    ]"
+  >
+    <AIcon :icon="icon" :size="size" />
+    <p class="title ml-3">{{ title }}</p>
+  </component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AClientOnly from '@atoms/AClientOnly.vue';
 import AIcon from '@atoms/AIcon.vue';
 import { useDarkMode } from '@stores';
+import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
   name: 'MIconWithTitle',
   components: {
-    AClientOnly,
     AIcon,
   },
   props: {
@@ -58,7 +55,9 @@ export default defineComponent({
   },
   setup() {
     const isDark = useDarkMode();
-    return { isDark };
+    const isMounted = useMounted();
+
+    return { isDark, isMounted };
   },
 });
 </script>

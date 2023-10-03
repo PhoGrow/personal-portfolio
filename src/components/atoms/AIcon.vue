@@ -1,31 +1,26 @@
 <template>
-  <AClientOnly>
-    <span
-      :class="[
-        `icon is-${size}`,
-        `has-text-${variant || (isDark ? 'secondary' : 'dark')}`,
-      ]"
+  <span
+    :class="[
+      `icon is-${size}`,
+      isMounted ? `has-text-${variant || (isDark ? 'secondary' : 'dark')}` : '',
+    ]"
+  >
+    <i
+      class="material-icons-round"
+      :style="{ fontSize: `${fontSizes[size]}rem` }"
     >
-      <i
-        class="material-icons-round"
-        :style="{ fontSize: `${fontSizes[size]}rem` }"
-      >
-        {{ icon }}
-      </i>
-    </span>
-  </AClientOnly>
+      {{ isMounted ? icon : 'pending' }}
+    </i>
+  </span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AClientOnly from '@atoms/AClientOnly.vue';
 import { useDarkMode } from '@stores';
+import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
   name: 'AIcon',
-  components: {
-    AClientOnly,
-  },
   props: {
     icon: {
       type: String,
@@ -45,7 +40,9 @@ export default defineComponent({
   },
   setup() {
     const isDark = useDarkMode();
-    return { isDark };
+    const isMounted = useMounted();
+
+    return { isDark, isMounted };
   },
   data() {
     return {

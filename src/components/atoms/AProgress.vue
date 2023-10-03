@@ -1,27 +1,23 @@
 <template>
-  <AClientOnly>
-    <progress
-      :value="value"
-      :max="max"
-      :class="`progress is-${size} is-${
-        variant || (isDark ? 'secondary' : 'dark')
-      }`"
-    >
-      {{ (value / max) * 100 }}%
-    </progress>
-  </AClientOnly>
+  <progress
+    :value="value"
+    :max="max"
+    :class="[
+      `progress is-${size}`,
+      isMounted ? `is-${variant || (isDark ? 'secondary' : 'dark')}` : '',
+    ]"
+  >
+    {{ (value / max) * 100 }}%
+  </progress>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AClientOnly from '@atoms/AClientOnly.vue';
 import { useDarkMode } from '@stores';
+import { useMounted } from '@vueuse/core';
 
 export default defineComponent({
   name: 'AProgress',
-  components: {
-    AClientOnly,
-  },
   props: {
     value: {
       type: Number,
@@ -45,7 +41,9 @@ export default defineComponent({
   },
   setup() {
     const isDark = useDarkMode();
-    return { isDark };
+    const isMounted = useMounted();
+
+    return { isDark, isMounted };
   },
 });
 </script>
