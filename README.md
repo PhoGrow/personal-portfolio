@@ -7,7 +7,9 @@ Inside of your project, you'll see at least the following folders and files:
 ```
 /
 ├── public/
-│   └── favicon.svg
+│   ├── illustrations/
+│   │   └── *.svg
+│   └── favicon.png
 ├── src/
 │   ├── assets/
 │   │   └── *.scss
@@ -28,14 +30,14 @@ Inside of your project, you'll see at least the following folders and files:
   - `Bulma` takes care of styling
 - Enter your *data* (CV) in the `stores` folder
   - `Pinia` takes care of state management
-- Set your own *logo* for `favicon.svg` 😉
+- Set your own *logo* for `favicon.png` and *illustrations* in the `public` folder 😉
 
 ## 🧞 Commands
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |

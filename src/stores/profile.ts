@@ -15,10 +15,10 @@ export const useProfileStore = defineStore('profile', {
     },
   }),
   getters: {
-    firstName: (state) => state.fullName.split(' ')[0],
-    summaryInHtml: (state) => {
+    firstName: (state): string => state.fullName.split(' ')[0]!,
+    summaryInHtml: (state): string => {
       const { html } = useMdToHtml(state.summaryInMd);
-      return html;
+      return html.value;
     },
   },
 });

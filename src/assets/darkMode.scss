@@ -9,10 +9,6 @@ html.dark {
     color: $secondary;
   }
 
-  iframe {
-    filter: brightness(0.8) contrast(1.2);
-  }
-
   .title,
   h1 {
     color: $primary;

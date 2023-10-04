@@ -55,11 +55,6 @@ $footer-padding: $border-radius;
 
 // Other CSS
 
-// Iframe
-iframe {
-  border-radius: $border-radius;
-}
-
 // Border
 .has-border-bottom {
   border-bottom: 1px solid $secondary-dark;
@@ -82,21 +77,6 @@ iframe {
       width: $border-radius !important;
     }
   }
-}
-
-// Animation
-@keyframes borderColor {
-  from {
-    border-color: transparent;
-  }
-
-  to {
-    border-color: $secondary-dark;
-  }
-}
-
-.animate-border-color {
-  animation: 2s ease-in-out infinite alternate borderColor;
 }
 
 // Import Bulma and Oruga's Bulma theme
