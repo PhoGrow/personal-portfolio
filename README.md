@@ -30,7 +30,7 @@ Inside of your project, you'll see at least the following folders and files:
   - `Bulma` takes care of styling
 - Enter your *data* (CV) in the `stores` folder
   - `Pinia` takes care of state management
-- Set your own *logo* for `favicon.png` and *illustrations* in the `public` folder 😉
+- Set your own *logo* for `favicon.png` and other `illustrations` 😉
 
 ## 🧞 Commands
 
