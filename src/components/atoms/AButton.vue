@@ -8,8 +8,10 @@
       {
         'is-dark': isMounted && isDark && !variant,
         'is-rounded': isRounded,
+        'is-loading': isLoading,
         'has-background-transparent has-border-color-transparent':
           isTransparent,
+        'pointer-events-none': hasPointerEventsNone,
         'is-pulled-right': isPulledRight,
       },
     ]"
@@ -47,8 +49,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    isLoading: Boolean,
     isTransparent: Boolean,
     isSquare: Boolean,
+    hasPointerEventsNone: Boolean,
     isPulledRight: Boolean,
   },
   setup() {

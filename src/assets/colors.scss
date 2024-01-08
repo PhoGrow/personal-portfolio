@@ -15,3 +15,16 @@ $dark-primary: color-mix(in srgb, #121212, $primary 8%);
 $dark-primary-light: color-mix(in srgb, #1d1d1d, $primary 8%);
 $high-emphasis-text: rgb(255 255 255 / 0.87);
 $medium-emphasis-text: rgb(255 255 255 / 0.6);
+$dark-warning: color-mix(in srgb, $warning, #ffffff 40%);
+$dark-danger: color-mix(in srgb, $danger, #ffffff 40%);
+
+// CSS variables
+// :root {
+//   --primary: #{$primary};
+//   --primary-light: #{$primary-light};
+// }
+
+// :root.dark {
+//   --primary: #{$dark-primary};
+//   --primary-light: #{$dark-primary-light};
+// }

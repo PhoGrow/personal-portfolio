@@ -1,12 +1,19 @@
 html.dark {
   background-color: $dark-primary;
 
-  body {
+  body,
+  .dropdown-item {
     color: $medium-emphasis-text;
   }
 
   a {
     color: $secondary;
+  }
+
+  input {
+    background-color: $dark-primary-light;
+    color: $high-emphasis-text;
+    border-color: $grey;
   }
 
   .title,
@@ -20,13 +27,41 @@ html.dark {
   }
 
   .box,
-  .footer {
+  .footer,
+  .dropdown-content {
     background-color: $dark-primary-light;
     color: $medium-emphasis-text;
   }
 
-  .has-border-bottom {
-    border-color: $secondary;
+  .has-background-warning {
+    background: linear-gradient(
+      to right,
+      $dark-warning,
+      $dark-danger
+    ) !important;
+    .subtitle {
+      color: $dark;
+    }
+  }
+
+  .dropdown-item:hover {
+    background-color: $secondary;
+  }
+
+  .dropdown-divider {
+    background-color: $grey-dark;
+  }
+
+  .has-border {
+    &-bottom {
+      border-color: $secondary;
+    }
+    &-dashed {
+      border-color: $grey-dark;
+    }
+    &-hover {
+      border-color: $grey-dark;
+    }
   }
 
   .carousel .carousel-indicator .indicator-item {

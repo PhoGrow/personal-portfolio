@@ -13,7 +13,7 @@
     ]"
   >
     <AIcon :icon="icon" :size="size" />
-    <p class="title ml-3">{{ title }}</p>
+    <span class="title ml-3">{{ title }}</span>
   </component>
 </template>
 

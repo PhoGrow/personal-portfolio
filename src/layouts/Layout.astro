@@ -52,6 +52,10 @@ const { title } = Astro.props;
     position: fixed !important;
   }
 
+  .has-text-transparent {
+    color: transparent !important;
+  }
+
   .has-background-transparent {
     background-color: transparent !important;
   }
@@ -88,5 +92,25 @@ const { title } = Astro.props;
 
   .w-full {
     width: 100%;
+  }
+
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pointer-events-none {
+    pointer-events: none;
+  }
+
+  .border-left-none {
+    border-left: none;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 </style>

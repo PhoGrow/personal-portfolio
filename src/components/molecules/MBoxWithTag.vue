@@ -1,7 +1,7 @@
 <template>
   <div class="box is-relative h-full pt-6">
     <ATag size="large" :variant="isDark ? 'primary' : 'white'" is-absolute>
-      {{ title }}
+      {{ capitalizedTitle }}
     </ATag>
     <slot></slot>
   </div>
@@ -27,6 +27,11 @@ export default defineComponent({
   setup() {
     const { isDark } = storeToRefs(useUtilStore(store));
     return { isDark };
+  },
+  computed: {
+    capitalizedTitle(): string {
+      return this.title.charAt(0).toUpperCase() + this.title.slice(1);
+    },
   },
 });
 </script>

@@ -1,5 +1,8 @@
 <template>
-  <footer v-show="isCvVisible" class="footer has-text-centered">
+  <footer
+    v-show="isCvVisible || isFooterVisible"
+    class="footer has-text-centered"
+  >
     <p>
       Made with <span class="is-inline-flex heartbeat">♥︎</span> by
       {{ fullName }}
@@ -15,6 +18,9 @@ import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'OFooter',
+  props: {
+    isFooterVisible: Boolean,
+  },
   setup() {
     const { fullName } = useProfileStore(store);
     const { isCvVisible } = storeToRefs(useUtilStore(store));

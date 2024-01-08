@@ -7,13 +7,14 @@ import {
   OSkills,
   OEducation,
   OInterests,
+  OProjects,
   OFooter,
 } from '@components/organisms';
 
 // ID value of CV to be scrolled (#)
 const cvId = 'cv';
 // Slot names of CV have to be equal
-const cvSectionOrder = ['skills', 'education', 'interests'];
+const cvSectionOrder = ['skills', 'education', 'interests', 'projects'];
 ---
 
 <Layout title="Personal portfolio">
@@ -26,6 +27,7 @@ const cvSectionOrder = ['skills', 'education', 'interests'];
       <OSkills slot="skills" client:visible />
       <OEducation slot="education" client:visible />
       <OInterests slot="interests" client:visible />
+      <OProjects slot="projects" client:visible />
     </OCv>
   </main>
   <OFooter client:idle />

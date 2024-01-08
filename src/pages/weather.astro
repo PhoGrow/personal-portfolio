@@ -1,0 +1,16 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { ONavbar, OWeather, OFooter } from '@components/organisms';
+---
+
+<Layout title="Weather widget">
+  <header>
+    <ONavbar client:load />
+  </header>
+  <main>
+    <OWeather client:load />
+  </main>
+  <OFooter isFooterVisible client:idle />
+</Layout>
+
+<style></style>

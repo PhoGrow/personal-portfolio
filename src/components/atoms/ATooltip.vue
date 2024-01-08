@@ -1,7 +1,7 @@
 <template>
   <OTooltip
     :label="isMounted ? label : ''"
-    :position="position"
+    :position="isMounted ? position : 'bottom'"
     :variant="isMounted ? variant || (isDark ? 'secondary' : 'dark') : ''"
   >
     <slot></slot>
