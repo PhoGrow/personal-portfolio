@@ -4,12 +4,12 @@
     <AColumns>
       <AColumn class="is-6">
         <MCarousel
-          :total-item-number="educationStore.$state.length"
+          :total-item-number="education.length"
           @change="(itemNumber) => (carouselItemNumber = itemNumber)"
         >
           <MIconWithTitle
             icon="school"
-            :title="getEducationItem('topic') as string"
+            :title="currentEducationItem.topic"
             is-fullheight
           />
         </MCarousel>
@@ -19,43 +19,32 @@
         <AColumn :key="carouselItemNumber">
           <div class="block">
             <p class="heading">
-              {{ (getEducationItem('period') as [number, number])[0] }} –
-              {{ (getEducationItem('period') as [number, number])[1] }}
+              {{ currentEducationItem.period[0] }} –
+              {{ currentEducationItem.period[1] }}
             </p>
             <p>
               <span class="title is-5 mr-2">
-                {{ (getEducationItem('degree') as [string, string])[0] }}
-                {{ (getEducationItem('degree') as [string, string])[1] }}
+                {{ currentEducationItem.degree[0] }}
+                {{ currentEducationItem.degree[1] }}
               </span>
-              <span class="has-text-grey">Ø{{ getEducationItem('gpa') }}</span>
+              <span class="has-text-grey">Ø{{ currentEducationItem.gpa }}</span>
             </p>
             <p>
-              <span class="mr-2">{{ getEducationItem('university') }}</span>
+              <span class="mr-2">{{ currentEducationItem.university }}</span>
               <span class="has-text-grey">
-                {{ (getEducationItem('location') as [string, string])[0] }},
-                {{ (getEducationItem('location') as [string, string])[1] }}
+                {{ currentEducationItem.location[0] }},
+                {{ currentEducationItem.location[1] }}
               </span>
             </p>
           </div>
           <ul>
             <li
-              v-for="({ name, descriptionInMd }, i) of getEducationItem(
-                'activities',
-              ) as {
-                name: string;
-                descriptionInMd: string;
-              }[]"
+              v-for="(
+                { name, descriptionInMd }, i
+              ) of currentEducationItem.activities"
               :key="name"
               :class="{
-                'mb-3':
-                  i !==
-                  (
-                    getEducationItem('activities') as {
-                      name: string;
-                      descriptionInMd: string;
-                    }[]
-                  ).length -
-                    1,
+                'mb-3': i !== currentEducationItem.activities.length - 1,
               }"
             >
               <span class="has-text-weight-medium mr-2">{{ name }}</span>
@@ -68,49 +57,27 @@
   </MBoxWithTag>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 import MBoxWithTag from '@molecules/MBoxWithTag.vue';
 import MCarousel from '@molecules/MCarousel.vue';
 import MIconWithTitle from '@molecules/MIconWithTitle.vue';
 import AColumns from '@atoms/AColumns.vue';
 import AColumn from '@atoms/AColumn.vue';
 import ATransitionFade from '@atoms/ATransitionFade.vue';
-import { useEducationStore, useUtilStore, useMdToHtml, store } from '@stores';
-import type { Education } from '@stores';
-import { storeToRefs } from 'pinia';
+import { useEducationStore, useMdToHtml, store } from '@stores';
 
-export default defineComponent({
-  name: 'OEducation',
-  components: {
-    MBoxWithTag,
-    AColumns,
-    AColumn,
-    MCarousel,
-    MIconWithTitle,
-    ATransitionFade,
-  },
-  setup() {
-    const educationStore = useEducationStore(store);
-    const { isDark } = storeToRefs(useUtilStore(store));
+const { education } = useEducationStore(store);
 
-    return { educationStore, isDark };
-  },
-  data() {
-    return {
-      carouselItemNumber: 0,
-    };
-  },
-  methods: {
-    getEducationItem(key: keyof Education) {
-      return this.educationStore[this.carouselItemNumber]![key];
-    },
-    mdToHtml(md: string): string {
-      const { html } = useMdToHtml(md);
-      return html.value;
-    },
-  },
-});
+const carouselItemNumber = ref(0);
+const currentEducationItem = computed(
+  () => education[carouselItemNumber.value]!,
+);
+
+function mdToHtml(md: string): string {
+  const { html } = useMdToHtml(md);
+  return html.value;
+}
 </script>
 
 <style scoped>

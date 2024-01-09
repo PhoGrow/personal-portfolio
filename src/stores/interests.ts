@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useInterestsStore = defineStore('interests', {
-  state: (): Interest[] => [
+export const useInterestsStore = defineStore('interests', () => {
+  const interests = ref<Interest[]>([
     {
       icon: 'music_note',
       topic: 'Music',
@@ -23,12 +24,14 @@ export const useInterestsStore = defineStore('interests', {
       description: `Ever heard of memento mori? Get started with Stoicism, a philosophy with powerful principles that everyone can benefit from.
       I was introduced to Stoicism through the work of Ryan Holiday and was exposed to figures like Marcus Aurelius, etc.`,
     },
-  ],
+  ]);
+
+  return { interests };
 });
 
-export interface Interest {
+export type Interest = {
   icon: string;
   topic: string;
   title: string;
   description: string;
-}
+};

@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- Accessibility concern: no label used -->
-    <o-field class="mb-0">
-      <o-autocomplete
+    <OField class="mb-0">
+      <OAutocomplete
         :data="data"
         :field="field"
         :debounce-typing="debounceTimeInMs"
@@ -22,9 +22,9 @@
         <template #footer>
           <slot name="footer"></slot>
         </template>
-      </o-autocomplete>
-    </o-field>
-    <a-icon
+      </OAutocomplete>
+    </OField>
+    <AIcon
       :icon="icon!"
       size="medium"
       :variant="isFetching ? 'transparent' : ''"

@@ -6,28 +6,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue';
+<script setup lang="ts">
 import MHero from '@molecules/MHero.vue';
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  name: 'OCv',
-  components: {
-    MHero,
-  },
-  props: {
-    sections: {
-      type: Array as PropType<string[]>,
-      required: true,
-    },
-  },
-  setup() {
-    const { isCvVisible } = storeToRefs(useUtilStore(store));
-    return { isCvVisible };
-  },
-});
+defineProps<{
+  sections: string[];
+}>();
+
+const { isCvVisible } = storeToRefs(useUtilStore(store));
 </script>
 
 <style scoped></style>

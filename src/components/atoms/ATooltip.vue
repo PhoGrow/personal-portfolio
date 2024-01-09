@@ -8,51 +8,35 @@
   </OTooltip>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { OTooltip } from '@oruga-ui/oruga-next';
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
-export default defineComponent({
-  name: 'ATooltip',
-  components: {
-    OTooltip,
+withDefaults(
+  defineProps<{
+    label: string;
+    position?: 'top' | 'bottom' | 'left' | 'right';
+    variant?: string;
+  }>(),
+  {
+    position: 'bottom',
+    variant: '',
   },
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    position: {
-      type: String,
-      default: 'bottom',
-      validator(position: string) {
-        return ['top', 'bottom', 'left', 'right'].includes(position);
-      },
-    },
-    variant: {
-      type: String,
-      default: '',
-    },
-  },
-  setup() {
-    const { isDark } = storeToRefs(useUtilStore(store));
-    const isMounted = useMounted();
+);
 
-    return { isDark, isMounted };
-  },
-});
+const { isDark } = storeToRefs(useUtilStore(store));
+const isMounted = useMounted();
 </script>
 
-<style>
-.b-tooltip .tooltip-content {
+<style scoped>
+.b-tooltip :deep(.tooltip-content) {
   font-size: 1rem;
   font-weight: 500;
 }
 
-.b-tooltip .tooltip-trigger {
+.b-tooltip :deep(.tooltip-trigger) {
   display: flex;
 }
 </style>

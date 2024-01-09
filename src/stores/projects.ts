@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
+import { computed, reactive } from 'vue';
 import { useMdToHtml } from '.';
 
-export const useProjectsStore = defineStore('projects', {
-  state: (): Projects => ({
+export const useProjectsStore = defineStore('projects', () => {
+  const projects: Projects = reactive({
     descriptionInMd: `This section presents past projects, most likely from work,
     in the form of a blog and a link to the production site. There are exceptions.`,
     projects: [
@@ -12,20 +13,21 @@ export const useProjectsStore = defineStore('projects', {
         topic: 'Weather',
       },
     ],
-  }),
-  getters: {
-    descriptionInHtml: (state): string => {
-      const { html } = useMdToHtml(state.descriptionInMd);
-      return html.value;
-    },
-  },
+  });
+
+  const descriptionInHtml = computed(() => {
+    const { html } = useMdToHtml(projects.descriptionInMd);
+    return html.value;
+  });
+
+  return { projects, descriptionInHtml };
 });
 
-export interface Projects {
+export type Projects = {
   descriptionInMd: string;
   projects: {
     link: string;
     icon: string;
     topic: string;
   }[];
-}
+};

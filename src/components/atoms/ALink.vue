@@ -4,23 +4,14 @@
   </a>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 
-export default defineComponent({
-  name: 'ALink',
-  props: {
-    href: {
-      type: String,
-      required: true,
-    },
-  },
-  computed: {
-    isExternal(): boolean {
-      return this.href.startsWith('http');
-    },
-  },
-});
+const props = defineProps<{
+  href: string;
+}>();
+
+const isExternal = computed(() => props.href.startsWith('http'));
 </script>
 
 <style>

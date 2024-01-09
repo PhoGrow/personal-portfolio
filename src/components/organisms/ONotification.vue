@@ -8,24 +8,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import AIcon from '@atoms/AIcon.vue';
 import { useProfileStore, useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  name: 'ONotification',
-  components: {
-    AIcon,
-  },
-  setup() {
-    const { firstName } = useProfileStore(store);
-    const { isDark } = storeToRefs(useUtilStore(store));
-
-    return { firstName, isDark };
-  },
-});
+const { firstName } = useProfileStore(store);
+const { isDark } = storeToRefs(useUtilStore(store));
 </script>
 
 <style scoped></style>

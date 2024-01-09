@@ -7,57 +7,39 @@
   >
     <i
       class="material-icons-round"
-      :style="{ fontSize: `${fontSizes[size]}rem` }"
+      :style="{ fontSize: `${fontSizes[size!]}rem` }"
     >
       {{ isMounted ? icon : 'pending' }}
     </i>
   </span>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
-export default defineComponent({
-  name: 'AIcon',
-  props: {
-    icon: {
-      type: String,
-      required: true,
-    },
-    size: {
-      type: String,
-      default: 'large',
-      validator(size: string) {
-        return ['small', 'normal', 'medium', 'large'].includes(size);
-      },
-    },
-    variant: {
-      type: String,
-      default: '',
-    },
+const props = withDefaults(
+  defineProps<{
+    icon: string;
+    size?: 'small' | 'normal' | 'medium' | 'large';
+    variant?: string;
+  }>(),
+  {
+    size: 'large',
+    variant: '',
   },
-  setup() {
-    const { isDark } = storeToRefs(useUtilStore(store));
-    const isMounted = useMounted();
+);
 
-    return { isDark, isMounted };
-  },
-  data() {
-    return {
-      fontSizes: {
-        small: 1,
-        normal: 1.5,
-        medium: 2,
-        large: 3,
-      } as {
-        [size: string]: number;
-      },
-    };
-  },
-});
+const { isDark } = storeToRefs(useUtilStore(store));
+const isMounted = useMounted();
+
+const fontSizes = {
+  small: 1,
+  normal: 1.5,
+  medium: 2,
+  large: 3,
+} as const satisfies Record<typeof props.size, 1 | 1.5 | 2 | 3>;
 </script>
 
 <style scoped></style>

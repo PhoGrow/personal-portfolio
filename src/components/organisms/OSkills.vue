@@ -4,7 +4,7 @@
       <MBoxWithTag title="My hard skills">
         <AUnorderedList>
           <li
-            v-for="{ name, items, rating } of hardSkills"
+            v-for="{ name, items, rating } of skills.hardSkills"
             :key="name"
             class="block w-full"
           >
@@ -28,7 +28,7 @@
       <MBoxWithTag title="My soft skills">
         <AUnorderedList>
           <MIconWithTitle
-            v-for="{ icon, name } of softSkills"
+            v-for="{ icon, name } of skills.softSkills"
             :key="name"
             tag="li"
             :icon="icon"
@@ -44,8 +44,7 @@
   </AColumns>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import MBoxWithTag from '@molecules/MBoxWithTag.vue';
 import MIconWithTitle from '@molecules/MIconWithTitle.vue';
 import AColumns from '@atoms/AColumns.vue';
@@ -53,27 +52,9 @@ import AColumn from '@atoms/AColumn.vue';
 import AUnorderedList from '@atoms/AUnorderedList.vue';
 import ATag from '@atoms/ATag.vue';
 import AProgress from '@atoms/AProgress.vue';
-import { useSkillsStore, useUtilStore, store } from '@/stores';
-import { storeToRefs } from 'pinia';
+import { useSkillsStore, store } from '@/stores';
 
-export default defineComponent({
-  name: 'OSkills',
-  components: {
-    AColumns,
-    AColumn,
-    MBoxWithTag,
-    AUnorderedList,
-    ATag,
-    AProgress,
-    MIconWithTitle,
-  },
-  setup() {
-    const { hardSkills, softSkills } = useSkillsStore(store);
-    const { isDark } = storeToRefs(useUtilStore(store));
-
-    return { hardSkills, softSkills, isDark };
-  },
-});
+const { skills } = useSkillsStore(store);
 </script>
 
 <style scoped></style>

@@ -12,7 +12,10 @@
 <script setup lang="ts">
 import AIcon from '@atoms/AIcon.vue';
 
-defineProps<{ variant: string; icon?: string }>();
+defineProps<{
+  variant: string;
+  icon?: string;
+}>();
 </script>
 
 <style scoped></style>

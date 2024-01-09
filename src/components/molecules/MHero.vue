@@ -22,22 +22,19 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'MHero',
-  props: {
-    isFullheight: Boolean,
-    isFullheightWithNavbar: Boolean,
-    hasHeroHeader: Boolean,
-    hasHeroFooter: Boolean,
-    hasHorizontalPadding: {
-      type: Boolean,
-      default: true,
-    },
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    isFullheight?: boolean;
+    isFullheightWithNavbar?: boolean;
+    hasHeroHeader?: boolean;
+    hasHeroFooter?: boolean;
+    hasHorizontalPadding?: boolean;
+  }>(),
+  {
+    hasHorizontalPadding: true,
   },
-});
+);
 </script>
 
 <style scoped></style>

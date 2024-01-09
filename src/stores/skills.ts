@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
+import { reactive } from 'vue';
 
-export const useSkillsStore = defineStore('skills', {
-  state: (): Skills => ({
+export const useSkillsStore = defineStore('skills', () => {
+  const skills: Skills = reactive({
     hardSkills: [
       {
         name: 'Frontend',
@@ -37,10 +38,12 @@ export const useSkillsStore = defineStore('skills', {
       { icon: 'thumb_up_alt', name: 'Enthusiasm' },
       { icon: 'construction', name: 'Problem solving' },
     ],
-  }),
+  });
+
+  return { skills };
 });
 
-export interface Skills {
+export type Skills = {
   hardSkills: {
     name: string;
     items: string[];
@@ -50,4 +53,4 @@ export interface Skills {
     icon: string;
     name: string;
   }[];
-}
+};

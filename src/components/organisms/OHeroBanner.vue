@@ -3,24 +3,18 @@
   <MHero is-fullheight-with-navbar>
     <AColumns class="is-vcentered is-flex-direction-row-reverse">
       <AColumn>
-        <AImage :src="image.src" :alt="image.alt" />
+        <AImage :src="profile.image.src" :alt="profile.image.alt" />
       </AColumn>
       <AColumn class="is-narrow"></AColumn>
       <AColumn class="content is-medium">
-        <h1>Hi, I'm {{ fullName }}.</h1>
+        <h1>Hi, I'm {{ profile.fullName }}.</h1>
         <div class="block">
           <div
-            v-for="[device, lineClamp] of [
-              ['mobile', 3],
-              ['tablet', 5],
-            ] as [string, number][]"
-            :key="device"
-            :class="[
-              `is-hidden-${device}`,
+            :class="
               !(isProfileExpanded || isCvVisible)
-                ? `has-line-clamp-${lineClamp}`
-                : '',
-            ]"
+                ? `has-line-clamp-${isMounted && isMobile ? 5 : 3}`
+                : ''
+            "
             v-html="summaryInHtml"
           ></div>
           <MButtonWithIcon
@@ -39,8 +33,8 @@
   </MHero>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import ONotification from '@organisms/ONotification.vue';
 import MHero from '@molecules/MHero.vue';
 import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
@@ -50,66 +44,40 @@ import AButton from '@atoms/AButton.vue';
 import AImage from '@atoms/AImage.vue';
 import { useProfileStore, useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
+import { useMounted } from '@vueuse/core';
 import { useProgrammatic } from '@oruga-ui/oruga-next';
 import confetti from 'canvas-confetti';
 
-export default defineComponent({
-  name: 'OHeroBanner',
-  components: {
-    MHero,
-    AColumns,
-    AColumn,
-    AButton,
-    AImage,
-    MButtonWithIcon,
-  },
-  props: {
-    cvId: {
-      type: String,
-      required: true,
-    },
-  },
-  setup() {
-    const { fullName, image, summaryInHtml } = useProfileStore(store);
-    const { isCvVisible, isDark } = storeToRefs(useUtilStore(store));
+defineProps<{
+  cvId: string;
+}>();
 
-    const useToast = () => {
-      const { oruga } = useProgrammatic();
-      oruga.notification.open({
-        duration: 4000,
-        component: ONotification,
-        position: 'bottom',
-        variant: isDark.value ? 'secondary' : 'dark',
-      });
-    };
+const { profile, summaryInHtml } = useProfileStore(store);
+const { isCvVisible, isDark, isMobile } = storeToRefs(useUtilStore(store));
+const isMounted = useMounted();
 
-    return {
-      fullName,
-      image,
-      summaryInHtml,
-      isCvVisible,
-      isDark,
-      useToast,
-    };
-  },
-  data() {
-    return {
-      isProfileExpanded: false,
-    };
-  },
-  methods: {
-    async showCv() {
-      this.isCvVisible = true;
-      this.useToast();
-      await confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.8 },
-        disableForReducedMotion: true,
-      });
-    },
-  },
-});
+const isProfileExpanded = ref(false);
+
+async function showCv() {
+  const useToast = () => {
+    const { oruga } = useProgrammatic();
+    oruga.notification.open({
+      duration: 4000,
+      component: ONotification,
+      position: 'bottom',
+      variant: isDark.value ? 'secondary' : 'dark',
+    });
+  };
+
+  isCvVisible.value = true;
+  useToast();
+  await confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.8 },
+    disableForReducedMotion: true,
+  });
+}
 </script>
 
 <style scoped></style>

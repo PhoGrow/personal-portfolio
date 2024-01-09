@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useEducationStore = defineStore('education', {
-  state: (): Education[] => [
+export const useEducationStore = defineStore('education', () => {
+  const education = ref<Education[]>([
     {
       topic: 'Master studies',
       period: [2020, 2022],
@@ -50,10 +51,12 @@ export const useEducationStore = defineStore('education', {
         },
       ],
     },
-  ],
+  ]);
+
+  return { education };
 });
 
-export interface Education {
+export type Education = {
   topic: string;
   period: [start: number, end: number];
   location: [city: string, country: string];
@@ -64,4 +67,4 @@ export interface Education {
     name: string;
     descriptionInMd: string;
   }[];
-}
+};

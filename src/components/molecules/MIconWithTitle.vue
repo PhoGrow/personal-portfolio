@@ -12,55 +12,37 @@
       },
     ]"
   >
-    <AIcon :icon="icon" :size="size" />
+    <AIcon :icon="icon" :size="size!" />
     <span class="title ml-3">{{ title }}</span>
   </component>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import AIcon from '@atoms/AIcon.vue';
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
-export default defineComponent({
-  name: 'MIconWithTitle',
-  components: {
-    AIcon,
+withDefaults(
+  defineProps<{
+    tag?: string;
+    icon: string;
+    size?: 'small' | 'normal' | 'medium' | 'large';
+    title: string;
+    hasSmallPadding?: boolean;
+    isFullheight?: boolean;
+    isFullwidth?: boolean;
+    isJustifyContentCenter?: boolean;
+  }>(),
+  {
+    tag: 'section',
+    size: 'large',
+    isJustifyContentCenter: true,
   },
-  props: {
-    tag: {
-      type: String,
-      default: 'section',
-    },
-    icon: {
-      type: String,
-      required: true,
-    },
-    size: {
-      type: String,
-      default: 'large',
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    hasSmallPadding: Boolean,
-    isFullheight: Boolean,
-    isFullwidth: Boolean,
-    isJustifyContentCenter: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  setup() {
-    const { isDark } = storeToRefs(useUtilStore(store));
-    const isMounted = useMounted();
+);
 
-    return { isDark, isMounted };
-  },
-});
+const { isDark } = storeToRefs(useUtilStore(store));
+const isMounted = useMounted();
 </script>
 
 <style scoped></style>

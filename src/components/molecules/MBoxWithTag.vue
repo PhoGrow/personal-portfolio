@@ -7,33 +7,21 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 import ATag from '@atoms/ATag.vue';
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  name: 'MBoxWithTag',
-  components: {
-    ATag,
-  },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-  },
-  setup() {
-    const { isDark } = storeToRefs(useUtilStore(store));
-    return { isDark };
-  },
-  computed: {
-    capitalizedTitle(): string {
-      return this.title.charAt(0).toUpperCase() + this.title.slice(1);
-    },
-  },
-});
+const props = defineProps<{
+  title: string;
+}>();
+
+const capitalizedTitle = computed(
+  () => props.title.charAt(0).toUpperCase() + props.title.slice(1),
+);
+
+const { isDark } = storeToRefs(useUtilStore(store));
 </script>
 
 <style scoped></style>

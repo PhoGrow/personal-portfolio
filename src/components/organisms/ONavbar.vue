@@ -8,7 +8,7 @@
       <div class="navbar-brand is-flex-grow-1">
         <ALink href="#" class="navbar-item mr-auto">
           <ATooltip label="That's me!" position="right">
-            <AImage src="favicon.png" :alt="fullName" is-rounded />
+            <AImage src="favicon.png" :alt="profile.fullName" is-rounded />
           </ATooltip>
         </ALink>
         <ALink
@@ -19,7 +19,7 @@
             <AImage src="logos/github.svg" alt="GitHub" :is-inverted="isDark" />
           </ATooltip>
         </ALink>
-        <ALink :href="linkedIn" class="navbar-item">
+        <ALink :href="profile.linkedIn" class="navbar-item">
           <ATooltip label="Contact me!">
             <AImage src="logos/linkedin.svg" alt="LinkedIn" />
           </ATooltip>
@@ -40,8 +40,7 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import MButtonWithIcon from '@molecules/MButtonWithIcon.vue';
 import ALink from '@atoms/ALink.vue';
 import ATooltip from '@atoms/ATooltip.vue';
@@ -50,22 +49,9 @@ import { useProfileStore, useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 import { useToggle } from '@vueuse/core';
 
-export default defineComponent({
-  name: 'ONavbar',
-  components: {
-    ALink,
-    ATooltip,
-    AImage,
-    MButtonWithIcon,
-  },
-  setup() {
-    const { fullName, linkedIn } = useProfileStore(store);
-    const { isDark, isMobile } = storeToRefs(useUtilStore(store));
-    const toggleDark = useToggle(isDark);
-
-    return { fullName, linkedIn, isDark, toggleDark, isMobile };
-  },
-});
+const { profile } = useProfileStore(store);
+const { isDark, isMobile } = storeToRefs(useUtilStore(store));
+const toggleDark = useToggle(isDark);
 </script>
 
 <style scoped></style>

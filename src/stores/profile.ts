@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
+import { computed, reactive } from 'vue';
 import { useMdToHtml } from '.';
 
-export const useProfileStore = defineStore('profile', {
-  state: (): Profile => ({
+export const useProfileStore = defineStore('profile', () => {
+  const profile: Profile = reactive({
     fullName: 'Rene Dietz',
     linkedIn: 'https://linkedin.com/in/renedietz',
     summaryInMd: `Master's graduate looking for a first position as a web developer with focus on frontend.
@@ -13,24 +14,25 @@ export const useProfileStore = defineStore('profile', {
       src: 'illustrations/building_websites.svg',
       alt: 'Building websites',
     },
-  }),
-  getters: {
-    firstName: (state): string => state.fullName.split(' ')[0]!,
-    summaryInHtml: (state): string => {
-      const { html } = useMdToHtml(state.summaryInMd);
-      return html.value;
-    },
-  },
+  });
+
+  const firstName = computed(() => profile.fullName.split(' ')[0]!);
+  const summaryInHtml = computed(() => {
+    const { html } = useMdToHtml(profile.summaryInMd);
+    return html.value;
+  });
+
+  return { profile, firstName, summaryInHtml };
 });
 
-export interface Profile {
+export type Profile = {
   fullName: string;
   linkedIn: string;
   summaryInMd: string;
   image: Image;
-}
+};
 
-export interface Image {
+export type Image = {
   src: string;
   alt: string;
-}
+};

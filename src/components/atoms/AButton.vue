@@ -21,47 +21,33 @@
   </component>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
-export default defineComponent({
-  name: 'AButton',
-  props: {
-    href: {
-      type: String,
-      default: '',
-    },
-    size: {
-      type: String,
-      default: 'medium',
-      validator(size: string) {
-        return ['small', 'normal', 'medium', 'large'].includes(size);
-      },
-    },
-    variant: {
-      type: String,
-      default: '',
-    },
-    isRounded: {
-      type: Boolean,
-      default: true,
-    },
-    isLoading: Boolean,
-    isTransparent: Boolean,
-    isSquare: Boolean,
-    hasPointerEventsNone: Boolean,
-    isPulledRight: Boolean,
+withDefaults(
+  defineProps<{
+    href?: string;
+    size?: 'small' | 'normal' | 'medium' | 'large';
+    variant?: string;
+    isRounded?: boolean;
+    isLoading?: boolean;
+    isTransparent?: boolean;
+    isSquare?: boolean;
+    hasPointerEventsNone?: boolean;
+    isPulledRight?: boolean;
+  }>(),
+  {
+    href: '',
+    size: 'medium',
+    variant: '',
+    isRounded: true,
   },
-  setup() {
-    const { isDark } = storeToRefs(useUtilStore(store));
-    const isMounted = useMounted();
+);
 
-    return { isDark, isMounted };
-  },
-});
+const { isDark } = storeToRefs(useUtilStore(store));
+const isMounted = useMounted();
 </script>
 
 <style scoped></style>

@@ -14,37 +14,22 @@
   </OCarousel>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref, watch } from 'vue';
 import { OCarousel, OCarouselItem } from '@oruga-ui/oruga-next';
 
-export default defineComponent({
-  name: 'MCarousel',
-  components: {
-    OCarousel,
-    OCarouselItem,
-  },
-  props: {
-    totalItemNumber: {
-      type: Number,
-      required: true,
-    },
-  },
-  emits: {
-    change(currentItemNumber: number, totalItemNumber: number) {
-      return currentItemNumber >= 0 && currentItemNumber < totalItemNumber;
-    },
-  },
-  data() {
-    return {
-      currentItemNumber: 0,
-    };
-  },
-  watch: {
-    currentItemNumber() {
-      this.$emit('change', this.currentItemNumber, this.totalItemNumber);
-    },
-  },
+const props = defineProps<{
+  totalItemNumber: number;
+}>();
+
+const emits = defineEmits<{
+  change: [currentItemNumber: number, totalItemNumber: number];
+}>();
+
+const currentItemNumber = ref(0);
+
+watch(currentItemNumber, () => {
+  emits('change', currentItemNumber.value, props.totalItemNumber);
 });
 </script>
 

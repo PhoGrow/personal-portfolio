@@ -36,7 +36,10 @@ import AColumn from '@atoms/AColumn.vue';
 import ALink from '@atoms/ALink.vue';
 import { useProjectsStore, store } from '@stores';
 
-const { projects, descriptionInHtml } = useProjectsStore(store);
+const {
+  projects: { projects },
+  descriptionInHtml,
+} = useProjectsStore(store);
 </script>
 
 <style scoped></style>

@@ -13,35 +13,25 @@
   </span>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 import { useMounted } from '@vueuse/core';
 
-export default defineComponent({
-  name: 'ATag',
-  props: {
-    size: {
-      type: String,
-      default: 'medium',
-      validator(size: string) {
-        return ['normal', 'medium', 'large'].includes(size);
-      },
-    },
-    variant: {
-      type: String,
-      default: '',
-    },
-    isAbsolute: Boolean,
+withDefaults(
+  defineProps<{
+    size?: 'normal' | 'medium' | 'large';
+    variant?: string;
+    isAbsolute?: boolean;
+  }>(),
+  {
+    size: 'medium',
+    variant: '',
   },
-  setup() {
-    const { isDark } = storeToRefs(useUtilStore(store));
-    const isMounted = useMounted();
+);
 
-    return { isDark, isMounted };
-  },
-});
+const { isDark } = storeToRefs(useUtilStore(store));
+const isMounted = useMounted();
 </script>
 
 <style scoped></style>

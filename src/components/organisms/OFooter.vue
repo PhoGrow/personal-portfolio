@@ -5,29 +5,22 @@
   >
     <p>
       Made with <span class="is-inline-flex heartbeat">♥︎</span> by
-      {{ fullName }}
+      {{ profile.fullName }}
     </p>
     <p class="heading mb-0">Thanks for taking the time!</p>
   </footer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useProfileStore, useUtilStore, store } from '@stores';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  name: 'OFooter',
-  props: {
-    isFooterVisible: Boolean,
-  },
-  setup() {
-    const { fullName } = useProfileStore(store);
-    const { isCvVisible } = storeToRefs(useUtilStore(store));
+defineProps<{
+  isFooterVisible?: boolean;
+}>();
 
-    return { fullName, isCvVisible };
-  },
-});
+const { profile } = useProfileStore(store);
+const { isCvVisible } = storeToRefs(useUtilStore(store));
 </script>
 
 <style scoped>

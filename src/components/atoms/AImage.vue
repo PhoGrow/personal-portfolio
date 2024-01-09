@@ -7,30 +7,18 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 
-export default defineComponent({
-  name: 'AImage',
-  props: {
-    src: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-      required: true,
-    },
-    isLazyLoaded: Boolean,
-    isRounded: Boolean,
-    isInverted: Boolean,
-  },
-  computed: {
-    invert(): number {
-      return this.isInverted ? 1 : 0;
-    },
-  },
-});
+const props = defineProps<{
+  src: string;
+  alt: string;
+  isLazyLoaded?: boolean;
+  isRounded?: boolean;
+  isInverted?: boolean;
+}>();
+
+const invert = computed(() => (props.isInverted ? 1 : 0));
 </script>
 
 <style scoped>
