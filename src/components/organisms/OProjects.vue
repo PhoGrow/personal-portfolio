@@ -14,7 +14,7 @@
             />
           </ALink>
         </AColumn>
-        <AColumn v-if="i < projects.length - 1" class="is-narrow"></AColumn>
+        <AColumn v-if="i !== projects.length - 1" class="is-narrow"></AColumn>
       </template>
       <template v-if="projects.length < 3">
         <template v-for="_n in 3 - projects.length" :key="_n">

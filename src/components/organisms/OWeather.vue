@@ -285,7 +285,7 @@ import MHero from '@molecules/MHero.vue';
 import MBoxWithTag from '@molecules/MBoxWithTag.vue';
 import MNotificationWithIcon from '@molecules/MNotificationWithIcon.vue';
 import AColumns from '@atoms/AColumns.vue';
-import AColumn from '@components/atoms/AColumn.vue';
+import AColumn from '@atoms/AColumn.vue';
 import AButton from '@atoms/AButton.vue';
 import AIcon from '@atoms/AIcon.vue';
 import AAutocomplete from '@atoms/AAutocomplete.vue';

@@ -56,7 +56,7 @@ withDefaults(
   },
 );
 
-const emit = defineEmits<{
+const emits = defineEmits<{
   input: [input: string];
   select: [option: T];
 }>();
@@ -64,7 +64,7 @@ const emit = defineEmits<{
 function emitSelected(option: T) {
   // @select event is triggered after clearing autocomplete
   if (option) {
-    emit('select', option);
+    emits('select', option);
   }
 }
 </script>

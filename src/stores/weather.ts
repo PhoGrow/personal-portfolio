@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed, reactive, watchEffect } from 'vue';
-import { useFetch, useGeolocation, useStorage } from '@vueuse/core';
+import { useGeolocation, useStorage } from '@vueuse/core';
 import { ofetch, type FetchError } from 'ofetch';
 
 export const useWeatherStore = defineStore('weather', () => {
@@ -89,58 +89,53 @@ export const useWeatherStore = defineStore('weather', () => {
   );
 
   async function init(): Promise<void> {
-    const checkAllServiceAvailabilities = async (): Promise<void> => {
-      const checkServiceAvailability = async ({
-        url,
-        serviceType,
-        httpMethod,
-      }: Services): Promise<void> => {
-        const { error } = await useFetch(
-          url,
-          { method: httpMethod || 'HEAD' },
-          { timeout: 3000 },
-        );
-
-        switch (serviceType) {
+    const checkServiceAvailability = async (
+      service: Service,
+    ): Promise<void> => {
+      await ofetch(service.url, {
+        method: service.httpMethod || 'HEAD',
+        timeout: 3000,
+      }).catch((error) => {
+        console.error((error as FetchError).message);
+        switch (service.type) {
           case 'search':
-            geolocation.search.hasFetchingError = error.value !== null;
+            geolocation.search.hasFetchingError = true;
             break;
           case 'weather':
-            weather.hasFetchingError = error.value !== null;
+            weather.hasFetchingError = true;
             break;
         }
-      };
-
-      const services: Services[] = [
-        {
-          url: 'https://nominatim.openstreetmap.org/status',
-          serviceType: 'search',
-          httpMethod: 'GET',
-        },
-        { url: 'https://wttr.in', serviceType: 'weather' },
-      ];
-
-      await Promise.all(
-        services.map((service) => checkServiceAvailability(service)),
-      );
-
-      type Services = {
-        url: string;
-        serviceType: 'search' | 'weather';
-        httpMethod?: string;
-      };
+      });
     };
-    const hasLocalStorageCoords = (): boolean => {
-      return 'latitude' in geolocation.lastCoords &&
+    const hasCoordsInLocalStorage = (): boolean => {
+      return (
+        'latitude' in geolocation.lastCoords &&
         'longitude' in geolocation.lastCoords
-        ? true
-        : false;
+      );
     };
 
-    await checkAllServiceAvailabilities();
-    if (!weather.hasFetchingError && hasLocalStorageCoords()) {
+    const services: Service[] = [
+      {
+        url: 'https://nominatim.openstreetmap.org/status',
+        type: 'search',
+        httpMethod: 'GET',
+      },
+      { url: 'https://wttr.in', type: 'weather' },
+    ];
+
+    await Promise.all(
+      services.map((service) => checkServiceAvailability(service)),
+    );
+
+    if (!weather.hasFetchingError && hasCoordsInLocalStorage()) {
       await getWeather(geolocation.lastCoords);
     }
+
+    type Service = {
+      url: string;
+      type: 'search' | 'weather';
+      httpMethod?: 'HEAD' | 'GET';
+    };
   }
   async function getGeolocationViaSearch(
     searchParam: string,
@@ -218,6 +213,11 @@ export const useWeatherStore = defineStore('weather', () => {
         geolocation.lastCoords[key as keyof GeolocationCoords] = value;
       }
     };
+    const isSearchResult = (
+      coords: AdjSearchApiResponse | GeolocationCoords,
+    ): boolean => {
+      return 'city' in coords && 'country' in coords;
+    };
 
     if (!coords) {
       try {
@@ -234,7 +234,7 @@ export const useWeatherStore = defineStore('weather', () => {
     const address = {} as ReverseSearchApiResponse['address'];
     weather.isFetching = true;
 
-    if (!('city' in coords && 'country' in coords)) {
+    if (!isSearchResult(coords)) {
       try {
         const res = await ofetch<ReverseSearchApiResponse>('/reverse', {
           baseURL: 'https://nominatim.openstreetmap.org',
@@ -303,7 +303,10 @@ export const useWeatherStore = defineStore('weather', () => {
             (coords as AdjSearchApiResponse).city ||
             address.city ||
             nearestArea.areaName[0].value,
-          country: (coords as AdjSearchApiResponse).country || address.country,
+          country:
+            (coords as AdjSearchApiResponse).country ||
+            address.country ||
+            nearestArea.country[0].value,
           region: nearestArea.region[0].value,
         },
         currentCondition: {
@@ -342,7 +345,7 @@ export const useWeatherStore = defineStore('weather', () => {
             maxtempC: parseInt(w.maxtempC),
             mintempC: parseInt(w.mintempC),
             uvIndex: parseInt(w.uvIndex),
-            totalSnow_cm: parseInt(w.totalSnow_cm),
+            totalSnowCm: parseInt(w.totalSnow_cm),
             sunHour: parseInt(w.sunHour),
             date: relativeTimeFormatter.format(i, 'day'),
             avgtempC: parseInt(w.avgtempC),
@@ -498,7 +501,7 @@ type AdjWeatherApiResponse = {
     maxtempC: number; // 8
     mintempC: number; // 5
     uvIndex: number; // 2
-    totalSnow_cm: number; // 0.0
+    totalSnowCm: number; // 0.0
     sunHour: number; // 7.3
     date: string; // today, tomorrow, ... (Intl)
     avgtempC: number; // 7
